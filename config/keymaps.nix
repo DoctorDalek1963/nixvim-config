@@ -250,7 +250,14 @@ let
       options.silent = true;
     }
   ];
-  pluginKeymaps = [];
+  pluginKeymaps = [
+    {
+      key = "<leader>g";
+      action = "<cmd>Goyo<cr>";
+      mode = "n";
+      options.silent = true;
+    }
+  ];
 in {
   keymaps = baseKeymaps ++ pluginKeymaps;
 }
