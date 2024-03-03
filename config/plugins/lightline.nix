@@ -1,4 +1,4 @@
-{...}: {
+{
   plugins.lightline = {
     enable = true;
 

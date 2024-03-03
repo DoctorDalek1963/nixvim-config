@@ -1,4 +1,4 @@
-{...}: {
+{
   plugins = {
     # Rust tools: LSP, formatter, debugger
     # TODO: How does this integrate with my system rustup? What about toolchains?
@@ -7,6 +7,7 @@
       tools.hoverActions.replaceBuiltinHover = false;
     };
 
+    # Autoformatting for all servers that support it
     lsp-format = {
       enable = true;
       lspServersToEnable = "all";

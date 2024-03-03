@@ -1,4 +1,4 @@
-{...}: let
+let
   baseGlobals = {
     mapleader = "\\";
     maplocalleader = "\\";

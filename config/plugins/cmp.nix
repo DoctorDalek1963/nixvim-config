@@ -1,4 +1,4 @@
-{...}: {
+{
   plugins = {
     # Lots of good snippets for various languages
     friendly-snippets.enable = true;

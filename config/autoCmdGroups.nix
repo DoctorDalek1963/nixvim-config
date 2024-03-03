@@ -1,4 +1,4 @@
-{...}: let
+let
   autoCmdGroups = [
     {
       group = "tabs";

@@ -1,4 +1,4 @@
-{...}: let
+let
   baseOptions = {
     # Line numbers
     number = true;

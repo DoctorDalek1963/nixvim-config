@@ -1,4 +1,4 @@
-{...}: let
+let
   baseKeymaps = [
     # Quit vim
     {
