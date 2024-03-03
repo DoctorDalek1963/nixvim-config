@@ -7,6 +7,8 @@
     ./plugins/default.nix
   ];
 
+  enableMan = false;
+
   clipboard.register = "unnamedplus";
 
   colorschemes.catppuccin = {
