@@ -97,6 +97,30 @@
           '';
           modes = ["i" "s"];
         };
+        "<S-down>" = {
+          action = ''
+            function(fallback)
+              if cmp.visible_docs() then
+                cmp.scroll_docs(2)
+              else
+                fallback()
+              end
+            end
+          '';
+          modes = ["i" "s"];
+        };
+        "<S-up>" = {
+          action = ''
+            function(fallback)
+              if cmp.visible_docs() then
+                cmp.scroll_docs(-2)
+              else
+                fallback()
+              end
+            end
+          '';
+          modes = ["i" "s"];
+        };
       };
     };
   };
