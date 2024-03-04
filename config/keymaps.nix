@@ -255,11 +255,40 @@ let
     }
   ];
   pluginKeymaps = [
+    # Toggle goyo
     {
       key = "<leader>g";
       action = "<cmd>Goyo<cr>";
       mode = "n";
       options.silent = true;
+    }
+
+    # Open code actions with preview
+    {
+      key = "<M-return>";
+      action = "require('actions-preview').code_actions";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+
+    # Open workspace symbols with Telescope
+    {
+      key = "<leader>ts";
+      action = "<cmd>Telescope lsp_workspace_symbols<cr>";
+      mode = "n";
+    }
+    # Open diagnostics with Telescope
+    {
+      key = "<leader>td";
+      action = "<cmd>Telescope diagnostics<cr>";
+      mode = "n";
+    }
+    # Open fd with Telescope
+    {
+      key = "<leader>tf";
+      action = "<cmd>Telescope fd<cr>";
+      mode = "n";
     }
   ];
 in {

@@ -1,6 +1,7 @@
 {
   imports = [
     ./cmp.nix
+    ./extras.nix
     ./lightline.nix
     ./lsp.nix
     ./none-ls.nix
@@ -39,6 +40,15 @@
 
     # Handle delimiters like () [] {} "" '' better
     surround.enable = true;
+
+    # Telescope
+    telescope = {
+      enable = true;
+      extensions.file_browser = {
+        enable = true;
+        hijackNetrw = true; # Use this when opening a directory with nvim
+      };
+    };
 
     # Treesitter grammar
     treesitter = {

@@ -21,7 +21,6 @@
       keymaps = {
         silent = true;
         lspBuf = {
-          "<M-return>" = "code_action";
           "gd" = "definition";
           "<leader>f" = "format";
           "K" = "hover";
