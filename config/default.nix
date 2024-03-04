@@ -9,8 +9,6 @@
 
   enableMan = false;
 
-  clipboard.register = "unnamedplus";
-
   colorschemes.catppuccin = {
     enable = true;
     flavour = "macchiato";
