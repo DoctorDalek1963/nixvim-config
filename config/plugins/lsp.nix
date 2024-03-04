@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins = {
     # Rust tools: LSP, formatter, debugger
     # TODO: How does this integrate with my system rustup? What about toolchains?
@@ -77,7 +77,7 @@
         # Nix
         nixd = {
           enable = true;
-          settings.formatting.command = "alejandra --quiet";
+          settings.formatting.command = "${pkgs.alejandra}/bin/alejandra --quiet";
         };
 
         # Python

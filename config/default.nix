@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./autoCmdGroups.nix
     ./globals.nix
@@ -8,6 +8,11 @@
   ];
 
   enableMan = false;
+
+  extraPackages = with pkgs; [
+    alejandra # For nixd lsp
+    delta # For actions-preview.nvim
+  ];
 
   colorschemes.catppuccin = {
     enable = true;
