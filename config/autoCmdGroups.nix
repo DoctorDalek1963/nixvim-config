@@ -53,19 +53,21 @@ let
           desc = "Make Goyo look better with Catppuccin";
           event = "User";
           pattern = "GoyoEnter";
-          callback.__raw = ''
-            function(tbl)
-              vim.defer_fn(
-                function()
-                  require("catppuccin").setup({
-                    dim_inactive = {enabled = false}
-                  })
-                  vim.cmd.colorscheme("catppuccin-macchiato")
-                end,
-                150
-              )
-            end
-          '';
+          callback.__raw =
+            # lua
+            ''
+              function(tbl)
+                vim.defer_fn(
+                  function()
+                    require("catppuccin").setup({
+                      dim_inactive = {enabled = false}
+                    })
+                    vim.cmd.colorscheme("catppuccin-macchiato")
+                  end,
+                  150
+                )
+              end
+            '';
         }
         #{
         #desc = "Enable SoftPencil";

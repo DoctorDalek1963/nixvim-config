@@ -226,12 +226,14 @@ let
     # Toggle virtual text
     {
       key = "<leader>v";
-      action = ''
-        function()
-          local vt = vim.diagnostic.config().virtual_text
-          vim.diagnostic.config({ virtual_text = not vt })
-        end
-      '';
+      action =
+        # lua
+        ''
+          function()
+            local vt = vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_text = not vt })
+          end
+        '';
       lua = true;
       mode = "n";
       options.silent = true;
@@ -240,11 +242,13 @@ let
     # Toggle inlay hints
     {
       key = "<leader>i";
-      action = ''
-        function()
-          vim.lsp.inlay_hint.enable(vim.fn.bufnr(), not vim.lsp.inlay_hint.is_enabled())
-        end
-      '';
+      action =
+        # lua
+        ''
+          function()
+            vim.lsp.inlay_hint.enable(vim.fn.bufnr(), not vim.lsp.inlay_hint.is_enabled())
+          end
+        '';
       lua = true;
       mode = "n";
       options.silent = true;

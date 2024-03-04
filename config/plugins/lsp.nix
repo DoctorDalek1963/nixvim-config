@@ -2,6 +2,7 @@
   plugins = {
     # Rust tools: LSP, formatter, debugger
     # TODO: How does this integrate with my system rustup? What about toolchains?
+    # TODO: Install codelldb for better debugging support
     rustaceanvim = {
       enable = true;
       tools.hoverActions.replaceBuiltinHover = false;

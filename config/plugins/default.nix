@@ -1,16 +1,29 @@
-{...}: {
+{
   imports = [
     ./cmp.nix
     ./lightline.nix
     ./lsp.nix
+    ./none-ls.nix
   ];
 
   plugins = {
+    # Toggle comments with `gc`, `gb`, and friends
+    comment-nvim.enable = true;
+
+    # Nicer commit editing with git
+    committia.enable = true;
+
+    # Show update messages in the bottom right
+    fidget.enable = true;
+
     # Show diff signs in the left column
     gitgutter.enable = true;
 
     # For markdown files
     goyo.enable = true;
+
+    # Highlight inline strings with other languages in Nix files
+    hmts.enable = true;
 
     # Show indentation levels
     indent-blankline = {
