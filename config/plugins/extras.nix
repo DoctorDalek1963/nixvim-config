@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-  extraPlugins = [
-    pkgs.vimPlugins.actions-preview-nvim
+  extraPlugins = with pkgs.vimPlugins; [
+    actions-preview-nvim
+    vim-pencil
   ];
 
   extraConfigLua =

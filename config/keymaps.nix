@@ -255,10 +255,10 @@ let
     }
   ];
   pluginKeymaps = [
-    # Toggle goyo
+    # Toggle goyo and vim-pencil
     {
       key = "<leader>g";
-      action = "<cmd>Goyo<cr>";
+      action = "<cmd>Goyo<cr><cmd>SoftPencil<cr>";
       mode = "n";
       options.silent = true;
     }
