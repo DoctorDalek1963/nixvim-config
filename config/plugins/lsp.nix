@@ -2,10 +2,21 @@
   plugins = {
     # Rust tools: LSP, formatter, debugger
     # TODO: How does this integrate with my system rustup? What about toolchains?
-    # TODO: Install codelldb for better debugging support
     rustaceanvim = {
       enable = true;
       tools.hoverActions.replaceBuiltinHover = false;
+      # This config was adapted from https://github.com/mrcjkb/rustaceanvim#using-codelldb-for-debugging
+      dap.adapter =
+        # lua
+        ''
+          function()
+            local extension_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb"
+            local codelldb_path = extension_path .. "/adapter/codelldb"
+            local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+
+            return require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path)
+          end
+        '';
     };
 
     # Autoformatting for all servers that support it

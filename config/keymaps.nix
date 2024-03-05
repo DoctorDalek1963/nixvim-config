@@ -290,6 +290,62 @@ let
       action = "<cmd>Telescope fd<cr>";
       mode = "n";
     }
+
+    # Toggle DAP breakpoint
+    {
+      key = "<leader>db";
+      action = "require('dap').toggle_breakpoint";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+    # DAP continue
+    {
+      key = "<leader>dc";
+      action = "require('dap').continue";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+    # DAP step over
+    {
+      key = "<leader>dso";
+      action = "require('dap').step_over";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+    # DAP step into
+    {
+      key = "<leader>dsi";
+      action = "require('dap').step_into";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+    # Open DAP REPL
+    {
+      key = "<leader>dr";
+      action = "require('dap').repl.open";
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
+    # Open DAP UI
+    {
+      key = "<leader>dui";
+      action =
+        # lua
+        ''
+          function()
+            require('dapui').setup()
+            require('dapui').toggle()
+          end
+        '';
+      lua = true;
+      mode = "n";
+      options.silent = true;
+    }
   ];
 in {
   keymaps = baseKeymaps ++ pluginKeymaps;

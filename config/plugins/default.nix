@@ -14,6 +14,15 @@
     # Nicer commit editing with git
     committia.enable = true;
 
+    # Debugging
+    dap = {
+      enable = true;
+      extensions = {
+        dap-ui.enable = true;
+        dap-virtual-text.enable = true;
+      };
+    };
+
     # Show update messages in the bottom right
     fidget.enable = true;
 

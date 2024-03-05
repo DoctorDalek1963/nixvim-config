@@ -12,6 +12,7 @@
   extraPackages = with pkgs; [
     alejandra # For nixd lsp
     delta # For actions-preview.nvim
+    vscode-extensions.vadimcn.vscode-lldb # For Rustaceanvim debugging
   ];
 
   colorschemes.catppuccin = {
