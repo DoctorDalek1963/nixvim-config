@@ -209,13 +209,6 @@ let
       mode = "v";
     }
 
-    # Don't overwrite the default yank buffer when pasting
-    {
-      key = "p";
-      action = "pgvy";
-      mode = "v";
-    }
-
     # Select everything in the buffer
     {
       key = "<leader>a";
@@ -290,6 +283,12 @@ let
       action = "<cmd>Telescope fd<cr>";
       mode = "n";
     }
+    # Open yanky ring with Telescope
+    {
+      key = "<leader>ty";
+      action = "<cmd>Telescope yank_history<cr>";
+      mode = "n";
+    }
 
     # Toggle DAP breakpoint
     {
@@ -345,6 +344,51 @@ let
       lua = true;
       mode = "n";
       options.silent = true;
+    }
+
+    # Open undo tree
+    {
+      key = "<leader>u";
+      action = "<cmd>UndotreeToggle<cr>";
+      mode = "n";
+    }
+
+    # Yanky put after
+    {
+      key = "p";
+      action = "<Plug>(YankyPutAfter)";
+      mode = ["n" "x"];
+    }
+    # Yanky put before
+    {
+      key = "P";
+      action = "<Plug>(YankyPutBefore)";
+      mode = ["n" "x"];
+    }
+    # Yanky g put after
+    {
+      key = "gp";
+      action = "<Plug>(YankyGPutAfter)";
+      mode = ["n" "x"];
+    }
+    # Yanky g put before
+    {
+      key = "gP";
+      action = "<Plug>(YankyGPutBefore)";
+      mode = ["n" "x"];
+    }
+
+    # Yanky previous ring entry
+    {
+      key = "<C-p>";
+      action = "<Plug>(YankyPreviousEntry)";
+      mode = "n";
+    }
+    # Yanky next ring entry
+    {
+      key = "<C-n>";
+      action = "<Plug>(YankyNextEntry)";
+      mode = "n";
     }
   ];
 in {

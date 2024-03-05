@@ -24,7 +24,13 @@
     };
 
     # Show update messages in the bottom right
-    fidget.enable = true;
+    fidget = {
+      enable = true;
+      notification = {
+        filter = "info";
+        overrideVimNotify = true;
+      };
+    };
 
     # Show diff signs in the left column
     gitgutter.enable = true;
@@ -44,8 +50,31 @@
     # Resume editing from the last place
     lastplace.enable = true;
 
+    # Preview markdown files in the browser
+    markdown-preview.enable = true;
+
+    # Make marks easier and nicer to use
+    marks.enable = true;
+
+    # Automatically pair brackets and quotes and things
+    nvim-autopairs.enable = true;
+
     # Rainbow brackets and tags
     rainbow-delimiters.enable = true;
+
+    # Improve w e b motions, basically camelCaseMotions
+    spider = {
+      enable = true;
+      keymaps = {
+        motions = {
+          b = "b";
+          e = "e";
+          ge = "ge";
+          w = "w";
+        };
+        silent = true;
+      };
+    };
 
     # Handle delimiters like () [] {} "" '' better
     surround.enable = true;
@@ -70,6 +99,15 @@
     # Add scope context with treesitter
     treesitter-context.enable = true;
 
+    # Automatically close and rename HTML-like tags in pairs with Treesitter
+    ts-autotag.enable = true;
+
+    # Use the correct comment syntax for embedded languages
+    ts-context-commentstring.enable = true;
+
+    # See a tree of undo history
+    undotree.enable = true;
+
     # Make matching tags like () [] {} "" '' work better
     vim-matchup = {
       enable = true;
@@ -85,6 +123,12 @@
       enable = true;
       # Use the texlive installed system-wide
       texlivePackage = null;
+    };
+
+    # Make yanking better. See keymaps
+    yanky = {
+      enable = true;
+      picker.telescope.enable = true;
     };
   };
 }

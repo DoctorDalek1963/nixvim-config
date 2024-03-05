@@ -25,6 +25,12 @@
       lspServersToEnable = "all";
     };
 
+    # Highlight exact diagnostic locations on the line
+    lsp-lines = {
+      enable = true;
+      currentLine = true;
+    };
+
     # See https://nix-community.github.io/nixvim/plugins/lsp/index.html for options and supported servers
     lsp = {
       enable = true;
