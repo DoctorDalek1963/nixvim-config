@@ -1,6 +1,5 @@
 1. Fix ruff-lsp hover
-2. Install other misc plugins
-3. Add lean.nvim
-4. Look into leap.nvim
-5. Switch to lualine
-6. Setup nvim-ufo
+2. Add lean.nvim
+3. Look into leap.nvim
+4. Switch to lualine
+5. Setup nvim-ufo

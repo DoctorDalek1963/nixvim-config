@@ -10,6 +10,40 @@
   ];
 
   manualPlugins = [
+    # Source for cmp
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "cmp-dotenv";
+        src = pkgs.fetchFromGitHub {
+          owner = "SergioRibera";
+          repo = "cmp-dotenv";
+          rev = "fd78929551010bc20602e7e663e42a5e14d76c96";
+          hash = "sha256-g1nw8E1uD2iyLJPRdgTp0MQgANjAdi9edyhhFRs2Ouo=";
+        };
+      })
+    # Source for cmp
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "cmp-vimtex";
+        src = pkgs.fetchFromGitHub {
+          owner = "micangl";
+          repo = "cmp-vimtex";
+          rev = "613fbfc54d9488252b0b0289d6d1d60242513558";
+          hash = "sha256-07FqXsRe0RP5f3b6osrsi5gai+bZi9ybm5JL/nnBH+4=";
+        };
+      })
+    # Source for cmp
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "cmp_yanky";
+        src = pkgs.fetchFromGitHub {
+          owner = "chrisgrieser";
+          repo = "cmp_yanky";
+          rev = "c3d089186ccead26eba01023502f3eeadd7a92d2";
+          hash = "sha256-jWNoKzY0x5GPFP7JsQi4nqgg1YFJV4DqxwJRqsg6KaQ=";
+        };
+      })
+
     # Needed by windows-nvim
     (pkgs.vimUtils.buildVimPlugin
       {
