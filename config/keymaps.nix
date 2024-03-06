@@ -353,6 +353,14 @@ let
       mode = "n";
     }
 
+    # Maximize the current window
+    {
+      key = "<C-w><C-w>";
+      action = "<cmd>WindowsMaximize<cr>";
+      mode = "n";
+      options.silent = true;
+    }
+
     # Yanky put after
     {
       key = "p";

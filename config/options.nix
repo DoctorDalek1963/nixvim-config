@@ -65,6 +65,11 @@ let
 
     # Always draw the sign column
     signcolumn = "yes";
+
+    # windows.nvim
+    winwidth = 15;
+    winminwidth = 0;
+    equalalways = false;
   };
 in {
   config.options = baseOptions // pluginOptions;
