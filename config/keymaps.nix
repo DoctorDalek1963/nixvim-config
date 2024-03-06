@@ -149,12 +149,12 @@ let
     # Add a semicolon or comma to the end of a line
     {
       key = "<leader>;";
-      action = "mqA;<esc>`q";
+      action = "mqA;<esc>`qdmq";
       mode = "n";
     }
     {
       key = "<leader>,";
-      action = "mqA,<esc>`q";
+      action = "mqA,<esc>`qdmq";
       mode = "n";
     }
 
@@ -190,7 +190,7 @@ let
     # Automatically fix spelling
     {
       key = "<leader>z";
-      action = "mq1z=`q";
+      action = "mq1z=`qdmq";
       mode = "n";
       options.silent = true;
     }
