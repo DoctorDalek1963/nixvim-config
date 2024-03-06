@@ -5,6 +5,7 @@
     ./lightline.nix
     ./lsp.nix
     ./none-ls.nix
+    ./treesitter.nix
   ];
 
   plugins = {
@@ -86,14 +87,6 @@
         enable = true;
         hijackNetrw = true; # Use this when opening a directory with nvim
       };
-    };
-
-    # Treesitter grammar
-    treesitter = {
-      enable = true;
-      ensureInstalled = "all";
-      folding = true;
-      indent = true;
     };
 
     # Add scope context with treesitter
