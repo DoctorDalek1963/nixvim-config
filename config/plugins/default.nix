@@ -2,8 +2,8 @@
   imports = [
     ./cmp.nix
     ./extras.nix
-    ./lightline.nix
     ./lsp.nix
+    ./lualine.nix
     ./none-ls.nix
     ./treesitter.nix
   ];
