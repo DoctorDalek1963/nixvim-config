@@ -72,5 +72,5 @@ let
     equalalways = false;
   };
 in {
-  config.options = baseOptions // pluginOptions;
+  config.opts = baseOptions // pluginOptions;
 }

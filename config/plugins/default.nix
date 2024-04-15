@@ -10,7 +10,7 @@
 
   plugins = {
     # Toggle comments with `gc`, `gb`, and friends
-    comment-nvim.enable = true;
+    comment.enable = true;
 
     # Nicer commit editing with git
     committia.enable = true;
@@ -45,7 +45,7 @@
     # Show indentation levels
     indent-blankline = {
       enable = true;
-      scope.enabled = false;
+      settings.scope.enabled = false;
     };
 
     # Resume editing from the last place
@@ -83,9 +83,9 @@
     # Telescope
     telescope = {
       enable = true;
-      extensions.file_browser = {
+      extensions.file-browser = {
         enable = true;
-        hijackNetrw = true; # Use this when opening a directory with nvim
+        settings.hijack-netrw = true; # Use this when opening a directory with nvim
       };
     };
 

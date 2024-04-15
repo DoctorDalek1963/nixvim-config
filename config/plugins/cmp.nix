@@ -18,126 +18,156 @@
     cmp-path.enable = true; # Filepaths
     cmp-spell.enable = true; # English words
 
-    nvim-cmp = {
+    cmp = {
       enable = true;
-
       autoEnableSources = false;
-      sources = [
-        {name = "buffer";}
-        {name = "crates";} # From crates.nvim in none-ls.nix
-        {name = "dap";}
-        {name = "dotenv";}
-        {name = "latex_symbols";}
-        {name = "luasnip";}
-        {name = "nvim_lsp";}
-        {name = "nvim_lua";}
-        {name = "path";}
-        {name = "spell";}
-        {name = "vimtex";}
-        {name = "cmp_yanky";}
-      ];
 
-      snippet.expand = "luasnip";
-      completion.completeopt = "menu,menuone,popup,noselect";
+      settings = {
+        sources = [
+          {name = "buffer";}
+          {name = "crates";} # From crates.nvim in none-ls.nix
+          {name = "dap";}
+          {name = "dotenv";}
+          {name = "latex_symbols";}
+          {name = "luasnip";}
+          {name = "nvim_lsp";}
+          {name = "nvim_lua";}
+          {name = "path";}
+          {name = "spell";}
+          {name = "vimtex";}
+          {name = "cmp_yanky";}
+        ];
 
-      mapping = {
-        "<C-space>" = "cmp.mapping.complete()";
-        "<CR>" = "cmp.mapping.confirm({ select = true })";
-        "<Tab>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif require("luasnip").jumpable(1) then
-                  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, true, true), "")
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = [
-            "i"
-            "s"
-          ];
-        };
-        "<S-Tab>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif require("luasnip").jumpable(-1) then
-                  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = [
-            "i"
-            "s"
-          ];
-        };
-        "<down>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = ["i" "s"];
-        };
-        "<up>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = ["i" "s"];
-        };
-        "<S-down>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible_docs() then
-                  cmp.scroll_docs(2)
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = ["i" "s"];
-        };
-        "<S-up>" = {
-          action =
-            # lua
-            ''
-              function(fallback)
-                if cmp.visible_docs() then
-                  cmp.scroll_docs(-2)
-                else
-                  fallback()
-                end
-              end
-            '';
-          modes = ["i" "s"];
+        snippet.expand =
+          # lua
+          ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
+
+        completion.completeopt = "menu,menuone,popup,noselect";
+
+        mapping = {
+          "<C-space>" = "cmp.mapping.complete()";
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
         };
       };
     };
   };
+
+  keymaps = [
+    {
+      key = "<Tab>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif require("luasnip").jumpable(1) then
+              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, true, true), "")
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = [
+        "i"
+        "s"
+      ];
+      lua = true;
+      options.silent = true;
+    }
+    {
+      key = "<S-Tab>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif require("luasnip").jumpable(-1) then
+              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = [
+        "i"
+        "s"
+      ];
+      lua = true;
+      options.silent = true;
+    }
+    {
+      key = "<down>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = ["i" "s"];
+      lua = true;
+      options.silent = true;
+    }
+    {
+      key = "<up>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = ["i" "s"];
+      lua = true;
+      options.silent = true;
+    }
+    {
+      key = "<S-down>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible_docs() then
+              cmp.scroll_docs(2)
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = ["i" "s"];
+      lua = true;
+      options.silent = true;
+    }
+    {
+      key = "<S-up>";
+      action =
+        # lua
+        ''
+          function(fallback)
+            if cmp.visible_docs() then
+              cmp.scroll_docs(-2)
+            else
+              fallback()
+            end
+          end
+        '';
+      mode = ["i" "s"];
+      lua = true;
+      options.silent = true;
+    }
+  ];
 }

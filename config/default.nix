@@ -17,31 +17,33 @@
 
   colorschemes.catppuccin = {
     enable = true;
-    flavour = "macchiato";
-    background = {
-      light = "latte";
-      dark = "macchiato";
-    };
-    dimInactive = {
-      enabled = true;
-      percentage = 0.15;
-    };
-    integrations = {
-      cmp = true;
-      gitgutter = true;
-      rainbow_delimiters = true;
-      treesitter = true;
-      treesitter_context = true;
-      dap = {
-        enabled = true;
-        enable_ui = true;
+    settings = {
+      flavour = "macchiato";
+      background = {
+        light = "latte";
+        dark = "macchiato";
       };
-      indent_blankline = {
+      dimInactive = {
         enabled = true;
-        colored_indent_levels = true;
+        percentage = 0.15;
       };
-      native_lsp.enabled = true;
-      telescope.enabled = true;
+      integrations = {
+        cmp = true;
+        gitgutter = true;
+        rainbow_delimiters = true;
+        treesitter = true;
+        treesitter_context = true;
+        dap = {
+          enabled = true;
+          enable_ui = true;
+        };
+        indent_blankline = {
+          enabled = true;
+          colored_indent_levels = true;
+        };
+        native_lsp = true;
+        telescope = true;
+      };
     };
   };
 
