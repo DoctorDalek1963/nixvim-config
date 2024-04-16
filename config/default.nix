@@ -57,14 +57,6 @@
   extraConfigVim =
     # vim
     ''
-      function! LightlineReadonly()
-          return &readonly && &filetype !=# "help" ? "RO" : ""
-      endfunction
-
-      function! LightlineFileformat()
-          return &fileformat !=# "unix" ? &fileformat : ""
-      endfunction
-
       function! VisualWordsAndChars()
           if mode() == "v"
               return wordcount().visual_words . "W " . wordcount().visual_chars . "C"
