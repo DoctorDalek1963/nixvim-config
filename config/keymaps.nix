@@ -119,18 +119,6 @@ let
       mode = "n";
     }
 
-    # Toggle folds with space
-    {
-      key = "<space><space>";
-      action = "za";
-      mode = "n";
-    }
-    {
-      key = "<leader><space>";
-      action = "zA";
-      mode = "n";
-    }
-
     # Clear the terminal
     {
       key = "<leader>cl";

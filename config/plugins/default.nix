@@ -6,6 +6,7 @@
     ./lualine.nix
     ./none-ls.nix
     ./treesitter.nix
+    ./ufo.nix
   ];
 
   plugins = {
