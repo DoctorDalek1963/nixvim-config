@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   plugins = {
     # Rust tools: LSP, formatter, debugger
-    # TODO: How does this integrate with my system rustup? What about toolchains?
     rustaceanvim = {
       enable = true;
+      rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`
       tools.hoverActions.replaceBuiltinHover = false;
       # This config was adapted from https://github.com/mrcjkb/rustaceanvim#using-codelldb-for-debugging
       dap.adapter =
