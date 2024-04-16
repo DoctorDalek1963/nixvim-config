@@ -51,123 +51,50 @@
         mapping = {
           "<C-space>" = "cmp.mapping.complete()";
           "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<down>" = "cmp.mapping.select_next_item()";
+          "<up>" = "cmp.mapping.select_prev_item()";
+          "<S-down>" = "cmp.mapping.scroll_docs(2)";
+          "<S-up>" = "cmp.mapping.scroll_docs(-2)";
+          "<Tab>" =
+            # lua
+            ''
+              cmp.mapping(
+                function(fallback)
+                  local luasnip = require("luasnip")
+
+                  if cmp.visible() then
+                    cmp.select_next_item()
+                  elseif luasnip.jumpable(1) then
+                    -- vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, true, true), "")
+                    luasnip.jump(1)
+                  else
+                    fallback()
+                  end
+                end,
+                { "i", "s" }
+              )
+            '';
+          "<S-Tab>" =
+            # lua
+            ''
+              cmp.mapping(
+                function(fallback)
+                  local luasnip = require("luasnip")
+
+                  if cmp.visible() then
+                    cmp.select_prev_item()
+                  elseif luasnip.jumpable(-1) then
+                    -- vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+                    luasnip.jump(-1)
+                  else
+                    fallback()
+                  end
+                end,
+                { "i", "s" }
+              )
+            '';
         };
       };
     };
   };
-
-  keymaps = [
-    {
-      key = "<Tab>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif require("luasnip").jumpable(1) then
-              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, true, true), "")
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = [
-        "i"
-        "s"
-      ];
-      lua = true;
-      options.silent = true;
-    }
-    {
-      key = "<S-Tab>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif require("luasnip").jumpable(-1) then
-              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = [
-        "i"
-        "s"
-      ];
-      lua = true;
-      options.silent = true;
-    }
-    {
-      key = "<down>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = ["i" "s"];
-      lua = true;
-      options.silent = true;
-    }
-    {
-      key = "<up>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = ["i" "s"];
-      lua = true;
-      options.silent = true;
-    }
-    {
-      key = "<S-down>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible_docs() then
-              cmp.scroll_docs(2)
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = ["i" "s"];
-      lua = true;
-      options.silent = true;
-    }
-    {
-      key = "<S-up>";
-      action =
-        # lua
-        ''
-          function(fallback)
-            if cmp.visible_docs() then
-              cmp.scroll_docs(-2)
-            else
-              fallback()
-            end
-          end
-        '';
-      mode = ["i" "s"];
-      lua = true;
-      options.silent = true;
-    }
-  ];
 }
