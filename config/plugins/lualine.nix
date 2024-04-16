@@ -16,19 +16,32 @@ let
       # lua
       ''
         function(text)
+          -- We need 32 characters in the hash but lua doesn't support "[%a%d]{32}" syntax
+          local hash_eight_chars = "[%a%d][%a%d][%a%d][%a%d][%a%d][%a%d][%a%d][%a%d]"
+          local hash_pattern = hash_eight_chars .. hash_eight_chars .. hash_eight_chars .. hash_eight_chars
+
+          text = string.gsub(text, "/nix/store/" .. hash_pattern .. "%-([^/]+)", "/n/s/<hash>-%1")
+
           if vim.fn.winwidth(0) <= 75 then
+            local leading_slash = string.sub(text, 0, 1) == "/"
             local final_path_components = {}
 
             for path_component, slash in string.gmatch(text, "([^/]+)(/?)") do
               if slash == "" then
-                -- This is the filename, so we don't want to shorten it
+                -- This is the filename or "<hash>-" part of a nix store path, so we don't want to shorten it
                 table.insert(final_path_components, path_component)
               else
                 table.insert(final_path_components, string.sub(path_component, 0, 1))
               end
             end
 
-            return table.concat(final_path_components, "/")
+            local final_path = table.concat(final_path_components, "/")
+
+            if leading_slash then
+              return "/" .. final_path
+            else
+              return final_path
+            end
           else
             return text
           end
