@@ -5,6 +5,7 @@
       enable = true;
       rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`
       tools.hoverActions.replaceBuiltinHover = false;
+      server.onAttach = "__lspOnAttach";
       # This config was adapted from https://github.com/mrcjkb/rustaceanvim#using-codelldb-for-debugging
       dap.adapter =
         # lua
