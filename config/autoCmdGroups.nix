@@ -100,17 +100,6 @@ let
       ];
     }
     {
-      group = "update_git_ps1_status";
-      commands = [
-        {
-          desc = "Update the git_ps1_status global variable by calling UpdateGitPS1Status()";
-          event = ["BufEnter" "BufWritePost"];
-          pattern = "*";
-          command = "call UpdateGitPS1Status()";
-        }
-      ];
-    }
-    {
       group = "filetypes";
       commands = filetypeCommands;
     }
