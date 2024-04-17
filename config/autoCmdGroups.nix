@@ -89,17 +89,6 @@ let
       ];
     }
     {
-      group = "rust";
-      commands = [
-        {
-          desc = "Create mapping for formatting";
-          event = "FileType";
-          pattern = "rust";
-          command = "nnoremap <silent> <leader>f <cmd>RustFmt<cr>";
-        }
-      ];
-    }
-    {
       group = "filetypes";
       commands = filetypeCommands;
     }
