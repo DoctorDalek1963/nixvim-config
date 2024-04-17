@@ -54,18 +54,6 @@
     };
   };
 
-  extraConfigVim =
-    # vim
-    ''
-      function! VisualWordsAndChars()
-          if mode() == "v"
-              return wordcount().visual_words . "W " . wordcount().visual_chars . "C"
-          else
-              return ""
-          endif
-      endfunction
-    '';
-
   extraConfigLua =
     # lua
     ''
