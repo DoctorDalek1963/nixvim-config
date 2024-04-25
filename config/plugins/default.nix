@@ -1,4 +1,4 @@
-{
+{dapDebugger, ...}: {
   imports = [
     ./cmp.nix
     ./extras.nix
@@ -18,10 +18,10 @@
 
     # Debugging
     dap = {
-      enable = true;
+      enable = dapDebugger;
       extensions = {
-        dap-ui.enable = true;
-        dap-virtual-text.enable = true;
+        dap-ui.enable = dapDebugger;
+        dap-virtual-text.enable = dapDebugger;
       };
     };
 

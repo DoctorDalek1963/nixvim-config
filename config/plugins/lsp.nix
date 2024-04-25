@@ -1,8 +1,23 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  cLsps,
+  configFileLsps,
+  dockerfileLsp,
+  haskellLsp,
+  juliaLsp,
+  jvmLsps,
+  latexLsp,
+  luaLsp,
+  pythonLsp,
+  rustLsp,
+  shellLsps,
+  webLsps,
+  ...
+}: {
   plugins = {
     # Rust tools: LSP, formatter, debugger
     rustaceanvim = {
-      enable = true;
+      enable = rustLsp;
       rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`
       tools.hoverActions.replaceBuiltinHover = false;
       server.onAttach = "__lspOnAttach";
@@ -55,60 +70,65 @@
 
       servers = {
         # Bash
-        bashls.enable = true;
+        bashls.enable = shellLsps;
 
         # C/C++
-        ccls.enable = true;
+        ccls.enable = cLsps;
 
         # CSS
-        cssls.enable = true;
+        cssls.enable = webLsps;
 
         # Dockerfile
-        dockerls.enable = true;
+        dockerls.enable = dockerfileLsp;
 
         # Haskell
-        hls.enable = true;
+        hls.enable = haskellLsp;
 
         # HTML
-        html.enable = true;
+        html.enable = webLsps;
 
         # Java
-        java-language-server.enable = true;
+        java-language-server.enable = jvmLsps;
 
         # JSON
-        jsonls.enable = true;
+        jsonls.enable = configFileLsps || webLsps;
 
         # Julia
-        julials.enable = true;
+        julials.enable = juliaLsp;
 
         # Kotlin
-        kotlin-language-server.enable = true;
+        kotlin-language-server.enable = jvmLsps;
 
         # LaTeX
         # TODO: Make sure the LaTeX referrence manual is installed as an info node:
         # https://github.com/astoff/digestif/wiki/Common-installation-issues#info-nodes
-        digestif.enable = true;
+        digestif.enable = latexLsp;
 
         # Lua
-        lua-ls.enable = true;
+        lua-ls.enable = luaLsp;
 
         # Nix
         nixd = {
+          # This is always enabled even in nvim-small because I'm always
+          # editing Nix files
           enable = true;
           settings.formatting.command = "${pkgs.alejandra}/bin/alejandra --quiet";
         };
 
         # Python
-        ruff-lsp.enable = true; # Currently broken for some reason
+        ruff-lsp.enable = pythonLsp; # Currently broken for some reason
 
         # TOML
-        taplo.enable = true;
+        taplo.enable = configFileLsps;
+
+        # TypeScript
+        tsserver.enable = webLsps;
 
         # YAML
-        yamlls.enable = true;
+        yamlls.enable = configFileLsps;
 
         # XML
-        lemminx.enable = true;
+        lemminx.enable = configFileLsps;
       };
     };
   };

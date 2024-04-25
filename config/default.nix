@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  rustLsp,
+  ...
+}: {
   imports = [
     ./autoCmdGroups.nix
     ./globals.nix
@@ -9,11 +13,18 @@
 
   enableMan = false;
 
-  extraPackages = with pkgs; [
-    alejandra # For nixd lsp
-    delta # For actions-preview.nvim
-    vscode-extensions.vadimcn.vscode-lldb # For Rustaceanvim debugging
-  ];
+  extraPackages = with pkgs;
+    [
+      alejandra # For nixd lsp
+      delta # For actions-preview.nvim
+    ]
+    ++ (
+      if rustLsp
+      then [
+        pkgs.vscode-extensions.vadimcn.vscode-lldb # For Rustaceanvim debugging
+      ]
+      else []
+    );
 
   colorschemes.catppuccin = {
     enable = true;
