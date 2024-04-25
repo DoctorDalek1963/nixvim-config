@@ -47,22 +47,35 @@
         nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
 
+        # I know these are all unused here, but they're used as the
+        # extraSpecialArgs and having them explicitly defined here makes all
+        # the options obvious
         mkNixvimModule = extraSpecialArgs @ {
-          # I know these are all unused here, but they're used as the
-          # extraSpecialArgs and having them explicitly defined here makes all
-          # the options obvious
+          # deadnix: skip
           dapDebugger,
+          # deadnix: skip
           cLsps,
+          # deadnix: skip
           configFileLsps,
+          # deadnix: skip
           dockerfileLsp,
+          # deadnix: skip
           haskellLsp,
+          # deadnix: skip
           juliaLsp,
+          # deadnix: skip
           jvmLsps,
+          # deadnix: skip
           latexLsp,
+          # deadnix: skip
           luaLsp,
+          # deadnix: skip
           pythonLsp,
+          # deadnix: skip
           rustLsp,
+          # deadnix: skip
           shellLsps,
+          # deadnix: skip
           webLsps,
         }
         : {
