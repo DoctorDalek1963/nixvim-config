@@ -13,6 +13,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -29,8 +34,13 @@
         "aarch64-darwin"
       ];
 
+      imports = [
+        inputs.pre-commit-hooks.flakeModule
+      ];
+
       perSystem = {
         pkgs,
+        config,
         system,
         ...
       }: let
@@ -129,6 +139,44 @@
         packages = {
           default = nvim-medium;
           inherit nvim-small nvim-medium nvim-full;
+        };
+
+        devShells.default = pkgs.mkShell {
+          shellHook = ''
+            ${config.pre-commit.installationScript}
+          '';
+        };
+
+        # See https://flake.parts/options/pre-commit-hooks-nix and
+        # https://github.com/cachix/git-hooks.nix/blob/master/modules/hooks.nix
+        # for all the available hooks and options
+        pre-commit = {
+          # One of the hooks runs `nix flake check` on this flake, so we don't
+          # want to recurse infinitely
+          check.enable = false;
+
+          settings.hooks = {
+            check-added-large-files.enable = true;
+            check-merge-conflicts.enable = true;
+            check-toml.enable = true;
+            check-vcs-permalinks.enable = true;
+            check-yaml.enable = true;
+            end-of-file-fixer.enable = true;
+            trim-trailing-whitespace.enable = true;
+
+            alejandra.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+
+            flake-check = {
+              enable = true;
+              name = "flake check";
+              entry = "nix flake check";
+              files = ''.*\.(nix|lock)$'';
+              pass_filenames = false;
+              stages = ["pre-push"];
+            };
+          };
         };
       };
     };
