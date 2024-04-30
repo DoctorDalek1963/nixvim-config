@@ -68,6 +68,8 @@
           # deadnix: skip
           latexLsp,
           # deadnix: skip
+          leanNvim,
+          # deadnix: skip
           luaLsp,
           # deadnix: skip
           pythonLsp,
@@ -101,6 +103,7 @@
             juliaLsp = false;
             jvmLsps = false;
             latexLsp = false;
+            leanNvim = false;
             luaLsp = false;
             pythonLsp = false;
             rustLsp = false;
@@ -116,6 +119,7 @@
             juliaLsp = false;
             jvmLsps = false;
             latexLsp = true;
+            leanNvim = true;
             luaLsp = true;
             pythonLsp = true;
             rustLsp = true;
@@ -131,6 +135,7 @@
             juliaLsp = true;
             jvmLsps = true;
             latexLsp = true;
+            leanNvim = true;
             luaLsp = true;
             pythonLsp = true;
             rustLsp = true;

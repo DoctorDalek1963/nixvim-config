@@ -1,4 +1,8 @@
-{dapDebugger, ...}: {
+{
+  dapDebugger,
+  leanNvim,
+  ...
+}: {
   imports = [
     ./cmp.nix
     ./extras.nix
@@ -51,6 +55,16 @@
 
     # Resume editing from the last place
     lastplace.enable = true;
+
+    # Integration with the Lean 4 theorem prover
+    lean = {
+      enable = leanNvim;
+      # Unicode expansion is handled by nvim-cmp with latex-symbols, but
+      # lean.nvim's abbreviations work indepently, and automatically insert
+      # themselves when you press space to move on, rather than needing to be
+      # manually selected from the pop-up menu
+      abbreviations.enable = true;
+    };
 
     # Preview markdown files in the browser
     markdown-preview.enable = true;
