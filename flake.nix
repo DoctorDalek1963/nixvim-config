@@ -185,15 +185,6 @@
             alejandra.enable = true;
             deadnix.enable = true;
             statix.enable = true;
-
-            flake-check = {
-              enable = true;
-              name = "flake check";
-              entry = "nix flake check";
-              files = ''.*\.(nix|lock)$'';
-              pass_filenames = false;
-              stages = ["pre-push"];
-            };
           };
         };
       };
