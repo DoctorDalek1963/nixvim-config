@@ -112,7 +112,7 @@
           # This is always enabled even in nvim-small because I'm always
           # editing Nix files
           enable = true;
-          settings.formatting.command = "${pkgs.alejandra}/bin/alejandra --quiet";
+          settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--quiet"];
         };
 
         # Python
