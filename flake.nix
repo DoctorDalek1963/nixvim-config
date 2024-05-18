@@ -5,10 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay?rev=22225800f7c24e7460026a5b6c9c94187d67555f";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +17,6 @@
   };
 
   outputs = {
-    nixpkgs,
     nixvim,
     flake-parts,
     ...
@@ -81,11 +76,7 @@
           webLsps,
         }
         : {
-          # Change this back to `inherit pkgs;` to return to stable nvim
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [inputs.neovim-nightly-overlay.overlay];
-          };
+          inherit pkgs;
           module = import ./config;
           inherit extraSpecialArgs;
         };
