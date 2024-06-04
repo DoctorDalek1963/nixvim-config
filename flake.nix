@@ -2,12 +2,10 @@
   description = "DoctorDalek1963's nixvim configuration";
 
   inputs = {
-    # TODO: Pin this to nixos-24.05 when it's released
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nixvim = {
-      # TODO: Add "/nixos-24.05" when it's released
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
