@@ -207,7 +207,7 @@ let
     # Toggle virtual text
     {
       key = "<leader>v";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -215,7 +215,6 @@ let
             vim.diagnostic.config({ virtual_text = not vt })
           end
         '';
-      lua = true;
       mode = "n";
       options.silent = true;
     }
@@ -223,14 +222,13 @@ let
     # Toggle inlay hints
     {
       key = "<leader>i";
-      action =
+      action.__raw =
         # lua
         ''
           function()
             vim.lsp.inlay_hint.enable(vim.fn.bufnr(), not vim.lsp.inlay_hint.is_enabled())
           end
         '';
-      lua = true;
       mode = "n";
       options.silent = true;
     }
@@ -247,8 +245,7 @@ let
     # Open code actions with preview
     {
       key = "<M-return>";
-      action = "require('actions-preview').code_actions";
-      lua = true;
+      action.__raw = "require('actions-preview').code_actions";
       mode = "n";
       options.silent = true;
     }
@@ -281,47 +278,42 @@ let
     # Toggle DAP breakpoint
     {
       key = "<leader>db";
-      action = "require('dap').toggle_breakpoint";
-      lua = true;
+      action.__raw = "require('dap').toggle_breakpoint";
       mode = "n";
       options.silent = true;
     }
     # DAP continue
     {
       key = "<leader>dc";
-      action = "require('dap').continue";
-      lua = true;
+      action.__raw = "require('dap').continue";
       mode = "n";
       options.silent = true;
     }
     # DAP step over
     {
       key = "<leader>dso";
-      action = "require('dap').step_over";
-      lua = true;
+      action.__raw = "require('dap').step_over";
       mode = "n";
       options.silent = true;
     }
     # DAP step into
     {
       key = "<leader>dsi";
-      action = "require('dap').step_into";
-      lua = true;
+      action.__raw = "require('dap').step_into";
       mode = "n";
       options.silent = true;
     }
     # Open DAP REPL
     {
       key = "<leader>dr";
-      action = "require('dap').repl.open";
-      lua = true;
+      action.__raw = "require('dap').repl.open";
       mode = "n";
       options.silent = true;
     }
     # Open DAP UI
     {
       key = "<leader>dui";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -329,7 +321,6 @@ let
             require('dapui').toggle()
           end
         '';
-      lua = true;
       mode = "n";
       options.silent = true;
     }

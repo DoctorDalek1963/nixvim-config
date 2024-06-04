@@ -48,14 +48,12 @@
   keymaps = [
     {
       key = "zR";
-      action = "require('ufo').openAllFolds";
-      lua = true;
+      action.__raw = "require('ufo').openAllFolds";
       mode = "n";
     }
     {
       key = "zM";
-      action = "require('ufo').closeAllFolds";
-      lua = true;
+      action.__raw = "require('ufo').closeAllFolds";
       mode = "n";
     }
 
