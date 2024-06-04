@@ -57,6 +57,8 @@
           # deadnix: skip
           dockerfileLsp,
           # deadnix: skip
+          elixirLsp,
+          # deadnix: skip
           haskellLsp,
           # deadnix: skip
           juliaLsp,
@@ -92,6 +94,7 @@
             cLsps = false;
             configFileLsps = false;
             dockerfileLsp = false;
+            elixirLsp = false;
             haskellLsp = false;
             juliaLsp = false;
             jvmLsps = false;
@@ -108,6 +111,7 @@
             cLsps = false;
             configFileLsps = true;
             dockerfileLsp = false;
+            elixirLsp = true;
             haskellLsp = false;
             juliaLsp = false;
             jvmLsps = false;
@@ -124,6 +128,7 @@
             cLsps = true;
             configFileLsps = true;
             dockerfileLsp = true;
+            elixirLsp = true;
             haskellLsp = true;
             juliaLsp = true;
             jvmLsps = true;

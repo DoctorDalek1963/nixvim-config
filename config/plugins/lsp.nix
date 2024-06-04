@@ -3,6 +3,7 @@
   cLsps,
   configFileLsps,
   dockerfileLsp,
+  elixirLsp,
   haskellLsp,
   juliaLsp,
   jvmLsps,
@@ -80,6 +81,9 @@
 
         # Dockerfile
         dockerls.enable = dockerfileLsp;
+
+        # Elixir
+        elixirls.enable = elixirLsp;
 
         # Haskell
         hls.enable = haskellLsp;
