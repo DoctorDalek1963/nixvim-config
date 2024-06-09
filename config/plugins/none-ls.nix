@@ -1,4 +1,4 @@
-{
+{elixirLsp, ...}: {
   plugins = {
     # Extra tools for Cargo.toml files
     crates-nvim = {
@@ -21,6 +21,7 @@
           statix.enable = true;
         };
         diagnostics = {
+          credo.enable = elixirLsp;
           deadnix.enable = true;
           statix.enable = true;
         };

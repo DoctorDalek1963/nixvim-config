@@ -1,10 +1,7 @@
-{
-  dapDebugger,
-  leanNvim,
-  ...
-}: {
+{leanNvim, ...}: {
   imports = [
     ./cmp.nix
+    ./dap.nix
     ./extras.nix
     ./lsp.nix
     ./lualine.nix
@@ -21,14 +18,6 @@
     committia.enable = true;
 
     # Debugging
-    dap = {
-      enable = dapDebugger;
-      extensions = {
-        dap-ui.enable = dapDebugger;
-        dap-virtual-text.enable = dapDebugger;
-      };
-    };
-
     # Show update messages in the bottom right
     fidget = {
       enable = true;

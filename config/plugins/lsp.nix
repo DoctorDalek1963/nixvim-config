@@ -86,7 +86,12 @@
         dockerls.enable = dockerfileLsp;
 
         # Elixir
-        elixirls.enable = elixirLsp;
+        elixirls = {
+          enable = elixirLsp;
+
+          # I want to be explicit here because we use pkgs.elixir-ls in the DAP config
+          package = pkgs.elixir-ls;
+        };
 
         # Haskell
         hls.enable = haskellLsp;
