@@ -15,6 +15,9 @@
   webLsps,
   ...
 }: {
+  # Highlight diagnostic locations only on the current line
+  diagnostics.virtual_lines.only_current_line = true;
+
   plugins = {
     # Rust tools: LSP, formatter, debugger
     rustaceanvim = {
@@ -46,10 +49,7 @@
     };
 
     # Highlight exact diagnostic locations on the line
-    lsp-lines = {
-      enable = true;
-      currentLine = true;
-    };
+    lsp-lines.enable = true;
 
     # See https://nix-community.github.io/nixvim/plugins/lsp/index.html for options and supported servers
     lsp = {

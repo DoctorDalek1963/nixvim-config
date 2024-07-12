@@ -6,7 +6,6 @@
     ./lsp.nix
     ./lualine.nix
     ./none-ls.nix
-    ./treesitter.nix
     ./ufo.nix
   ];
 
@@ -97,6 +96,11 @@
       };
     };
 
+    treesitter = {
+      enable = true;
+      settings.indent.enable = true;
+    };
+
     # Add scope context with treesitter
     treesitter-context.enable = true;
 
@@ -129,7 +133,7 @@
     # Make yanking better. See keymaps
     yanky = {
       enable = true;
-      picker.telescope.enable = true;
+      enableTelescope = true;
     };
   };
 }
