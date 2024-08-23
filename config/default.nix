@@ -1,5 +1,8 @@
 {
   pkgs,
+  lib,
+  inputs,
+  useNightly,
   rustLsp,
   ...
 }: {
@@ -10,6 +13,8 @@
     ./options.nix
     ./plugins/default.nix
   ];
+
+  package = lib.mkIf useNightly inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
   enableMan = false;
 

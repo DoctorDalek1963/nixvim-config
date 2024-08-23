@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +51,8 @@
         # the options obvious
         mkNixvimModule = extraSpecialArgs @ {
           # deadnix: skip
+          useNightly,
+          # deadnix: skip
           dapDebugger,
           # deadnix: skip
           cLsps,
@@ -80,14 +86,15 @@
         : {
           inherit pkgs;
           module = import ./config;
-          inherit extraSpecialArgs;
+          extraSpecialArgs = extraSpecialArgs // {inherit inputs;};
         };
 
         # Small has almost no LSPs (except nixd) and no debugging
         # Medium is for my day-to-day programming
         # Full contains all the LSPs I could want
-        nixvimModules = {
-          small = mkNixvimModule {
+        moduleArgs = {
+          small = {
+            useNightly = false;
             dapDebugger = false;
             cLsps = false;
             configFileLsps = false;
@@ -104,7 +111,8 @@
             shellLsps = false;
             webLsps = false;
           };
-          medium = mkNixvimModule {
+          medium = {
+            useNightly = false;
             dapDebugger = true;
             cLsps = false;
             configFileLsps = true;
@@ -121,7 +129,8 @@
             shellLsps = true;
             webLsps = false;
           };
-          full = mkNixvimModule {
+          full = {
+            useNightly = false;
             dapDebugger = true;
             cLsps = true;
             configFileLsps = true;
@@ -140,19 +149,44 @@
           };
         };
 
+        nixvimModules = {
+          small = mkNixvimModule moduleArgs.small;
+          medium = mkNixvimModule moduleArgs.medium;
+          full = mkNixvimModule moduleArgs.full;
+
+          small-nightly = mkNixvimModule (moduleArgs.small // {useNightly = true;});
+          medium-nightly = mkNixvimModule (moduleArgs.medium // {useNightly = true;});
+          full-nightly = mkNixvimModule (moduleArgs.full // {useNightly = true;});
+        };
+
         nvim-small = nixvim'.makeNixvimWithModule nixvimModules.small;
         nvim-medium = nixvim'.makeNixvimWithModule nixvimModules.medium;
         nvim-full = nixvim'.makeNixvimWithModule nixvimModules.full;
+
+        nvim-small-nightly = nixvim'.makeNixvimWithModule nixvimModules.small-nightly;
+        nvim-medium-nightly = nixvim'.makeNixvimWithModule nixvimModules.medium-nightly;
+        nvim-full-nightly = nixvim'.makeNixvimWithModule nixvimModules.full-nightly;
       in {
         checks = {
           small = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.small;
           medium = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.medium;
           full = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.full;
+
+          small-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.small-nightly;
+          medium-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.medium-nightly;
+          full-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.full-nightly;
         };
 
         packages = {
           default = nvim-medium;
-          inherit nvim-small nvim-medium nvim-full;
+          inherit
+            nvim-small
+            nvim-medium
+            nvim-full
+            nvim-small-nightly
+            nvim-medium-nightly
+            nvim-full-nightly
+            ;
         };
 
         devShells.default = pkgs.mkShell {
