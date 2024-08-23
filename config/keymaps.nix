@@ -377,6 +377,13 @@ let
       action = "<Plug>(YankyNextEntry)";
       mode = "n";
     }
+
+    # Yazi open on current file
+    {
+      key = "<leader>y";
+      action.__raw = "require('yazi').yazi";
+      mode = "n";
+    }
   ];
 in {
   keymaps = baseKeymaps ++ pluginKeymaps;

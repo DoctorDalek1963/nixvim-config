@@ -88,13 +88,7 @@
     surround.enable = true;
 
     # Telescope
-    telescope = {
-      enable = true;
-      extensions.file-browser = {
-        enable = true;
-        settings.hijack-netrw = true; # Use this when opening a directory with nvim
-      };
-    };
+    telescope.enable = true;
 
     treesitter = {
       enable = true;
@@ -134,6 +128,11 @@
     yanky = {
       enable = true;
       enableTelescope = true;
+    };
+
+    yazi = {
+      enable = true;
+      settings.open_for_directories = true;
     };
   };
 }
