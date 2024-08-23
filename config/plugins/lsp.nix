@@ -128,7 +128,18 @@
         };
 
         # Python
-        ruff-lsp.enable = pythonLsp; # Currently broken for some reason
+        pylsp = {
+          enable = pythonLsp;
+          settings.plugins = {
+            autopep8.enabled = true;
+            flake8.enabled = true;
+            pycodestyle.enabled = true;
+            pydocstyle.enabled = true;
+            pylsp_mypy.enabled = true;
+            rope.enabled = true;
+            ruff.enabled = true;
+          };
+        };
 
         # TOML
         taplo.enable = configFileLsps;
