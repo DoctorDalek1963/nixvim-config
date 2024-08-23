@@ -18,11 +18,11 @@
 
   enableMan = false;
 
-  extraPackages = with pkgs;
-    [
+  extraPackages =
+    (with pkgs; [
       alejandra # For nixd lsp
       delta # For actions-preview.nvim
-    ]
+    ])
     ++ (
       if rustLsp
       then [
