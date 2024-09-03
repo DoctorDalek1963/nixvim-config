@@ -44,6 +44,9 @@
     # Resume editing from the last place
     lastplace.enable = true;
 
+    # Integrate lazygit into nvim
+    lazygit.enable = true;
+
     # Integration with the Lean 4 theorem prover
     lean = {
       enable = leanNvim;

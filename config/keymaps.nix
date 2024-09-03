@@ -325,6 +325,13 @@ let
       options.silent = true;
     }
 
+    # Open LazyGit for the git repo of the current file
+    {
+      key = "<leader>lg";
+      action = "<cmd>LazyGitCurrentFile<cr>";
+      mode = "n";
+    }
+
     # Open undo tree
     {
       key = "<leader>u";
