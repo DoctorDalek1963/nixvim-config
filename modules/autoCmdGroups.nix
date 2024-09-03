@@ -27,16 +27,10 @@ let
       group = "plaintext";
       commands = [
         {
-          desc = "Enable spell check in plain text files";
+          desc = "Enable spell check and word wrapping in plain text files";
           event = "FileType";
           pattern = ["markdown" "rst" "tex" "text"];
-          command = "setlocal spell";
-        }
-        {
-          desc = "Enable word wrapping in plain text files";
-          event = "FileType";
-          pattern = ["markdown" "rst" "tex" "text"];
-          command = "setlocal linebreak";
+          command = "setlocal spell linebreak";
         }
       ];
     }
@@ -69,12 +63,12 @@ let
               end
             '';
         }
-        #{
-        #desc = "Enable SoftPencil";
-        #event = "FileType";
-        #pattern = "markdown";
-        #command = "SoftPencil";
-        #}
+        {
+          desc = "Enable SoftPencil";
+          event = "FileType";
+          pattern = "markdown";
+          command = "SoftPencil";
+        }
       ];
     }
     {
@@ -88,27 +82,7 @@ let
         }
       ];
     }
-    {
-      group = "filetypes";
-      commands = filetypeCommands;
-    }
   ];
-  filetypeCommands = builtins.attrValues (builtins.mapAttrs (filetype: extension: {
-      desc = "Set filetype for ${filetype} files";
-      event = ["BufNewFile" "BufReadPre"];
-      pattern =
-        if builtins.isList extension
-        then builtins.map (ext: "*.${ext}") extension
-        else "*.${extension}";
-      command = "setf ${filetype}";
-    }) {
-      apl = ["apl" "dyag" "dyalog"];
-      brainfuck = ["bf" "brainfuck"];
-      coq = "v";
-      nasm = "nasm";
-      sage = "sage";
-      tex = "tex";
-    });
 in {
   autoCmd =
     builtins.concatMap

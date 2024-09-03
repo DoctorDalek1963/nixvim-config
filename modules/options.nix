@@ -1,5 +1,5 @@
-let
-  baseOptions = {
+{
+  opts = {
     # Line numbers
     number = true;
     relativenumber = true;
@@ -29,7 +29,7 @@ let
 
     # Folds
     foldenable = true;
-    #foldmethod = "indent"; # Disabled because we're using treesitter
+    # foldmethod = "indent"; # Disabled because we're using treesitter
     foldlevelstart = 999;
 
     # Indents
@@ -51,26 +51,4 @@ let
     # Only allow the mouse in normal mode
     mouse = "n";
   };
-  pluginOptions = {
-    # Make lightline look better
-    laststatus = 2;
-    showmode = false;
-
-    # Backups can mess with LSPs
-    backup = false;
-    writebackup = false;
-
-    # Faster updates make gitgutter work better
-    updatetime = 100;
-
-    # Always draw the sign column
-    signcolumn = "yes";
-
-    # windows.nvim
-    winwidth = 15;
-    winminwidth = 0;
-    equalalways = false;
-  };
-in {
-  config.opts = baseOptions // pluginOptions;
 }
