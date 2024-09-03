@@ -1,5 +1,9 @@
 {
-  imports = [./lualine.nix];
+  imports = [
+    ./lualine.nix
+    ./telescope.nix
+    ./treesitter.nix
+  ];
 
   plugins = {
     # Toggle comments with `gc`, `gb`, and friends
@@ -68,7 +72,6 @@
     # Make matching tags like () [] {} "" '' work better
     vim-matchup = {
       enable = true;
-      # treesitterIntegration.enable = true;
       matchParen.offscreen = {
         method = "popup";
         scrolloff = true;
@@ -76,10 +79,7 @@
     };
 
     # Make yanking better. See keymaps
-    yanky = {
-      enable = true;
-      # enableTelescope = true;
-    };
+    yanky.enable = true;
 
     # Use the yazi terminal file manager
     yazi = {
