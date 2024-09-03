@@ -1,6 +1,16 @@
 {lib, ...}: let
   inherit (lib) mkOption types;
+
   # boolOpt = mkOption {type = types.bool;};
+
+  defaultTrue = mkOption {
+    default = true;
+    type = types.bool;
+  };
+  defaultFalse = mkOption {
+    default = false;
+    type = types.bool;
+  };
 in {
   imports = [
     ./modules/core.nix
@@ -9,20 +19,21 @@ in {
     ./modules/filetypes.nix
     ./modules/keymaps.nix
     ./modules/options.nix
+
+    ./modules/plugins
   ];
 
   options.setup = {
-    useNightly = mkOption {
-      default = false;
-      type = types.bool;
-    };
+    useNightly = defaultFalse;
+
+    plugins = {};
 
     # tools = {
     #   dapDebugger = boolOpt;
     #   leanNvim = boolOpt;
     # };
 
-    lsp = {
+    lang = {
       # c_cpp = boolOpt;
       # configFiles = boolOpt;
       # dockerfile = boolOpt;
@@ -37,10 +48,7 @@ in {
       # shell = boolOpt;
       # webDev = boolOpt;
 
-      nix = mkOption {
-        type = types.bool;
-        default = true;
-      };
+      nix = defaultTrue;
     };
   };
 }
