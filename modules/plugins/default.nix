@@ -63,9 +63,6 @@
     # Handle delimiters like () [] {} "" '' better
     surround.enable = true;
 
-    # See a tree of undo history
-    undotree.enable = true;
-
     # Make matching tags like () [] {} "" '' work better
     vim-matchup = {
       enable = true;
