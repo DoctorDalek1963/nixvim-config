@@ -7,6 +7,7 @@
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
+    ./quick-scope.nix
     ./ufo.nix
     ./windows.nix
     ./yanky.nix
