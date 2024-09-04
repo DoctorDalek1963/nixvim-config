@@ -7,6 +7,7 @@
     ./treesitter.nix
     ./ufo.nix
     ./yanky.nix
+    ./yazi.nix
   ];
 
   plugins = {
@@ -80,12 +81,6 @@
         method = "popup";
         scrolloff = true;
       };
-    };
-
-    # Use the yazi terminal file manager
-    yazi = {
-      enable = true;
-      settings.open_for_directories = true;
     };
   };
 }
