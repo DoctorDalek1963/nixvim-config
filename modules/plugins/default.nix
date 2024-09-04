@@ -2,6 +2,7 @@
   imports = [
     ./lsp
 
+    ./git.nix
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
@@ -14,9 +15,6 @@
     # Toggle comments with `gc`, `gb`, and friends
     comment.enable = true;
 
-    # Nicer commit editing with git
-    committia.enable = true;
-
     # Debugging
     # Show update messages in the bottom right
     fidget = {
@@ -27,9 +25,6 @@
       };
     };
 
-    # Show diff signs in the left column
-    gitgutter.enable = true;
-
     # Show indentation levels
     indent-blankline = {
       enable = true;
@@ -38,9 +33,6 @@
 
     # Resume editing from the last place
     lastplace.enable = true;
-
-    # Integrate lazygit into nvim
-    lazygit.enable = true;
 
     # Preview markdown files in the browser
     markdown-preview.enable = true;
