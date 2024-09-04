@@ -33,7 +33,11 @@ in {
     #   leanNvim = boolOpt;
     # };
 
-    lang = {
+    lsp = {
+      enable = defaultTrue;
+
+      nix = defaultTrue;
+
       # c_cpp = boolOpt;
       # configFiles = boolOpt;
       # dockerfile = boolOpt;
@@ -47,8 +51,6 @@ in {
       # rust = boolOpt;
       # shell = boolOpt;
       # webDev = boolOpt;
-
-      nix = defaultTrue;
     };
   };
 }

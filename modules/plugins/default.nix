@@ -1,5 +1,7 @@
 {
   imports = [
+    ./lsp
+
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
