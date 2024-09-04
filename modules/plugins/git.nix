@@ -18,4 +18,12 @@
       mode = "n";
     }
   ];
+
+  opts = {
+    # Faster updates make gitgutter work better
+    updatetime = 100;
+
+    # Always draw the sign column
+    signcolumn = "yes";
+  };
 }
