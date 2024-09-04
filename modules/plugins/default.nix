@@ -2,6 +2,7 @@
   imports = [
     ./lsp
 
+    ./actions-preview.nix
     ./git.nix
     ./lualine.nix
     ./telescope.nix
