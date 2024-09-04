@@ -6,6 +6,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./ufo.nix
+    ./yanky.nix
   ];
 
   plugins = {
@@ -80,9 +81,6 @@
         scrolloff = true;
       };
     };
-
-    # Make yanking better. See keymaps
-    yanky.enable = true;
 
     # Use the yazi terminal file manager
     yazi = {
