@@ -3,6 +3,7 @@
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
+    ./ufo.nix
   ];
 
   plugins = {
