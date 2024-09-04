@@ -9,9 +9,7 @@
 
   enableMan = false;
 
-  extraPackages = with pkgs; [
-    delta # For actions-preview.nvim
-  ];
+  extraPlugins = [pkgs.vimPlugins.nvim-web-devicons];
 
   colorschemes.catppuccin = {
     enable = true;
