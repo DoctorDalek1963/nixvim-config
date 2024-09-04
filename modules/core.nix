@@ -10,16 +10,8 @@
   enableMan = false;
 
   extraPackages = with pkgs; [
-    alejandra # For nixd lsp
     delta # For actions-preview.nvim
   ];
-  # ++ (
-  #   if rustLsp
-  #   then [
-  #     pkgs.vscode-extensions.vadimcn.vscode-lldb # For Rustaceanvim debugging
-  #   ]
-  #   else []
-  # );
 
   colorschemes.catppuccin = {
     enable = true;

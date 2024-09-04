@@ -1,7 +1,7 @@
 {lib, ...}: let
   inherit (lib) mkOption types;
 
-  # boolOpt = mkOption {type = types.bool;};
+  boolOpt = mkOption {type = types.bool;};
 
   defaultTrue = mkOption {
     default = true;
@@ -26,7 +26,7 @@ in {
   options.setup = {
     useNightly = defaultFalse;
 
-    plugins = {};
+    # plugins = {};
 
     # tools = {
     #   dapDebugger = boolOpt;
@@ -48,7 +48,7 @@ in {
       # latex = boolOpt;
       # lua = boolOpt;
       # python = boolOpt;
-      # rust = boolOpt;
+      rust = boolOpt;
       # shell = boolOpt;
       # webDev = boolOpt;
     };

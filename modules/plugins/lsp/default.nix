@@ -5,6 +5,8 @@
 }: {
   imports = [
     ./nix.nix
+
+    ./rust.nix
   ];
 
   config = lib.mkIf config.setup.lsp.enable {
