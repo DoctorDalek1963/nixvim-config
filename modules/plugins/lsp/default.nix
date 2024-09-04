@@ -13,6 +13,12 @@
     # Highlight diagnostic locations only on the current line
     diagnostics.virtual_lines.only_current_line = true;
 
+    opts = {
+      # Backups can mess with LSPs
+      backup = false;
+      writebackup = false;
+    };
+
     plugins = {
       # Autoformatting for all servers that support it
       lsp-format = {
