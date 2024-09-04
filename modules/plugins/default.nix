@@ -7,6 +7,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./ufo.nix
+    ./windows.nix
     ./yanky.nix
     ./yazi.nix
   ];
