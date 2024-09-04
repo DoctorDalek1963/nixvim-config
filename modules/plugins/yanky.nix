@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -9,6 +10,21 @@ in {
     enable = true;
     enableTelescope = cfgTelescope;
   };
+
+  extraPlugins =
+    lib.optional config.plugins.cmp.enable
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "cmp_yanky";
+        src = pkgs.fetchFromGitHub {
+          owner = "chrisgrieser";
+          repo = "cmp_yanky";
+          rev = "c3d089186ccead26eba01023502f3eeadd7a92d2";
+          hash = "sha256-jWNoKzY0x5GPFP7JsQi4nqgg1YFJV4DqxwJRqsg6KaQ=";
+        };
+      });
+
+  plugins.cmp.settings.source = lib.optional config.plugins.cmp.enable {name = "cmp_yanky";};
 
   keymaps =
     [
