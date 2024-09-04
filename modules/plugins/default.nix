@@ -5,6 +5,7 @@
     ./actions-preview.nix
     ./git.nix
     ./lualine.nix
+    ./numb.nix
     ./telescope.nix
     ./treesitter.nix
     ./quick-scope.nix
