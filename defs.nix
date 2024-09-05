@@ -11,6 +11,7 @@
 
         elixir = false;
         latex = false;
+        lean4 = false;
         rust = false;
       };
     };
@@ -25,6 +26,7 @@
       lang = {
         elixir = false;
         latex = false;
+        lean4 = false;
         rust = false;
       };
     };
@@ -39,6 +41,7 @@
       lang = {
         elixir = true;
         latex = true;
+        lean4 = true;
         rust = true;
       };
     };
@@ -53,6 +56,7 @@
       lang = {
         elixir = true;
         latex = true;
+        lean4 = true;
         rust = true;
       };
     };

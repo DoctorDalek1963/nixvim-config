@@ -30,7 +30,6 @@ in {
 
     tools = {
       dapDebugger = boolOpt;
-      # leanNvim = boolOpt;
     };
 
     lang = {
@@ -46,6 +45,7 @@ in {
       # julia = boolOpt;
       # jvm = boolOpt;
       latex = boolOpt;
+      lean4 = boolOpt;
       # lua = boolOpt;
       # python = boolOpt;
       rust = boolOpt;
