@@ -3,8 +3,15 @@
   tiny = {
     imports = [./setup.nix];
     setup = {
-      lsp.enable = false;
       tools.dapDebugger = false;
+
+      lsp = {
+        enable = false;
+        nix = false;
+
+        elixir = false;
+        rust = false;
+      };
     };
   };
 
@@ -12,8 +19,12 @@
   small = {
     imports = [./setup.nix];
     setup = {
-      lsp.rust = false;
       tools.dapDebugger = false;
+
+      lsp = {
+        elixir = false;
+        rust = false;
+      };
     };
   };
 
@@ -21,8 +32,12 @@
   medium = {
     imports = [./setup.nix];
     setup = {
-      lsp.rust = true;
       tools.dapDebugger = true;
+
+      lsp = {
+        elixir = true;
+        rust = true;
+      };
     };
   };
 
@@ -30,8 +45,12 @@
   full = {
     imports = [./setup.nix];
     setup = {
-      lsp.rust = true;
       tools.dapDebugger = false;
+
+      lsp = {
+        elixir = true;
+        rust = true;
+      };
     };
   };
 }

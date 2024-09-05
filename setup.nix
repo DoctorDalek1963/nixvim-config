@@ -41,7 +41,7 @@ in {
       # c_cpp = boolOpt;
       # configFiles = boolOpt;
       # dockerfile = boolOpt;
-      # elixir = boolOpt;
+      elixir = boolOpt;
       # haskell = boolOpt;
       # julia = boolOpt;
       # jvm = boolOpt;

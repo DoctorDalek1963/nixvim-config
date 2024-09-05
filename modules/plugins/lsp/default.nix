@@ -6,6 +6,7 @@
   imports = [
     ./nix.nix
 
+    ./elixir.nix
     ./rust.nix
   ];
 
