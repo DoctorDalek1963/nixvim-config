@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./lang
 
@@ -17,6 +17,8 @@
     ./yanky.nix
     ./yazi.nix
   ];
+
+  extraPlugins = [pkgs.vimPlugins.tabular];
 
   plugins = {
     # Toggle comments with `gc`, `gb`, and friends
