@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.setup.lsp;
+  cfg = config.setup.lang;
   latexEnable = cfg.enable && cfg.latex;
 in {
   config = lib.mkMerge [

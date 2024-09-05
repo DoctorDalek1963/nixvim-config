@@ -5,7 +5,7 @@
     setup = {
       tools.dapDebugger = false;
 
-      lsp = {
+      lang = {
         enable = false;
         nix = false;
 
@@ -22,7 +22,7 @@
     setup = {
       tools.dapDebugger = false;
 
-      lsp = {
+      lang = {
         elixir = false;
         latex = false;
         rust = false;
@@ -36,7 +36,7 @@
     setup = {
       tools.dapDebugger = true;
 
-      lsp = {
+      lang = {
         elixir = true;
         latex = true;
         rust = true;
@@ -50,7 +50,7 @@
     setup = {
       tools.dapDebugger = false;
 
-      lsp = {
+      lang = {
         elixir = true;
         latex = true;
         rust = true;

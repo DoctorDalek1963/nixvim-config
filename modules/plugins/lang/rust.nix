@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.setup.lsp;
+  cfg = config.setup.lang;
 in {
   config = lib.mkIf (cfg.enable && cfg.rust) {
     plugins = {

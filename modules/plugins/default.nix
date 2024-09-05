@@ -1,6 +1,6 @@
 {
   imports = [
-    ./lsp
+    ./lang
 
     ./actions-preview.nix
     ./cmp.nix

@@ -33,7 +33,7 @@ in {
       # leanNvim = boolOpt;
     };
 
-    lsp = {
+    lang = {
       enable = defaultTrue;
 
       nix = defaultTrue;
