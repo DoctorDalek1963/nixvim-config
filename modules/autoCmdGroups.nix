@@ -1,4 +1,8 @@
-let
+{
+  lib,
+  config,
+  ...
+}: let
   autoCmdGroups = [
     {
       group = "tabs";
@@ -36,40 +40,22 @@ let
     }
     {
       group = "markdown";
-      commands = [
-        {
-          desc = "Set the textwidth and formatoptions for markdown files";
-          event = "FileType";
-          pattern = "markdown";
-          command = "setlocal textwidth=0 formatoptions=q";
-        }
-        {
-          desc = "Make Goyo look better with Catppuccin";
-          event = "User";
-          pattern = "GoyoEnter";
-          callback.__raw =
-            # lua
-            ''
-              function(tbl)
-                vim.defer_fn(
-                  function()
-                    require("catppuccin").setup({
-                      dim_inactive = {enabled = false}
-                    })
-                    vim.cmd.colorscheme("catppuccin-macchiato")
-                  end,
-                  150
-                )
-              end
-            '';
-        }
-        {
-          desc = "Enable SoftPencil";
-          event = "FileType";
-          pattern = "markdown";
-          command = "SoftPencil";
-        }
-      ];
+      commands =
+        [
+          {
+            desc = "Set the textwidth and formatoptions for markdown files";
+            event = "FileType";
+            pattern = "markdown";
+            command = "setlocal textwidth=0 formatoptions=q";
+          }
+        ]
+        ++ (lib.optional config.plugins.markdown-preview.enable
+          {
+            desc = "Enable SoftPencil";
+            event = "FileType";
+            pattern = "markdown";
+            command = "SoftPencil";
+          });
     }
     {
       group = "python";

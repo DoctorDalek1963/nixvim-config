@@ -7,6 +7,7 @@
     ./dap.nix
     ./git.nix
     ./lualine.nix
+    ./markdown.nix
     ./numb.nix
     ./telescope.nix
     ./treesitter.nix
@@ -39,9 +40,6 @@
 
     # Resume editing from the last place
     lastplace.enable = true;
-
-    # Preview markdown files in the browser
-    markdown-preview.enable = true;
 
     # Make marks easier and nicer to use
     marks.enable = true;
