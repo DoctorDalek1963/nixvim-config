@@ -52,6 +52,12 @@
           };
         };
       };
+
+      # Allow non-LSP sources to hook into the native LSP system
+      none-ls = {
+        enable = true;
+        sources.code_actions.proselint.enable = true;
+      };
     };
   };
 }

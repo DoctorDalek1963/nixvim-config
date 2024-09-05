@@ -8,6 +8,8 @@ in {
   config = lib.mkIf (cfg.enable && cfg.rust) {
     plugins = {
       lsp.servers.elixirls.enable = true;
+      none-ls.sources.diagnostics.credo.enable = true;
+
       dap = {
         adapters.executables.mix_task = {
           command = "${config.plugins.lsp.servers.elixirls.package}/lib/debug_adapter.sh";
