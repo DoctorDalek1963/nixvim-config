@@ -4,6 +4,7 @@
     imports = [./setup.nix];
     setup = {
       lsp.enable = false;
+      tools.dapDebugger = false;
     };
   };
 
@@ -12,6 +13,7 @@
     imports = [./setup.nix];
     setup = {
       lsp.rust = false;
+      tools.dapDebugger = false;
     };
   };
 
@@ -20,6 +22,7 @@
     imports = [./setup.nix];
     setup = {
       lsp.rust = true;
+      tools.dapDebugger = true;
     };
   };
 
@@ -28,6 +31,7 @@
     imports = [./setup.nix];
     setup = {
       lsp.rust = true;
+      tools.dapDebugger = false;
     };
   };
 }

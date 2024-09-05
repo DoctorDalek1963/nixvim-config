@@ -28,10 +28,10 @@ in {
 
     # plugins = {};
 
-    # tools = {
-    #   dapDebugger = boolOpt;
-    #   leanNvim = boolOpt;
-    # };
+    tools = {
+      dapDebugger = boolOpt;
+      # leanNvim = boolOpt;
+    };
 
     lsp = {
       enable = defaultTrue;

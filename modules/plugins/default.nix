@@ -3,6 +3,7 @@
     ./lsp
 
     ./actions-preview.nix
+    ./dap.nix
     ./git.nix
     ./lualine.nix
     ./numb.nix
