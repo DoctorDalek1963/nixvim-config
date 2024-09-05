@@ -7,6 +7,7 @@
     ./nix.nix
 
     ./elixir.nix
+    ./latex.nix
     ./rust.nix
   ];
 

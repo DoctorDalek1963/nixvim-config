@@ -45,7 +45,7 @@ in {
       # haskell = boolOpt;
       # julia = boolOpt;
       # jvm = boolOpt;
-      # latex = boolOpt;
+      latex = boolOpt;
       # lua = boolOpt;
       # python = boolOpt;
       rust = boolOpt;

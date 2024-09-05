@@ -3,6 +3,7 @@
     ./lsp
 
     ./actions-preview.nix
+    ./cmp.nix
     ./dap.nix
     ./git.nix
     ./lualine.nix

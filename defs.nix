@@ -10,6 +10,7 @@
         nix = false;
 
         elixir = false;
+        latex = false;
         rust = false;
       };
     };
@@ -23,6 +24,7 @@
 
       lsp = {
         elixir = false;
+        latex = false;
         rust = false;
       };
     };
@@ -36,6 +38,7 @@
 
       lsp = {
         elixir = true;
+        latex = true;
         rust = true;
       };
     };
@@ -49,6 +52,7 @@
 
       lsp = {
         elixir = true;
+        latex = true;
         rust = true;
       };
     };
