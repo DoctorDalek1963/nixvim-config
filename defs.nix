@@ -51,7 +51,7 @@
   full = {
     imports = [./setup.nix];
     setup = {
-      tools.dapDebugger = false;
+      tools.dapDebugger = true;
 
       lang = {
         elixir = true;
