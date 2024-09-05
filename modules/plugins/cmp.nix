@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins = {
     # Lots of good snippets for various languages
     friendly-snippets.enable = true;
@@ -93,4 +93,17 @@
       };
     };
   };
+
+  extraPlugins = [
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "cmp-dotenv";
+        src = pkgs.fetchFromGitHub {
+          owner = "SergioRibera";
+          repo = "cmp-dotenv";
+          rev = "4dd53aab60982f1f75848aec5e6214986263325e";
+          hash = "sha256-EY0yu6wugw2cweTOYkdAXW4FZFh6SdTPsVncqrnrc14=";
+        };
+      })
+  ];
 }
