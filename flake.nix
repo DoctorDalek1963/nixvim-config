@@ -33,9 +33,7 @@
         "aarch64-darwin"
       ];
 
-      imports = [
-        inputs.pre-commit-hooks.flakeModule
-      ];
+      imports = [inputs.pre-commit-hooks.flakeModule];
 
       perSystem = {
         pkgs,
@@ -43,150 +41,44 @@
         system,
         ...
       }: let
-        nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
 
-        # I know these are all unused here, but they're used as the
-        # extraSpecialArgs and having them explicitly defined here makes all
-        # the options obvious
-        mkNixvimModule = extraSpecialArgs @ {
-          # deadnix: skip
-          useNightly,
-          # deadnix: skip
-          dapDebugger,
-          # deadnix: skip
-          cLsps,
-          # deadnix: skip
-          configFileLsps,
-          # deadnix: skip
-          dockerfileLsp,
-          # deadnix: skip
-          elixirLsp,
-          # deadnix: skip
-          haskellLsp,
-          # deadnix: skip
-          juliaLsp,
-          # deadnix: skip
-          jvmLsps,
-          # deadnix: skip
-          latexLsp,
-          # deadnix: skip
-          leanNvim,
-          # deadnix: skip
-          luaLsp,
-          # deadnix: skip
-          pythonLsp,
-          # deadnix: skip
-          rustLsp,
-          # deadnix: skip
-          shellLsps,
-          # deadnix: skip
-          webLsps,
-        }
-        : {
+        mkModuleArgs = configName: {
           inherit pkgs;
-          module = import ./config;
-          extraSpecialArgs = extraSpecialArgs // {inherit inputs;};
+          module = (import ./defs.nix)."${configName}";
+          extraSpecialArgs = {inherit inputs;};
         };
-
-        # Small has almost no LSPs (except nixd) and no debugging
-        # Medium is for my day-to-day programming
-        # Full contains all the LSPs I could want
-        moduleArgs = {
-          small = {
-            useNightly = false;
-            dapDebugger = false;
-            cLsps = false;
-            configFileLsps = false;
-            dockerfileLsp = false;
-            elixirLsp = false;
-            haskellLsp = false;
-            juliaLsp = false;
-            jvmLsps = false;
-            latexLsp = false;
-            leanNvim = false;
-            luaLsp = false;
-            pythonLsp = false;
-            rustLsp = false;
-            shellLsps = false;
-            webLsps = false;
-          };
-          medium = {
-            useNightly = false;
-            dapDebugger = true;
-            cLsps = false;
-            configFileLsps = true;
-            dockerfileLsp = false;
-            elixirLsp = true;
-            haskellLsp = false;
-            juliaLsp = false;
-            jvmLsps = false;
-            latexLsp = true;
-            leanNvim = true;
-            luaLsp = true;
-            pythonLsp = true;
-            rustLsp = true;
-            shellLsps = true;
-            webLsps = false;
-          };
-          full = {
-            useNightly = false;
-            dapDebugger = true;
-            cLsps = true;
-            configFileLsps = true;
-            dockerfileLsp = true;
-            elixirLsp = true;
-            haskellLsp = true;
-            juliaLsp = true;
-            jvmLsps = true;
-            latexLsp = true;
-            leanNvim = true;
-            luaLsp = true;
-            pythonLsp = true;
-            rustLsp = true;
-            shellLsps = true;
-            webLsps = true;
-          };
-        };
-
-        nixvimModules = {
-          small = mkNixvimModule moduleArgs.small;
-          medium = mkNixvimModule moduleArgs.medium;
-          full = mkNixvimModule moduleArgs.full;
-
-          small-nightly = mkNixvimModule (moduleArgs.small // {useNightly = true;});
-          medium-nightly = mkNixvimModule (moduleArgs.medium // {useNightly = true;});
-          full-nightly = mkNixvimModule (moduleArgs.full // {useNightly = true;});
-        };
-
-        nvim-small = nixvim'.makeNixvimWithModule nixvimModules.small;
-        nvim-medium = nixvim'.makeNixvimWithModule nixvimModules.medium;
-        nvim-full = nixvim'.makeNixvimWithModule nixvimModules.full;
-
-        nvim-small-nightly = nixvim'.makeNixvimWithModule nixvimModules.small-nightly;
-        nvim-medium-nightly = nixvim'.makeNixvimWithModule nixvimModules.medium-nightly;
-        nvim-full-nightly = nixvim'.makeNixvimWithModule nixvimModules.full-nightly;
-      in {
-        checks = {
-          small = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.small;
-          medium = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.medium;
-          full = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.full;
-
-          small-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.small-nightly;
-          medium-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.medium-nightly;
-          full-nightly = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModules.full-nightly;
-        };
-
-        packages = {
+      in rec {
+        packages = rec {
           default = nvim-medium;
-          inherit
-            nvim-small
-            nvim-medium
-            nvim-full
-            nvim-small-nightly
-            nvim-medium-nightly
-            nvim-full-nightly
-            ;
+
+          nvim-tiny = nixvim'.makeNixvimWithModule (mkModuleArgs "tiny");
+          nvim-small = nixvim'.makeNixvimWithModule (mkModuleArgs "small");
+          nvim-medium = nixvim'.makeNixvimWithModule (mkModuleArgs "medium");
+          nvim-full = nixvim'.makeNixvimWithModule (mkModuleArgs "full");
+
+          nvim-tiny-nightly = nvim-tiny.extend {setup.useNightly = true;};
+          nvim-small-nightly = nvim-small.extend {setup.useNightly = true;};
+          nvim-medium-nightly = nvim-medium.extend {setup.useNightly = true;};
+          nvim-full-nightly = nvim-full.extend {setup.useNightly = true;};
+        };
+
+        checks = let
+          check = name:
+            nixvim.lib.${system}.check.mkTestDerivationFromNvim {
+              inherit name;
+              nvim = packages."${name}";
+            };
+        in {
+          tiny = check "nvim-tiny";
+          small = check "nvim-small";
+          medium = check "nvim-medium";
+          full = check "nvim-full";
+
+          tiny-nightly = check "nvim-tiny-nightly";
+          small-nightly = check "nvim-small-nightly";
+          medium-nightly = check "nvim-medium-nightly";
+          full-nightly = check "nvim-full-nightly";
         };
 
         devShells.default = pkgs.mkShell {
@@ -215,6 +107,13 @@
             alejandra.enable = true;
             deadnix.enable = true;
             statix.enable = true;
+
+            flake-check = {
+              enable = false;
+              entry = "nix flake check";
+              stages = ["pre-push"];
+              pass_filenames = false;
+            };
           };
         };
       };

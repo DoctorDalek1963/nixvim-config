@@ -2,34 +2,25 @@
   pkgs,
   lib,
   inputs,
-  useNightly,
-  rustLsp,
+  config,
   ...
 }: {
-  imports = [
-    ./autoCmdGroups.nix
-    ./globals.nix
-    ./keymaps.nix
-    ./options.nix
-    ./plugins/default.nix
+  assertions = [
+    {
+      assertion = config.setup.pluginGroups.niceToHave -> config.setup.pluginGroups.base;
+      message = "pluginGroups.niceToHave requires pluginGroups.base";
+    }
+    {
+      assertion = config.setup.pluginGroups.programming -> config.setup.pluginGroups.niceToHave;
+      message = "pluginGroups.programming requires pluginGroups.niceToHave";
+    }
   ];
 
-  package = lib.mkIf useNightly inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  package = lib.mkIf config.setup.useNightly inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
   enableMan = false;
 
-  extraPackages =
-    (with pkgs; [
-      alejandra # For nixd lsp
-      delta # For actions-preview.nvim
-    ])
-    ++ (
-      if rustLsp
-      then [
-        pkgs.vscode-extensions.vadimcn.vscode-lldb # For Rustaceanvim debugging
-      ]
-      else []
-    );
+  extraPlugins = [pkgs.vimPlugins.nvim-web-devicons];
 
   colorschemes.catppuccin = {
     enable = true;
@@ -68,6 +59,11 @@
       desc = "Remove all trailing spaces";
       command = "execute '%s/\\s\\+$//e'";
     };
+  };
+
+  globals = {
+    mapleader = "\\";
+    maplocalleader = "\\";
   };
 
   extraConfigLua =
