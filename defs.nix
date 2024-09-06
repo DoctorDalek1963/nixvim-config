@@ -12,6 +12,7 @@
         elixir = false;
         latex = false;
         lean4 = false;
+        python = false;
         rust = false;
       };
     };
@@ -27,6 +28,7 @@
         elixir = false;
         latex = false;
         lean4 = false;
+        python = false;
         rust = false;
       };
     };
@@ -42,6 +44,7 @@
         elixir = true;
         latex = true;
         lean4 = true;
+        python = true;
         rust = true;
       };
     };
@@ -57,6 +60,7 @@
         elixir = true;
         latex = true;
         lean4 = true;
+        python = true;
         rust = true;
       };
     };

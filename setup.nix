@@ -47,7 +47,7 @@ in {
       latex = boolOpt;
       lean4 = boolOpt;
       # lua = boolOpt;
-      # python = boolOpt;
+      python = boolOpt;
       rust = boolOpt;
       # shell = boolOpt;
       # webDev = boolOpt;

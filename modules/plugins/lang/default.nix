@@ -9,6 +9,7 @@
     ./elixir.nix
     ./latex.nix
     ./lean4.nix
+    ./python.nix
     ./rust.nix
   ];
 
