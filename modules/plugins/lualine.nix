@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   git-prompt-repo = pkgs.fetchFromGitHub {
     owner = "git";
     repo = "git";
@@ -57,161 +62,163 @@
       '';
   };
 in {
-  plugins.lualine = {
-    enable = true;
+  config = lib.mkIf config.setup.pluginGroups.base {
+    plugins.lualine = {
+      enable = true;
 
-    sections = {
-      lualine_a = [
-        {
-          name = "mode";
-          fmt =
-            # lua
-            ''
-              function(text)
-                if vim.fn.winwidth(0) <= 90 then
-                  return string.sub(text, 0, 1) -- Only first letter
-                else
-                  return text
+      sections = {
+        lualine_a = [
+          {
+            name = "mode";
+            fmt =
+              # lua
+              ''
+                function(text)
+                  if vim.fn.winwidth(0) <= 90 then
+                    return string.sub(text, 0, 1) -- Only first letter
+                  else
+                    return text
+                  end
                 end
-              end
-            '';
-        }
-      ];
-      lualine_b = [
-        {
-          name.__raw = "function() return GIT_PS1_STATUS end";
-          # icon = "";
-        }
-        "diff"
-        {
-          name = "diagnostics";
-          extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
-        }
-      ];
-      lualine_c = [
-        custom-filename
-      ];
-      lualine_x = [
-        {
-          name = "encoding";
-          fmt =
-            # lua
-            ''
-              function(text)
-                if vim.fn.winwidth(0) <= 90 then
-                  return ""
-                else
-                  return text
+              '';
+          }
+        ];
+        lualine_b = [
+          {
+            name.__raw = "function() return GIT_PS1_STATUS end";
+            # icon = "";
+          }
+          "diff"
+          {
+            name = "diagnostics";
+            extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
+          }
+        ];
+        lualine_c = [
+          custom-filename
+        ];
+        lualine_x = [
+          {
+            name = "encoding";
+            fmt =
+              # lua
+              ''
+                function(text)
+                  if vim.fn.winwidth(0) <= 90 then
+                    return ""
+                  else
+                    return text
+                  end
                 end
-              end
-            '';
-        }
-        {
-          name = "fileformat";
-          extraConfig.symbols = {
-            unix = ""; # LF is default, so we only care if it's something else
-            dos = "CRLF";
-            mac = "CR";
-          };
-          fmt =
-            # lua
-            ''
-              function(text)
-                if vim.fn.winwidth(0) <= 90 then
-                  return ""
-                else
-                  return text
+              '';
+          }
+          {
+            name = "fileformat";
+            extraConfig.symbols = {
+              unix = ""; # LF is default, so we only care if it's something else
+              dos = "CRLF";
+              mac = "CR";
+            };
+            fmt =
+              # lua
+              ''
+                function(text)
+                  if vim.fn.winwidth(0) <= 90 then
+                    return ""
+                  else
+                    return text
+                  end
                 end
-              end
-            '';
-        }
-        "filetype"
-      ];
-      lualine_y = [
-        {
-          name = "progress";
-          fmt =
-            # lua
-            ''
-              function(text)
-                if text == "Top" then
-                  return "0%%"
-                elseif text == "Bot" then
-                  return "100%%"
-                else
-                  return text
+              '';
+          }
+          "filetype"
+        ];
+        lualine_y = [
+          {
+            name = "progress";
+            fmt =
+              # lua
+              ''
+                function(text)
+                  if text == "Top" then
+                    return "0%%"
+                  elseif text == "Bot" then
+                    return "100%%"
+                  else
+                    return text
+                  end
                 end
-              end
-            '';
-        }
-      ];
-      lualine_z = ["location"];
+              '';
+          }
+        ];
+        lualine_z = ["location"];
+      };
+
+      inactiveSections = {
+        lualine_a = [];
+        lualine_b = [
+          "diff"
+          {
+            name = "diagnostics";
+            extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
+          }
+        ];
+        lualine_c = [custom-filename];
+        lualine_x = ["location"];
+        lualine_y = [];
+        lualine_z = [];
+      };
     };
 
-    inactiveSections = {
-      lualine_a = [];
-      lualine_b = [
-        "diff"
-        {
-          name = "diagnostics";
-          extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
-        }
-      ];
-      lualine_c = [custom-filename];
-      lualine_x = ["location"];
-      lualine_y = [];
-      lualine_z = [];
+    extraConfigLuaPre = ''GIT_PS1_STATUS = "git PS1 status uninitialised"'';
+
+    autoGroups = {
+      update_git_ps1_status_augroup = {
+        clear = true;
+      };
     };
-  };
 
-  extraConfigLuaPre = ''GIT_PS1_STATUS = "git PS1 status uninitialised"'';
+    autoCmd = [
+      {
+        desc = "Update the GIT_PS1_STATUS global variable";
+        event = ["BufEnter" "BufWritePost"];
+        pattern = "*";
+        callback.__raw =
+          # lua
+          ''
+            function(_tbl)
+              local resolved_filename = vim.api.nvim_exec2('echo resolve(expand("%:p"))', { output = true }).output
+              local directory = string.gsub(resolved_filename, "/[^/]+$", "")
 
-  autoGroups = {
-    update_git_ps1_status_augroup = {
-      clear = true;
-    };
-  };
+              if directory == "" then
+                GIT_PS1_STATUS = ""
+                return
+              end
 
-  autoCmd = [
-    {
-      desc = "Update the GIT_PS1_STATUS global variable";
-      event = ["BufEnter" "BufWritePost"];
-      pattern = "*";
-      callback.__raw =
-        # lua
-        ''
-          function(_tbl)
-            local resolved_filename = vim.api.nvim_exec2('echo resolve(expand("%:p"))', { output = true }).output
-            local directory = string.gsub(resolved_filename, "/[^/]+$", "")
-
-            if directory == "" then
-              GIT_PS1_STATUS = ""
-              return
-            end
-
-            local stdout = vim.system(
-              {
-                "${pkgs.bash}/bin/bash",
-                "-c",
-                "source ${git-prompt-repo}/contrib/completion/git-prompt.sh; __git_ps1 '[%s]'"
-              },
-              {
-                cwd = directory,
-                env = {
-                  GIT_PS1_SHOWDIRTYSTATE = "true",
-                  GIT_PS1_SHOWSTASHSTATE = "true",
-                  GIT_PS1_SHOWUNTRACKEDFILES = "true",
-                  GIT_PS1_SHOWUPSTREAM = "auto",
-                  GIT_PS1_HIDE_IF_PWD_IGNORED = "true"
+              local stdout = vim.system(
+                {
+                  "${pkgs.bash}/bin/bash",
+                  "-c",
+                  "source ${git-prompt-repo}/contrib/completion/git-prompt.sh; __git_ps1 '[%s]'"
+                },
+                {
+                  cwd = directory,
+                  env = {
+                    GIT_PS1_SHOWDIRTYSTATE = "true",
+                    GIT_PS1_SHOWSTASHSTATE = "true",
+                    GIT_PS1_SHOWUNTRACKEDFILES = "true",
+                    GIT_PS1_SHOWUPSTREAM = "auto",
+                    GIT_PS1_HIDE_IF_PWD_IGNORED = "true"
+                  }
                 }
-              }
-            ):wait().stdout
+              ):wait().stdout
 
-            -- Lua treats % weird
-            GIT_PS1_STATUS = string.gsub(stdout, "%%", "%%%%")
-          end
-        '';
-      group = "update_git_ps1_status_augroup";
-    }
-  ];
+              -- Lua treats % weird
+              GIT_PS1_STATUS = string.gsub(stdout, "%%", "%%%%")
+            end
+          '';
+        group = "update_git_ps1_status_augroup";
+      }
+    ];
+  };
 }

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+let
   autoCmdGroups = [
     {
       group = "tabs";
@@ -40,22 +36,14 @@
     }
     {
       group = "markdown";
-      commands =
-        [
-          {
-            desc = "Set the textwidth and formatoptions for markdown files";
-            event = "FileType";
-            pattern = "markdown";
-            command = "setlocal textwidth=0 formatoptions=q";
-          }
-        ]
-        ++ (lib.optional config.plugins.markdown-preview.enable
-          {
-            desc = "Enable SoftPencil";
-            event = "FileType";
-            pattern = "markdown";
-            command = "SoftPencil";
-          });
+      commands = [
+        {
+          desc = "Set the textwidth and formatoptions for markdown files";
+          event = "FileType";
+          pattern = "markdown";
+          command = "setlocal textwidth=0 formatoptions=q";
+        }
+      ];
     }
     {
       group = "python";

@@ -4,7 +4,14 @@
   config,
   ...
 }: {
-  config = lib.mkIf config.plugins.telescope.enable {
+  config = lib.mkIf config.setup.pluginGroups.programming {
+    assertions = [
+      {
+        assertion = config.plugins.telescope.enable;
+        message = "actions-preview requires telescope";
+      }
+    ];
+
     extraPlugins = [pkgs.vimPlugins.actions-preview-nvim];
 
     keymaps = [

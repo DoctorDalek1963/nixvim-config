@@ -26,10 +26,10 @@ in {
   options.setup = {
     useNightly = defaultFalse;
 
-    # plugins = {};
-
-    tools = {
-      dapDebugger = boolOpt;
+    pluginGroups = {
+      base = defaultTrue;
+      niceToHave = defaultFalse;
+      programming = defaultFalse;
     };
 
     lang = {

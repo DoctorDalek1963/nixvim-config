@@ -5,6 +5,17 @@
   config,
   ...
 }: {
+  assertions = [
+    {
+      assertion = config.setup.pluginGroups.niceToHave -> config.setup.pluginGroups.base;
+      message = "pluginGroups.niceToHave requires pluginGroups.base";
+    }
+    {
+      assertion = config.setup.pluginGroups.programming -> config.setup.pluginGroups.niceToHave;
+      message = "pluginGroups.programming requires pluginGroups.niceToHave";
+    }
+  ];
+
   package = lib.mkIf config.setup.useNightly inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
   enableMan = false;

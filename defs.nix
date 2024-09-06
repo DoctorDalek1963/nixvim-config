@@ -3,8 +3,6 @@
   tiny = {
     imports = [./setup.nix];
     setup = {
-      tools.dapDebugger = false;
-
       lang = {
         enable = false;
         nix = false;
@@ -31,7 +29,7 @@
   small = {
     imports = [./setup.nix];
     setup = {
-      tools.dapDebugger = false;
+      pluginGroups.niceToHave = true;
 
       lang = {
         c_cpp = false;
@@ -56,7 +54,10 @@
   medium = {
     imports = [./setup.nix];
     setup = {
-      tools.dapDebugger = true;
+      pluginGroups = {
+        niceToHave = true;
+        programming = true;
+      };
 
       lang = {
         c_cpp = false;
@@ -81,7 +82,10 @@
   full = {
     imports = [./setup.nix];
     setup = {
-      tools.dapDebugger = true;
+      pluginGroups = {
+        niceToHave = true;
+        programming = true;
+      };
 
       lang = {
         c_cpp = true;

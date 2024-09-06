@@ -3,10 +3,10 @@
   config,
   ...
 }: {
-  config = lib.mkIf config.setup.tools.dapDebugger {
+  config = lib.mkIf config.setup.pluginGroups.programming {
     plugins = {
-      cmp-dap.enable = config.plugins.cmp.enable;
-      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "dap";};
+      cmp-dap.enable = true;
+      cmp.settings.sources = [{name = "dap";}];
 
       dap = {
         enable = true;
