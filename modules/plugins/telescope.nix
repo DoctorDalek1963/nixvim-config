@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-  plugins = {
-    telescope.enable = true;
+  plugins.telescope = {
+    enable = true;
+    extensions.fzf-native.enable = true;
   };
 
   extraPackages = [pkgs.fd];
