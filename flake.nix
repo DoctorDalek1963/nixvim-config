@@ -108,7 +108,12 @@
             deadnix.enable = true;
             statix.enable = true;
 
-            # TODO: Check on pre-push
+            flake-check = {
+              enable = true;
+              entry = "nix flake check";
+              stages = ["pre-push"];
+              pass_filenames = false;
+            };
           };
         };
       };
