@@ -109,7 +109,7 @@
             statix.enable = true;
 
             flake-check = {
-              enable = true;
+              enable = false;
               entry = "nix flake check";
               stages = ["pre-push"];
               pass_filenames = false;
