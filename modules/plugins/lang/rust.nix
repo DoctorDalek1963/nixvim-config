@@ -27,7 +27,10 @@ in {
         rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`
         settings = {
           tools.hover_actions.replace_builtin_hover = false;
-          server.on_attach = "__lspOnAttach";
+          server = {
+            on_attach = "__lspOnAttach";
+            default_settings.files.excludeDirs = [".direnv"];
+          };
 
           # This config was adapted from https://github.com/mrcjkb/rustaceanvim#using-codelldb-for-debugging
           dap.adapter =
