@@ -37,19 +37,19 @@ in {
 
       nix = defaultTrue;
 
-      # c_cpp = boolOpt;
-      # configFiles = boolOpt;
-      # dockerfile = boolOpt;
+      c_cpp = boolOpt;
+      configFiles = boolOpt;
+      dockerfile = boolOpt;
       elixir = boolOpt;
-      # haskell = boolOpt;
-      # julia = boolOpt;
-      # jvm = boolOpt;
+      haskell = boolOpt;
+      julia = boolOpt;
+      jvm = boolOpt;
       latex = boolOpt;
       lean4 = boolOpt;
-      # lua = boolOpt;
+      lua = boolOpt;
       python = boolOpt;
       rust = boolOpt;
-      # shell = boolOpt;
+      shell = boolOpt;
       webDev = boolOpt;
     };
   };

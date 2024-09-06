@@ -6,11 +6,19 @@
   imports = [
     ./nix.nix
 
+    ./c_cpp.nix
+    ./configFiles.nix
+    ./dockerfile.nix
     ./elixir.nix
+    ./haskell.nix
+    ./julia.nix
+    ./jvm.nix
     ./latex.nix
     ./lean4.nix
+    ./lua.nix
     ./python.nix
     ./rust.nix
+    ./shell.nix
     ./webDev.nix
   ];
 
