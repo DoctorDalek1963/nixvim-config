@@ -4,7 +4,7 @@
     extensions.fzf-native.enable = true;
   };
 
-  extraPackages = [pkgs.fd];
+  extraPackages = [pkgs.fd pkgs.ripgrep];
 
   keymaps = [
     {
@@ -24,6 +24,12 @@
       action = "<cmd>Telescope fd<cr>";
       mode = "n";
       options.desc = "Open fd with Telescope";
+    }
+    {
+      key = "<leader>tg";
+      action = "<cmd>Telescope live_grep<cr>";
+      mode = "n";
+      options.desc = "Open ripgrep with Telescope";
     }
   ];
 }
