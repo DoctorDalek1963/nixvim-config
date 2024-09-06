@@ -50,7 +50,7 @@ in {
       python = boolOpt;
       rust = boolOpt;
       # shell = boolOpt;
-      # webDev = boolOpt;
+      webDev = boolOpt;
     };
   };
 }

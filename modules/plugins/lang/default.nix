@@ -11,6 +11,7 @@
     ./lean4.nix
     ./python.nix
     ./rust.nix
+    ./webDev.nix
   ];
 
   config = lib.mkIf config.setup.lang.enable {

@@ -14,6 +14,7 @@
         lean4 = false;
         python = false;
         rust = false;
+        webDev = false;
       };
     };
   };
@@ -30,6 +31,7 @@
         lean4 = false;
         python = false;
         rust = false;
+        webDev = false;
       };
     };
   };
@@ -46,6 +48,7 @@
         lean4 = true;
         python = true;
         rust = true;
+        webDev = false;
       };
     };
   };
@@ -62,6 +65,7 @@
         lean4 = true;
         python = true;
         rust = true;
+        webDev = true;
       };
     };
   };
