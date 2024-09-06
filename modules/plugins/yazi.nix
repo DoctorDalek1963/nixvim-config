@@ -9,6 +9,7 @@
       key = "<leader>y";
       action.__raw = "require('yazi').yazi";
       mode = "n";
+      options.desc = "Open yazi";
     }
   ];
 }

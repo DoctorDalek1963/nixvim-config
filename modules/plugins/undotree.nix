@@ -6,6 +6,7 @@
       key = "<leader>u";
       action = "<cmd>UndotreeToggle<cr>";
       mode = "n";
+      options.desc = "Toggle undotree";
     }
   ];
 }

@@ -50,23 +50,25 @@
       key = "zR";
       action.__raw = "require('ufo').openAllFolds";
       mode = "n";
+      options.desc = "Open all folds";
     }
     {
       key = "zM";
       action.__raw = "require('ufo').closeAllFolds";
       mode = "n";
+      options.desc = "Close all folds";
     }
-
-    # Toggle folds with space
     {
       key = "<space><space>";
       action = "za";
       mode = "n";
+      options.desc = "Toggle current fold";
     }
     {
       key = "<leader><space>";
       action = "zA";
       mode = "n";
+      options.desc = "Toggle current fold recursively";
     }
   ];
 }

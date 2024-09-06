@@ -13,42 +13,51 @@
     };
 
     keymaps = [
-      # Toggle DAP breakpoint
       {
         key = "<leader>db";
         action.__raw = "require('dap').toggle_breakpoint";
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Toggle DAP breakpoint";
+        };
       }
-      # DAP continue
       {
         key = "<leader>dc";
         action.__raw = "require('dap').continue";
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "DAP continue";
+        };
       }
-      # DAP step over
       {
         key = "<leader>dso";
         action.__raw = "require('dap').step_over";
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "DAP step over";
+        };
       }
-      # DAP step into
       {
         key = "<leader>dsi";
         action.__raw = "require('dap').step_into";
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "DAP step into";
+        };
       }
-      # Open DAP REPL
       {
         key = "<leader>dr";
         action.__raw = "require('dap').repl.open";
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Open DAP REPL";
+        };
       }
-      # Open DAP UI
       {
         key = "<leader>dui";
         action.__raw =
@@ -60,7 +69,10 @@
             end
           '';
         mode = "n";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Open DAP UI";
+        };
       }
     ];
   };

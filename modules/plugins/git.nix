@@ -11,11 +11,11 @@
   };
 
   keymaps = [
-    # Open LazyGit for the git repo of the current file
     {
       key = "<leader>lg";
       action = "<cmd>LazyGitCurrentFile<cr>";
       mode = "n";
+      options.desc = "Open LazyGit for the git repo of the current file";
     }
   ];
 
