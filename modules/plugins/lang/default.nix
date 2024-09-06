@@ -60,6 +60,10 @@
         enable = true;
         sources.code_actions.proselint.enable = true;
       };
+
+      # Native LSP completion with cmp
+      cmp-nvim-lsp.enable = config.plugins.cmp.enable;
+      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "nvim_lsp";};
     };
   };
 }

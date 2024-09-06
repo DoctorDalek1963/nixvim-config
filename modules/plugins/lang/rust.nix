@@ -20,6 +20,8 @@ in {
         };
       };
 
+      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "crates.nvim";};
+
       rustaceanvim = {
         enable = true;
         rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`

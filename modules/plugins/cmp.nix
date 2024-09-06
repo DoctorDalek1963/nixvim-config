@@ -10,9 +10,7 @@
     };
 
     cmp-buffer.enable = true; # Words in the current buffer
-    # cmp-dap.enable = true; # Debugging stuff
     cmp_luasnip.enable = true;
-    # cmp-nvim-lsp.enable = true; # Native LSP
     cmp-nvim-lua.enable = true; # Nvim Lua API
     cmp-path.enable = true; # Filepaths
     cmp-spell.enable = true; # English words
@@ -24,11 +22,8 @@
       settings = {
         sources = [
           {name = "buffer";}
-          # {name = "crates";} # From crates.nvim in none-ls.nix
-          # {name = "dap";}
           {name = "dotenv";}
           {name = "luasnip";}
-          # {name = "nvim_lsp";}
           {name = "nvim_lua";}
           {name = "path";}
           {name = "spell";}

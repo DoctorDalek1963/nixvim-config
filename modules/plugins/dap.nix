@@ -4,11 +4,16 @@
   ...
 }: {
   config = lib.mkIf config.setup.tools.dapDebugger {
-    plugins.dap = {
-      enable = true;
-      extensions = {
-        dap-ui.enable = true;
-        dap-virtual-text.enable = true;
+    plugins = {
+      cmp-dap.enable = config.plugins.cmp.enable;
+      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "dap";};
+
+      dap = {
+        enable = true;
+        extensions = {
+          dap-ui.enable = true;
+          dap-virtual-text.enable = true;
+        };
       };
     };
 
