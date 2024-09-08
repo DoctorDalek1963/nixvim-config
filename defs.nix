@@ -1,107 +1,107 @@
 {
   # Tiny has no LSPs or debugging at all
-  tiny = {
+  tiny = {lib, ...}: {
     imports = [./setup.nix];
     setup = {
       lang = {
-        enable = false;
-        nix = false;
+        enable = lib.mkDefault false;
+        nix = lib.mkDefault false;
 
-        c_cpp = false;
-        configFiles = false;
-        dockerfile = false;
-        elixir = false;
-        haskell = false;
-        julia = false;
-        jvm = false;
-        latex = false;
-        lean4 = false;
-        lua = false;
-        python = false;
-        rust = false;
-        shell = false;
-        webDev = false;
+        c_cpp = lib.mkDefault false;
+        configFiles = lib.mkDefault false;
+        dockerfile = lib.mkDefault false;
+        elixir = lib.mkDefault false;
+        haskell = lib.mkDefault false;
+        julia = lib.mkDefault false;
+        jvm = lib.mkDefault false;
+        latex = lib.mkDefault false;
+        lean4 = lib.mkDefault false;
+        lua = lib.mkDefault false;
+        python = lib.mkDefault false;
+        rust = lib.mkDefault false;
+        shell = lib.mkDefault false;
+        webDev = lib.mkDefault false;
       };
     };
   };
 
   # Small has very few LSPs and no debugging
-  small = {
+  small = {lib, ...}: {
     imports = [./setup.nix];
     setup = {
-      pluginGroups.niceToHave = true;
+      pluginGroups.niceToHave = lib.mkDefault true;
 
       lang = {
-        c_cpp = false;
-        configFiles = true;
-        dockerfile = false;
-        elixir = false;
-        haskell = false;
-        julia = false;
-        jvm = false;
-        latex = false;
-        lean4 = false;
-        lua = false;
-        python = false;
-        rust = false;
-        shell = true;
-        webDev = false;
+        c_cpp = lib.mkDefault false;
+        configFiles = lib.mkDefault true;
+        dockerfile = lib.mkDefault false;
+        elixir = lib.mkDefault false;
+        haskell = lib.mkDefault false;
+        julia = lib.mkDefault false;
+        jvm = lib.mkDefault false;
+        latex = lib.mkDefault false;
+        lean4 = lib.mkDefault false;
+        lua = lib.mkDefault false;
+        python = lib.mkDefault false;
+        rust = lib.mkDefault false;
+        shell = lib.mkDefault true;
+        webDev = lib.mkDefault false;
       };
     };
   };
 
   # Medium is for my day-to-day programming
-  medium = {
+  medium = {lib, ...}: {
     imports = [./setup.nix];
     setup = {
       pluginGroups = {
-        niceToHave = true;
-        programming = true;
+        niceToHave = lib.mkDefault true;
+        programming = lib.mkDefault true;
       };
 
       lang = {
-        c_cpp = false;
-        configFiles = true;
-        dockerfile = false;
-        elixir = true;
-        haskell = false;
-        julia = false;
-        jvm = false;
-        latex = true;
-        lean4 = true;
-        lua = false;
-        python = true;
-        rust = true;
-        shell = true;
-        webDev = false;
+        c_cpp = lib.mkDefault false;
+        configFiles = lib.mkDefault true;
+        dockerfile = lib.mkDefault false;
+        elixir = lib.mkDefault true;
+        haskell = lib.mkDefault false;
+        julia = lib.mkDefault false;
+        jvm = lib.mkDefault false;
+        latex = lib.mkDefault true;
+        lean4 = lib.mkDefault true;
+        lua = lib.mkDefault false;
+        python = lib.mkDefault true;
+        rust = lib.mkDefault true;
+        shell = lib.mkDefault true;
+        webDev = lib.mkDefault false;
       };
     };
   };
 
   # Full contains all the LSPs I could want
-  full = {
+  full = {lib, ...}: {
     imports = [./setup.nix];
     setup = {
       pluginGroups = {
-        niceToHave = true;
-        programming = true;
+        niceToHave = lib.mkDefault true;
+        programming = lib.mkDefault true;
       };
 
       lang = {
-        c_cpp = true;
-        configFiles = true;
-        dockerfile = true;
-        elixir = true;
-        haskell = true;
-        julia = true;
-        jvm = true;
-        latex = true;
-        lean4 = true;
-        lua = true;
-        python = true;
-        rust = true;
-        shell = true;
-        webDev = true;
+        c_cpp = lib.mkDefault true;
+        configFiles = lib.mkDefault true;
+        dockerfile = lib.mkDefault true;
+        elixir = lib.mkDefault true;
+        haskell = lib.mkDefault true;
+        julia = lib.mkDefault true;
+        jvm = lib.mkDefault true;
+        latex = lib.mkDefault true;
+        lean4 = lib.mkDefault true;
+        lua = lib.mkDefault true;
+        python = lib.mkDefault true;
+        rust = lib.mkDefault true;
+        shell = lib.mkDefault true;
+        webDev = lib.mkDefault true;
       };
     };
   };
