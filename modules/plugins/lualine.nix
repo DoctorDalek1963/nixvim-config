@@ -13,18 +13,18 @@
   };
 
   custom-filename = {
-    name = "filename";
-    extraConfig = {
-      file_status = true; # Readonly, modified
-      newfile_status = true; # Before first write
-      path = 1; # Relative path
-      symbols = {
-        modified = "[+]";
-        readonly = "[RO]";
-        unnamed = "[No Name]";
-        newfile = "[New]";
-      };
+    __unkeyed-1 = "filename";
+
+    file_status = true; # Readonly, modified
+    newfile_status = true; # Before first write
+    path = 1; # Relative path
+    symbols = {
+      modified = "[+]";
+      readonly = "[RO]";
+      unnamed = "[No Name]";
+      newfile = "[New]";
     };
+
     fmt =
       # lua
       ''
@@ -66,107 +66,109 @@ in {
     plugins.lualine = {
       enable = true;
 
-      sections = {
-        lualine_a = [
-          {
-            name = "mode";
-            fmt =
-              # lua
-              ''
-                function(text)
-                  if vim.fn.winwidth(0) <= 90 then
-                    return string.sub(text, 0, 1) -- Only first letter
-                  else
-                    return text
+      settings = {
+        sections = {
+          lualine_a = [
+            {
+              __unkeyed-1 = "mode";
+              fmt =
+                # lua
+                ''
+                  function(text)
+                    if vim.fn.winwidth(0) <= 90 then
+                      return string.sub(text, 0, 1) -- Only first letter
+                    else
+                      return text
+                    end
                   end
-                end
-              '';
-          }
-        ];
-        lualine_b = [
-          {
-            name.__raw = "function() return GIT_PS1_STATUS end";
-            # icon = "";
-          }
-          "diff"
-          {
-            name = "diagnostics";
-            extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
-          }
-        ];
-        lualine_c = [
-          custom-filename
-        ];
-        lualine_x = [
-          {
-            name = "encoding";
-            fmt =
-              # lua
-              ''
-                function(text)
-                  if vim.fn.winwidth(0) <= 90 then
-                    return ""
-                  else
-                    return text
+                '';
+            }
+          ];
+          lualine_b = [
+            {
+              __unkeyed-1.__raw = "function() return GIT_PS1_STATUS end";
+              # icon = "";
+            }
+            "diff"
+            {
+              __unkeyed-1 = "diagnostics";
+              sources = ["nvim_lsp" "nvim_diagnostic"];
+            }
+          ];
+          lualine_c = [
+            custom-filename
+          ];
+          lualine_x = [
+            {
+              __unkeyed-1 = "encoding";
+              fmt =
+                # lua
+                ''
+                  function(text)
+                    if vim.fn.winwidth(0) <= 90 then
+                      return ""
+                    else
+                      return text
+                    end
                   end
-                end
-              '';
-          }
-          {
-            name = "fileformat";
-            extraConfig.symbols = {
-              unix = ""; # LF is default, so we only care if it's something else
-              dos = "CRLF";
-              mac = "CR";
-            };
-            fmt =
-              # lua
-              ''
-                function(text)
-                  if vim.fn.winwidth(0) <= 90 then
-                    return ""
-                  else
-                    return text
+                '';
+            }
+            {
+              __unkeyed-1 = "fileformat";
+              symbols = {
+                unix = ""; # LF is default, so we only care if it's something else
+                dos = "CRLF";
+                mac = "CR";
+              };
+              fmt =
+                # lua
+                ''
+                  function(text)
+                    if vim.fn.winwidth(0) <= 90 then
+                      return ""
+                    else
+                      return text
+                    end
                   end
-                end
-              '';
-          }
-          "filetype"
-        ];
-        lualine_y = [
-          {
-            name = "progress";
-            fmt =
-              # lua
-              ''
-                function(text)
-                  if text == "Top" then
-                    return "0%%"
-                  elseif text == "Bot" then
-                    return "100%%"
-                  else
-                    return text
+                '';
+            }
+            "filetype"
+          ];
+          lualine_y = [
+            {
+              __unkeyed-1 = "progress";
+              fmt =
+                # lua
+                ''
+                  function(text)
+                    if text == "Top" then
+                      return "0%%"
+                    elseif text == "Bot" then
+                      return "100%%"
+                    else
+                      return text
+                    end
                   end
-                end
-              '';
-          }
-        ];
-        lualine_z = ["location"];
-      };
+                '';
+            }
+          ];
+          lualine_z = ["location"];
+        };
 
-      inactiveSections = {
-        lualine_a = [];
-        lualine_b = [
-          "diff"
-          {
-            name = "diagnostics";
-            extraConfig.sources = ["nvim_lsp" "nvim_diagnostic"];
-          }
-        ];
-        lualine_c = [custom-filename];
-        lualine_x = ["location"];
-        lualine_y = [];
-        lualine_z = [];
+        inactive_sections = {
+          lualine_a = [];
+          lualine_b = [
+            "diff"
+            {
+              __unkeyed-1 = "diagnostics";
+              sources = ["nvim_lsp" "nvim_diagnostic"];
+            }
+          ];
+          lualine_c = [custom-filename];
+          lualine_x = ["location"];
+          lualine_y = [];
+          lualine_z = [];
+        };
       };
     };
 
