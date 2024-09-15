@@ -3,14 +3,13 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   git-prompt-repo = pkgs.fetchFromGitHub {
     owner = "git";
     repo = "git";
     rev = "v2.46.0";
     hash = "sha256-Jxsxkh+V9h0NQpFxlPJ5SALESm4p1URRby9b8VaO+5k=";
-    sparseCheckout = [ "contrib/completion/git-prompt.sh" ];
+    sparseCheckout = ["contrib/completion/git-prompt.sh"];
   };
 
   custom-filename = {
@@ -62,8 +61,7 @@ let
         end
       '';
   };
-in
-{
+in {
   config = lib.mkIf config.setup.pluginGroups.base {
     plugins.lualine = {
       enable = true;
@@ -94,10 +92,7 @@ in
             "diff"
             {
               __unkeyed-1 = "diagnostics";
-              sources = [
-                "nvim_lsp"
-                "nvim_diagnostic"
-              ];
+              sources = ["nvim_lsp" "nvim_diagnostic"];
             }
           ];
           lualine_c = [
@@ -157,25 +152,22 @@ in
                 '';
             }
           ];
-          lualine_z = [ "location" ];
+          lualine_z = ["location"];
         };
 
         inactive_sections = {
-          lualine_a = [ ];
+          lualine_a = [];
           lualine_b = [
             "diff"
             {
               __unkeyed-1 = "diagnostics";
-              sources = [
-                "nvim_lsp"
-                "nvim_diagnostic"
-              ];
+              sources = ["nvim_lsp" "nvim_diagnostic"];
             }
           ];
-          lualine_c = [ custom-filename ];
-          lualine_x = [ "location" ];
-          lualine_y = [ ];
-          lualine_z = [ ];
+          lualine_c = [custom-filename];
+          lualine_x = ["location"];
+          lualine_y = [];
+          lualine_z = [];
         };
       };
     };
@@ -191,10 +183,7 @@ in
     autoCmd = [
       {
         desc = "Update the GIT_PS1_STATUS global variable";
-        event = [
-          "BufEnter"
-          "BufWritePost"
-        ];
+        event = ["BufEnter" "BufWritePost"];
         pattern = "*";
         callback.__raw =
           # lua

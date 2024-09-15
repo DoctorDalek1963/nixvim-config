@@ -3,12 +3,10 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.setup.lang;
   latexEnable = cfg.enable && cfg.latex;
-in
-{
+in {
   config = lib.mkMerge [
     (lib.mkIf latexEnable {
       plugins = {
@@ -32,21 +30,22 @@ in
       plugins = {
         cmp-latex-symbols.enable = true;
         cmp.settings.sources = [
-          { name = "latex_symbols"; }
-          { name = "vimtex"; }
+          {name = "latex_symbols";}
+          {name = "vimtex";}
         ];
       };
 
       extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "cmp-vimtex";
-          src = pkgs.fetchFromGitHub {
-            owner = "micangl";
-            repo = "cmp-vimtex";
-            rev = "5283bf9108ef33d41e704027b9ef22437ce7a15b";
-            hash = "sha256-pD2dPdpyn5A/uwonDdAxCX138yBeDqbXDdlG/IKjVTU=";
-          };
-        })
+        (pkgs.vimUtils.buildVimPlugin
+          {
+            name = "cmp-vimtex";
+            src = pkgs.fetchFromGitHub {
+              owner = "micangl";
+              repo = "cmp-vimtex";
+              rev = "5283bf9108ef33d41e704027b9ef22437ce7a15b";
+              hash = "sha256-pD2dPdpyn5A/uwonDdAxCX138yBeDqbXDdlG/IKjVTU=";
+            };
+          })
       ];
     })
   ];

@@ -1,8 +1,7 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   inherit (lib) mkOption types;
 
-  boolOpt = mkOption { type = types.bool; };
+  boolOpt = mkOption {type = types.bool;};
 
   defaultTrue = mkOption {
     default = true;
@@ -12,8 +11,7 @@ let
     default = false;
     type = types.bool;
   };
-in
-{
+in {
   imports = [
     ./modules/core.nix
 

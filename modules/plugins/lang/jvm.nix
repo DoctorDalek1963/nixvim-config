@@ -2,11 +2,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.setup.lang;
-in
-{
+in {
   config = lib.mkIf (cfg.enable && cfg.jvm) {
     plugins.lsp.servers = {
       clojure-lsp.enable = true;

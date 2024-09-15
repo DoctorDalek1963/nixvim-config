@@ -3,11 +3,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.setup.lang;
-in
-{
+in {
   config = lib.mkIf (cfg.enable && cfg.rust) {
     plugins = {
       # Extra tools for Cargo.toml files
@@ -22,7 +20,7 @@ in
         };
       };
 
-      cmp.settings.sources = lib.optional config.plugins.cmp.enable { name = "crates.nvim"; };
+      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "crates.nvim";};
 
       rustaceanvim = {
         enable = true;
@@ -31,7 +29,7 @@ in
           tools.hover_actions.replace_builtin_hover = false;
           server = {
             on_attach = "__lspOnAttach";
-            default_settings.files.excludeDirs = [ ".direnv" ];
+            default_settings.files.excludeDirs = [".direnv"];
           };
 
           # This config was adapted from https://github.com/mrcjkb/rustaceanvim#using-codelldb-for-debugging

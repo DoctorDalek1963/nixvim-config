@@ -2,11 +2,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.setup.lang;
-in
-{
+in {
   config = lib.mkIf (cfg.enable && cfg.haskell) {
     plugins.lsp.servers.hls.enable = true;
   };

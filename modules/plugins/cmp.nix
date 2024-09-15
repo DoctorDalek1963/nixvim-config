@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
     plugins = {
       # Lots of good snippets for various languages
@@ -13,7 +12,7 @@
       luasnip = {
         enable = true;
         # Load snippets from friendly-snippets
-        fromVscode = [ { } ];
+        fromVscode = [{}];
       };
 
       cmp-buffer.enable = true; # Words in the current buffer
@@ -28,12 +27,12 @@
 
         settings = {
           sources = [
-            { name = "buffer"; }
-            { name = "dotenv"; }
-            { name = "luasnip"; }
-            { name = "nvim_lua"; }
-            { name = "path"; }
-            { name = "spell"; }
+            {name = "buffer";}
+            {name = "dotenv";}
+            {name = "luasnip";}
+            {name = "nvim_lua";}
+            {name = "path";}
+            {name = "spell";}
           ];
 
           snippet.expand =
@@ -97,15 +96,16 @@
     };
 
     extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "cmp-dotenv";
-        src = pkgs.fetchFromGitHub {
-          owner = "SergioRibera";
-          repo = "cmp-dotenv";
-          rev = "4dd53aab60982f1f75848aec5e6214986263325e";
-          hash = "sha256-EY0yu6wugw2cweTOYkdAXW4FZFh6SdTPsVncqrnrc14=";
-        };
-      })
+      (pkgs.vimUtils.buildVimPlugin
+        {
+          name = "cmp-dotenv";
+          src = pkgs.fetchFromGitHub {
+            owner = "SergioRibera";
+            repo = "cmp-dotenv";
+            rev = "4dd53aab60982f1f75848aec5e6214986263325e";
+            hash = "sha256-EY0yu6wugw2cweTOYkdAXW4FZFh6SdTPsVncqrnrc14=";
+          };
+        })
     ];
   };
 }

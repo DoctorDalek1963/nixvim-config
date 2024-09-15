@@ -2,8 +2,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
     # Better folding
     plugins.nvim-ufo = {

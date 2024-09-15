@@ -2,8 +2,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.setup.pluginGroups.base {
     plugins = {
       # Highlight inline strings with other languages in Nix files
