@@ -3,14 +3,18 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
     plugins.telescope = {
       enable = true;
       extensions.fzf-native.enable = true;
     };
 
-    extraPackages = [pkgs.fd pkgs.ripgrep];
+    extraPackages = [
+      pkgs.fd
+      pkgs.ripgrep
+    ];
 
     keymaps = [
       {

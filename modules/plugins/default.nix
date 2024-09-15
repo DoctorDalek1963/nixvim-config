@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.pluginGroups;
-in {
+in
+{
   imports = [
     ./lang
 
@@ -74,7 +76,7 @@ in {
       };
     })
     (lib.mkIf cfg.niceToHave {
-      extraPlugins = [pkgs.vimPlugins.tabular];
+      extraPlugins = [ pkgs.vimPlugins.tabular ];
 
       plugins = {
         # Toggle comments with `gc`, `gb`, and friends

@@ -4,7 +4,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   assertions = [
     {
       assertion = config.setup.pluginGroups.niceToHave -> config.setup.pluginGroups.base;
@@ -16,11 +17,13 @@
     }
   ];
 
-  package = lib.mkIf config.setup.useNightly inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  package =
+    lib.mkIf config.setup.useNightly
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
   enableMan = false;
 
-  extraPlugins = [pkgs.vimPlugins.nvim-web-devicons];
+  extraPlugins = [ pkgs.vimPlugins.nvim-web-devicons ];
 
   colorschemes.catppuccin = {
     enable = true;

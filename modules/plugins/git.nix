@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkMerge [
     (lib.mkIf config.setup.pluginGroups.niceToHave {
       # Show diff signs in the left column

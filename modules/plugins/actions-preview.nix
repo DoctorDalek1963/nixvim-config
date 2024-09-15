@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.setup.pluginGroups.programming {
     assertions = [
       {
@@ -12,7 +13,7 @@
       }
     ];
 
-    extraPlugins = [pkgs.vimPlugins.actions-preview-nvim];
+    extraPlugins = [ pkgs.vimPlugins.actions-preview-nvim ];
 
     keymaps = [
       {

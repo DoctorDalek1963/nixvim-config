@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && cfg.rust) {
     plugins = {
       lsp.servers.elixirls.enable = true;
@@ -13,7 +15,7 @@ in {
       dap = {
         adapters.executables.mix_task = {
           command = "${config.plugins.lsp.servers.elixirls.package}/lib/debug_adapter.sh";
-          args = [];
+          args = [ ];
         };
         configurations.elixir = [
           {
@@ -22,7 +24,7 @@ in {
             type = "mix_task";
             task = "test";
 
-            taskArgs = ["--trace"];
+            taskArgs = [ "--trace" ];
             requireFiles = [
               "test/**/test_helper.exs"
               "test/**/*_test.exs"
@@ -61,7 +63,7 @@ in {
                   }
                 end
               '';
-            requireFiles = ["test/**/test_helper.exs"];
+            requireFiles = [ "test/**/test_helper.exs" ];
 
             startApps = true; # For Phoenix projects
             projectDir = "\${workspaceFolder}";

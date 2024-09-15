@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && cfg.lean4) {
     # Integration with the Lean 4 theorem prover
     plugins.lean = {
