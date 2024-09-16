@@ -20,6 +20,14 @@
 
   enableMan = false;
 
+  performance.byteCompileLua = {
+    enable = true;
+    configs = true;
+    initLua = true;
+    nvimRuntime = true;
+    plugins = true;
+  };
+
   extraPlugins = [pkgs.vimPlugins.nvim-web-devicons];
 
   colorschemes.catppuccin = {
