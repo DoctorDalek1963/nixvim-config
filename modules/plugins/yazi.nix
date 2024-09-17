@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -8,6 +9,8 @@
       enable = true;
       settings.open_for_directories = true;
     };
+
+    extraPackages = [pkgs.yazi];
 
     keymaps = [
       {
