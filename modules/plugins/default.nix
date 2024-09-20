@@ -61,7 +61,7 @@ in {
         };
 
         # Handle delimiters like () [] {} "" '' better
-        surround.enable = true;
+        vim-surround.enable = true;
 
         # Make matching tags like () [] {} "" '' work better
         vim-matchup = {
