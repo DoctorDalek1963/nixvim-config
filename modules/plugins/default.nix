@@ -28,6 +28,9 @@ in {
   config = lib.mkMerge [
     (lib.mkIf cfg.base {
       plugins = {
+        # Nice icons for programming stuff
+        web-devicons.enable = true;
+
         # Show indentation levels
         indent-blankline = {
           enable = true;

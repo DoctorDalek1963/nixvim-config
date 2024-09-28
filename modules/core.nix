@@ -28,8 +28,6 @@
     plugins = true;
   };
 
-  extraPlugins = [pkgs.vimPlugins.nvim-web-devicons];
-
   colorschemes.catppuccin = {
     enable = true;
     settings = {
