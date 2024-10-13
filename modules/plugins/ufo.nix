@@ -7,7 +7,7 @@
     # Better folding
     plugins.nvim-ufo = {
       enable = true;
-      foldVirtTextHandler =
+      settings.fold_virt_text_handler =
         # lua
         ''
           -- Taken directly from https://github.com/kevinhwang91/nvim-ufo/tree/a5390706f510d39951dd581f6d2a972741b3fa26#customize-fold-text
