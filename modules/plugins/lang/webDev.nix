@@ -8,7 +8,7 @@
       cssls.enable = true;
       html.enable = true;
       jsonls.enable = true;
-      ts-ls.enable = true;
+      ts_ls.enable = true;
     };
   };
 }

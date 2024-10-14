@@ -7,9 +7,9 @@
 in {
   config = lib.mkIf (cfg.enable && cfg.jvm) {
     plugins.lsp.servers = {
-      clojure-lsp.enable = true;
-      java-language-server.enable = true;
-      kotlin-language-server.enable = true;
+      clojure_lsp.enable = true;
+      java_language_server.enable = true;
+      kotlin_language_server.enable = true;
       metals.enable = true; # Scala
     };
   };
