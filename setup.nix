@@ -39,6 +39,7 @@ in {
 
       c_cpp = boolOpt;
       configFiles = boolOpt;
+      dlang = boolOpt;
       dockerfile = boolOpt;
       elixir = boolOpt;
       haskell = boolOpt;

@@ -9,6 +9,7 @@
 
         c_cpp = lib.mkDefault false;
         configFiles = lib.mkDefault false;
+        dlang = lib.mkDefault false;
         dockerfile = lib.mkDefault false;
         elixir = lib.mkDefault false;
         haskell = lib.mkDefault false;
@@ -34,6 +35,7 @@
       lang = {
         c_cpp = lib.mkDefault false;
         configFiles = lib.mkDefault true;
+        dlang = lib.mkDefault false;
         dockerfile = lib.mkDefault false;
         elixir = lib.mkDefault false;
         haskell = lib.mkDefault false;
@@ -62,6 +64,7 @@
       lang = {
         c_cpp = lib.mkDefault false;
         configFiles = lib.mkDefault true;
+        dlang = lib.mkDefault false;
         dockerfile = lib.mkDefault false;
         elixir = lib.mkDefault true;
         haskell = lib.mkDefault false;
@@ -90,6 +93,7 @@
       lang = {
         c_cpp = lib.mkDefault true;
         configFiles = lib.mkDefault true;
+        dlang = lib.mkDefault true;
         dockerfile = lib.mkDefault true;
         elixir = lib.mkDefault true;
         haskell = lib.mkDefault true;
