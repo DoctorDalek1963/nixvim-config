@@ -31,6 +31,9 @@ in {
         # Nice icons for programming stuff
         web-devicons.enable = true;
 
+        # Keep shell environment consistent with direnv
+        direnv.enable = true;
+
         # Show indentation levels
         indent-blankline = {
           enable = true;
