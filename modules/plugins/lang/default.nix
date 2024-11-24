@@ -8,7 +8,7 @@
 
     ./c_cpp.nix
     ./configFiles.nix
-    ./dlang.nix
+    ./dlang
     ./dockerfile.nix
     ./elixir.nix
     ./haskell.nix

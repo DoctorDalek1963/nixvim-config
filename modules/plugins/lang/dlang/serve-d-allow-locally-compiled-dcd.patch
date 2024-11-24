@@ -1,0 +1,13 @@
+diff --git a/source/served/extension.d b/source/served/extension.d
+index 52e222a..6691d44 100644
+--- a/source/served/extension.d
++++ b/source/served/extension.d
+@@ -533,7 +533,7 @@ void doGlobalStartup()
+ 		trace("Starting snippets");
+ 		backend.register!SnippetsComponent;
+ 
+-		if (!backend.has!DCDComponent || backend.get!DCDComponent.isOutdated)
++		if (!backend.has!DCDComponent)
+ 		{
+ 			auto installed = backend.has!DCDComponent
+ 				? backend.get!DCDComponent.serverInstalledVersion : "none";
