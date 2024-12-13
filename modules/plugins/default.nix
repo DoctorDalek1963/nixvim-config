@@ -16,10 +16,12 @@ in {
     ./lualine.nix
     ./markdown.nix
     ./numb.nix
+    ./pencil.nix
     ./telescope.nix
     ./treesitter.nix
     ./quick-scope.nix
     ./ufo.nix
+    ./undotree.nix
     ./windows.nix
     ./yanky.nix
     ./yazi.nix
