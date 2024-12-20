@@ -18,6 +18,7 @@ in {
     ./numb.nix
     ./pencil.nix
     ./telescope.nix
+    ./transparent.nix
     ./treesitter.nix
     ./quick-scope.nix
     ./ufo.nix
@@ -95,6 +96,8 @@ in {
           notification = {
             filter = "info";
             overrideVimNotify = true;
+
+            window.winblend = 0;
           };
         };
       };
