@@ -66,7 +66,7 @@
         configFiles = lib.mkDefault true;
         dlang = lib.mkDefault false;
         dockerfile = lib.mkDefault false;
-        elixir = lib.mkDefault true;
+        elixir = lib.mkDefault false;
         haskell = lib.mkDefault false;
         julia = lib.mkDefault false;
         jvm = lib.mkDefault false;
