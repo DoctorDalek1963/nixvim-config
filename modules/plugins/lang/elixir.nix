@@ -5,7 +5,7 @@
 }: let
   cfg = config.setup.lang;
 in {
-  config = lib.mkIf (cfg.enable && cfg.rust) {
+  config = lib.mkIf (cfg.enable && cfg.elixir) {
     plugins = {
       lsp.servers.elixirls.enable = true;
       none-ls.sources.diagnostics.credo.enable = true;
