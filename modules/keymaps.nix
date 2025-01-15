@@ -54,6 +54,12 @@
       options.desc = "Move to pane to the right";
     }
     {
+      key = "<C-q>";
+      action = "<C-w>q";
+      mode = "n";
+      options.desc = "Close current pane";
+    }
+    {
       key = "<Bar>";
       action = "<C-w>v<C-w>l<C-w>n<C-w>j<C-w>c";
       mode = "n";
