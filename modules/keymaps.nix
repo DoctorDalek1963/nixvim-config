@@ -123,13 +123,19 @@
       key = "<leader>;";
       action = "mqA;<esc>`qdmq";
       mode = "n";
-      options.desc = "Add a semicolon to the end of the line";
+      options = {
+        remap = true;
+        desc = "Add a semicolon to the end of the line";
+      };
     }
     {
       key = "<leader>,";
       action = "mqA,<esc>`qdmq";
       mode = "n";
-      options.desc = "Add a comma to the end of the line";
+      options = {
+        remap = true;
+        desc = "Add a comma to the end of the line";
+      };
     }
     {
       key = "<leader>:";
@@ -164,6 +170,7 @@
       mode = "n";
       options = {
         silent = true;
+        remap = true;
         desc = "Automatically fix spelling";
       };
     }
@@ -171,7 +178,10 @@
       key = "<leader>cp";
       action = ''mqgg"+yG`qdmq'';
       mode = "n";
-      options.desc = "Copy whole buffer to system clipboard";
+      options = {
+        remap = true;
+        desc = "Copy whole buffer to system clipboard";
+      };
     }
     {
       key = "<leader>cp";
