@@ -169,7 +169,7 @@
     }
     {
       key = "<leader>cp";
-      action = "<cmd>w !xclip -selection c<cr><cr>";
+      action = ''mqgg"+yG`qdmq'';
       mode = "n";
       options.desc = "Copy whole buffer to system clipboard";
     }
