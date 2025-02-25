@@ -26,7 +26,7 @@
       ts-context-commentstring.enable = true;
 
       # Integrations with other plugins
-      vim-matchup.treesitterIntegration.enable = true;
+      vim-matchup.treesitter.enable = true;
     };
   };
 }

@@ -75,9 +75,9 @@ in {
         # Make matching tags like () [] {} "" '' work better
         vim-matchup = {
           enable = true;
-          matchParen.offscreen = {
+          settings.matchparen_offscreen = {
             method = "popup";
-            scrolloff = true;
+            scrolloff = 1;
           };
         };
       };
@@ -93,9 +93,9 @@ in {
         # Show update messages in the bottom right
         fidget = {
           enable = true;
-          notification = {
+          settings.notification = {
             filter = "info";
-            overrideVimNotify = true;
+            override_vim_notify = true;
 
             window.winblend = 0;
           };

@@ -14,7 +14,7 @@ in {
       # lean.nvim's abbreviations work indepently, and automatically insert
       # themselves when you press space to move on, rather than needing to be
       # manually selected from the pop-up menu
-      abbreviations.enable = true;
+      settings.abbreviations.enable = true;
 
       # Use the version of lean from the surrounding environment
       leanPackage = null;

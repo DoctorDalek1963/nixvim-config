@@ -9,9 +9,9 @@ in {
   config = lib.mkIf (cfg.enable && cfg.rust) {
     plugins = {
       # Extra tools for Cargo.toml files
-      crates-nvim = {
+      crates = {
         enable = true;
-        extraOptions = {
+        settings = {
           # Enable code actions with none-ls
           null_ls = {
             enabled = true;

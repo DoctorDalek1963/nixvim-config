@@ -7,7 +7,7 @@
 in {
   config = lib.mkIf (cfg.enable && cfg.python) {
     plugins.lsp.servers.pylsp = {
-      enable = true;
+      enable = false;
       settings.plugins = {
         autopep8.enabled = true;
         flake8.enabled = true;
