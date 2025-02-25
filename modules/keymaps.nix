@@ -217,7 +217,7 @@
         # lua
         ''
           function()
-            vim.lsp.inlay_hint.enable(vim.fn.bufnr(), not vim.lsp.inlay_hint.is_enabled())
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), {bufnr = 0})
           end
         '';
       mode = "n";
