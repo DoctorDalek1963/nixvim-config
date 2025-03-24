@@ -8,9 +8,9 @@ in {
   config = lib.mkIf (cfg.enable && cfg.jvm) {
     plugins = {
       lsp.servers = {
-        clojure_lsp.enable = true;
+        # clojure_lsp.enable = true;
         kotlin_language_server.enable = true;
-        metals.enable = true; # Scala
+        # metals.enable = true; # Scala
       };
 
       nvim-jdtls = {
