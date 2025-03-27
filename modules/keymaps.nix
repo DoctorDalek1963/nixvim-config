@@ -144,6 +144,12 @@
       options.desc = "Add a colon to the end of the line and start a new line";
     }
     {
+      key = "<C-h>";
+      action = "<C-w>";
+      mode = "i";
+      options.desc = "Enable normal Ctrl+Backspace in insert mode";
+    }
+    {
       key = "/";
       action = "/\\v";
       mode = "n";
