@@ -97,6 +97,7 @@ in {
             filter = "info";
             override_vim_notify = true;
 
+            # Transparency
             window.winblend = 0;
           };
         };
