@@ -46,15 +46,6 @@ in {
         # Resume editing from the last place
         lastplace.enable = true;
 
-        # Make marks easier and nicer to use
-        marks.enable = true;
-
-        # Automatically pair brackets and quotes and things
-        nvim-autopairs.enable = true;
-
-        # Rainbow brackets and tags
-        rainbow-delimiters.enable = true;
-
         # Improve w e b motions, basically camelCaseMotions
         spider = {
           enable = true;
@@ -88,6 +79,15 @@ in {
       plugins = {
         # Toggle comments with `gc`, `gb`, and friends
         comment.enable = true;
+
+        # Make marks easier and nicer to use
+        marks.enable = true;
+
+        # Automatically pair brackets and quotes and things
+        nvim-autopairs.enable = true;
+
+        # Rainbow brackets and tags
+        rainbow-delimiters.enable = true;
 
         # Debugging
         # Show update messages in the bottom right
