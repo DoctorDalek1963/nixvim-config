@@ -5,14 +5,10 @@
   ...
 }: {
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
-    extraPlugins = [
-      pkgs.vimPlugins.windows-nvim
-      pkgs.vimPlugins.animation-nvim
-      pkgs.vimPlugins.middleclass
-    ];
+    extraPlugins = [pkgs.vimPlugins.windows-nvim];
 
     extraConfigLua = ''
-      require("windows").setup({})
+      require("windows").setup()
     '';
 
     opts = {
