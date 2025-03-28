@@ -5,9 +5,9 @@
     dyalog = "apl";
     bf = "brainfuck";
     brainfuck = "brainfuck";
-    c = "coq";
     nasm = "nasm";
     sage = "sage";
     tex = "tex";
+    v = "coq";
   };
 }
