@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -15,6 +14,7 @@ in {
     ./git.nix
     ./lualine.nix
     ./markdown.nix
+    ./mini.nix
     ./numb.nix
     ./pencil.nix
     ./telescope.nix
@@ -60,9 +60,6 @@ in {
           };
         };
 
-        # Handle delimiters like () [] {} "" '' better
-        vim-surround.enable = true;
-
         # Make matching tags like () [] {} "" '' work better
         vim-matchup = {
           enable = true;
@@ -74,17 +71,9 @@ in {
       };
     })
     (lib.mkIf cfg.niceToHave {
-      extraPlugins = [pkgs.vimPlugins.tabular];
-
       plugins = {
-        # Toggle comments with `gc`, `gb`, and friends
-        comment.enable = true;
-
         # Make marks easier and nicer to use
         marks.enable = true;
-
-        # Automatically pair brackets and quotes and things
-        nvim-autopairs.enable = true;
 
         # Rainbow brackets and tags
         rainbow-delimiters.enable = true;
