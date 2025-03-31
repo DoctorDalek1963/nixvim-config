@@ -9,7 +9,9 @@
         enable = true;
         modules = {
           # Improve text objects, not LLM
-          ai = {};
+          ai = {
+            n_lines = 200;
+          };
         };
       };
     })
@@ -68,12 +70,6 @@
 
         # Toggle comments with gc, or gcc for current line
         comment = {};
-
-        # Automatically pair brackets and quotes and things
-        pairs = {};
-
-        # Add, change, delete surroundings like () and ""
-        surround = {};
       };
     })
   ];

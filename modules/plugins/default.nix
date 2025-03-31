@@ -60,6 +60,9 @@ in {
           };
         };
 
+        # Handle delimiters like () [] {} "" '' better
+        vim-surround.enable = true;
+
         # Make matching tags like () [] {} "" '' work better
         vim-matchup = {
           enable = true;
@@ -74,6 +77,9 @@ in {
       plugins = {
         # Make marks easier and nicer to use
         marks.enable = true;
+
+        # Automatically pair brackets and quotes and things
+        nvim-autopairs.enable = true;
 
         # Rainbow brackets and tags
         rainbow-delimiters.enable = true;
