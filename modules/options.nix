@@ -50,5 +50,8 @@
 
     # Only allow the mouse in normal mode
     mouse = "n";
+
+    # Border around floating window, with rounded corners
+    winborder = "rounded";
   };
 }
