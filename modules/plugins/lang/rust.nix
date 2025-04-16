@@ -7,6 +7,9 @@
   cfg = config.setup.lang;
 in {
   config = lib.mkIf (cfg.enable && cfg.rust) {
+    # Use rust-analyzer from environment, typically via `nix develop`
+    dependencies.rust-analyzer.enable = false;
+
     plugins = {
       # Extra tools for Cargo.toml files
       crates = {
@@ -24,7 +27,6 @@ in {
 
       rustaceanvim = {
         enable = true;
-        rustAnalyzerPackage = null; # Use rust-analyzer from environment, typically via `nix develop`
         settings = {
           tools.hover_actions.replace_builtin_hover = false;
           server = {
