@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -9,8 +8,6 @@
       enable = true;
       extensions.fzf-native.enable = true;
     };
-
-    extraPackages = [pkgs.fd pkgs.ripgrep];
 
     keymaps = [
       {
