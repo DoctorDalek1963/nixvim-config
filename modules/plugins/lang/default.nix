@@ -25,7 +25,7 @@
 
   config = lib.mkIf config.setup.lang.enable {
     # Highlight diagnostic locations only on the current line
-    diagnostics.virtual_lines.only_current_line = true;
+    diagnostic.config.virtual_lines.only_current_line = true;
 
     opts = {
       # Backups can mess with LSPs
