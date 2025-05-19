@@ -21,6 +21,7 @@
     ./rust.nix
     ./shell.nix
     ./webDev.nix
+    ./zig.nix
   ];
 
   config = lib.mkIf config.setup.lang.enable {

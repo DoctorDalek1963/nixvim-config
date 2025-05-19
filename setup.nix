@@ -52,6 +52,7 @@ in {
       rust = boolOpt;
       shell = boolOpt;
       webDev = boolOpt;
+      zig = boolOpt;
     };
   };
 }

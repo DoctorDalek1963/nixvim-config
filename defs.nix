@@ -22,6 +22,7 @@
         rust = lib.mkDefault false;
         shell = lib.mkDefault false;
         webDev = lib.mkDefault false;
+        zig = lib.mkDefault false;
       };
     };
   };
@@ -48,6 +49,7 @@
         rust = lib.mkDefault false;
         shell = lib.mkDefault true;
         webDev = lib.mkDefault false;
+        zig = lib.mkDefault false;
       };
     };
   };
@@ -77,6 +79,7 @@
         rust = lib.mkDefault true;
         shell = lib.mkDefault true;
         webDev = lib.mkDefault false;
+        zig = lib.mkDefault false;
       };
     };
   };
@@ -106,6 +109,7 @@
         rust = lib.mkDefault true;
         shell = lib.mkDefault true;
         webDev = lib.mkDefault true;
+        zig = lib.mkDefault true;
       };
     };
   };
