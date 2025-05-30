@@ -16,6 +16,7 @@ in {
     ./markdown.nix
     ./mini.nix
     ./numb.nix
+    ./oil.nix
     ./pencil.nix
     ./telescope.nix
     ./transparent.nix
@@ -25,7 +26,6 @@ in {
     ./undotree.nix
     ./windows.nix
     ./yanky.nix
-    ./yazi.nix
   ];
 
   config = lib.mkMerge [
