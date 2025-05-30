@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -13,9 +14,15 @@ in {
         # metals.enable = true; # Scala
       };
 
-      nvim-jdtls = {
+      jdtls = {
         enable = true;
-        data = "/home/dyson/.cache/jdtls/workspaceData";
+        settings.cmd = [
+          "${pkgs.jdt-language-server}/bin/jdtls"
+          "-configuration"
+          {__raw = ''vim.env.HOME .. "/.cache/jdtls"'';}
+          "-data"
+          {__raw = ''require("jdtls.setup").find_root({".git", "mvnw", "gradlew"}) .. "/.jdtls"'';}
+        ];
       };
     };
   };
