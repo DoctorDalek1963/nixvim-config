@@ -1,17 +1,8 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }: let
-  git-prompt-repo = pkgs.fetchFromGitHub {
-    owner = "git";
-    repo = "git";
-    rev = "v2.46.0";
-    hash = "sha256-Jxsxkh+V9h0NQpFxlPJ5SALESm4p1URRby9b8VaO+5k=";
-    sparseCheckout = ["contrib/completion/git-prompt.sh"];
-  };
-
   custom-filename = {
     __unkeyed-1 = "filename";
 
@@ -85,10 +76,6 @@ in {
             }
           ];
           lualine_b = [
-            {
-              __unkeyed-1.__raw = "function() return GIT_PS1_STATUS end";
-              # icon = "";
-            }
             "diff"
             {
               __unkeyed-1 = "diagnostics";
@@ -171,56 +158,5 @@ in {
         };
       };
     };
-
-    extraConfigLuaPre = ''GIT_PS1_STATUS = "git PS1 status uninitialised"'';
-
-    autoGroups = {
-      update_git_ps1_status_augroup = {
-        clear = true;
-      };
-    };
-
-    autoCmd = [
-      {
-        desc = "Update the GIT_PS1_STATUS global variable";
-        event = ["BufEnter" "BufWritePost"];
-        pattern = "*";
-        callback.__raw =
-          # lua
-          ''
-            function(_tbl)
-              local resolved_filename = vim.api.nvim_exec2('echo resolve(expand("%:p"))', { output = true }).output
-              local directory = string.gsub(resolved_filename, "/[^/]+$", "")
-
-              if directory == "" then
-                GIT_PS1_STATUS = ""
-                return
-              end
-
-              local stdout = vim.system(
-                {
-                  "${pkgs.bash}/bin/bash",
-                  "-c",
-                  "source ${git-prompt-repo}/contrib/completion/git-prompt.sh; __git_ps1 '[%s]'"
-                },
-                {
-                  cwd = directory,
-                  env = {
-                    GIT_PS1_SHOWDIRTYSTATE = "true",
-                    GIT_PS1_SHOWSTASHSTATE = "true",
-                    GIT_PS1_SHOWUNTRACKEDFILES = "true",
-                    GIT_PS1_SHOWUPSTREAM = "auto",
-                    GIT_PS1_HIDE_IF_PWD_IGNORED = "true"
-                  }
-                }
-              ):wait().stdout
-
-              -- Lua treats % weird
-              GIT_PS1_STATUS = string.gsub(stdout, "%%", "%%%%")
-            end
-          '';
-        group = "update_git_ps1_status_augroup";
-      }
-    ];
   };
 }
