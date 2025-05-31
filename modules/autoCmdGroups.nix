@@ -6,7 +6,7 @@ let
         {
           desc = "Expand tabs to spaces";
           event = "FileType";
-          pattern = ["haskell" "nix" "python" "rst"];
+          pattern = ["haskell" "nix" "python" "rst" "just"];
           command = "setlocal expandtab";
         }
         {
