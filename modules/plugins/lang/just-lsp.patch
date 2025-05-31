@@ -1,17 +1,19 @@
 --- a/src/server.rs
 +++ b/src/server.rs
-@@ -462,8 +462,9 @@ impl Inner {
+@@ -462,8 +462,11 @@ impl Inner {
  
      if let Some(document) = self.documents.get(uri) {
        let content = document.content.to_string();
-+      let filename = uri.path();
++      let filename = uri
++        .to_file_path()
++        .map_err(|()| jsonrpc::Error::invalid_params("Justfile URI was not file path"))?;
  
 -      match self.format_document(&content).await {
-+      match self.format_document(&filename).await {
++      match self.format_document(filename).await {
          Ok(formatted) => {
            if formatted != content {
              return Ok(Some(vec![lsp::TextEdit {
-@@ -494,18 +495,10 @@ impl Inner {
+@@ -494,18 +497,10 @@ impl Inner {
      Ok(None)
    }
  
@@ -22,7 +24,7 @@
 -
 -    fs::write(&file, content.as_bytes())?;
 -
-+  async fn format_document(&self, filename: &str) -> Result<String> {
++  async fn format_document(&self, filename: PathBuf) -> Result<String> {
      let mut command = tokio::process::Command::new("just");
  
 -    command.arg("--fmt").arg("--unstable").arg("--quiet");
@@ -32,7 +34,7 @@
  
      let output = command.output().await?;
  
-@@ -516,7 +509,7 @@ impl Inner {
+@@ -516,7 +511,7 @@ impl Inner {
        );
      }
  
