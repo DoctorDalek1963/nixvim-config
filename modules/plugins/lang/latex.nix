@@ -12,8 +12,12 @@ in {
       plugins = {
         vimtex = {
           enable = true;
-          # Use the texlive installed in the environment
+
+          # Use packages installed in the environment
           texlivePackage = null;
+          zathuraPackage = null;
+
+          settings.view_method = "zathura";
         };
 
         # TODO: Make sure the LaTeX reference manual is installed as an info node:
@@ -22,9 +26,20 @@ in {
       };
 
       globals = {
-        vimtex_view_general_viewer = "evince";
+        vimtex_log_ignore = ["Viewer cannot find Zathura window ID"];
         vimtex_syntax_conceal_disable = 1;
       };
+
+      keymaps = [
+        {
+          action = "<cmd>VimtexView<cr>";
+          key = "<C-space>";
+          options = {
+            silent = true;
+            desc = "Highlight this part of the document in the PDF viewer";
+          };
+        }
+      ];
     })
     (lib.mkIf (latexEnable && config.plugins.cmp.enable) {
       plugins = {
