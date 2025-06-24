@@ -73,13 +73,13 @@
         julia = lib.mkDefault false;
         jvm = lib.mkDefault false;
         latex = lib.mkDefault true;
-        lean4 = lib.mkDefault true;
+        lean4 = lib.mkDefault false;
         lua = lib.mkDefault false;
         python = lib.mkDefault true;
         rust = lib.mkDefault true;
         shell = lib.mkDefault true;
         webDev = lib.mkDefault false;
-        zig = lib.mkDefault false;
+        zig = lib.mkDefault true;
       };
     };
   };
