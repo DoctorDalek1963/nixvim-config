@@ -21,9 +21,26 @@ in {
 
     extraConfigLua = let
       maxDigit = 4;
-      maxCount = 80;
+      labelCount = 80;
 
-      labelNums = map (i: map (x: x + 1) (lib.toBaseDigits maxDigit i)) (lib.range 0 (maxCount - 1));
+      mod' = n: let
+        m = lib.mod n maxDigit;
+      in
+        if m == 0
+        then maxDigit
+        else m;
+
+      # It's actually a mixed base system because all non-unit columns can be
+      # zero but the unit column can't. That makes everything weird and freaky,
+      # so we have to define our own toBase function
+      toBase = n:
+        if n < 0
+        then abort "comfy-line-numbers toBase should never be called with a negative number"
+        else if n == 0
+        then []
+        else (toBase ((n - 1) / maxDigit)) ++ [(mod' n)];
+
+      labelNums = map toBase (lib.range 1 labelCount);
       labels = map (xs: lib.concatMapStringsSep "" toString xs) labelNums;
     in
       # lua
