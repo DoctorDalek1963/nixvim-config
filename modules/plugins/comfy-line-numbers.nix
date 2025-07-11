@@ -51,5 +51,47 @@ in {
           down_key = 'j'
         })
       '';
+
+    opts.relativenumber = lib.mkForce false;
+
+    # Taken from https://github.com/sitiom/nvim-numbertoggle/blob/main/plugin/numbertoggle.lua
+    # and adapted to use comfy-line-numbers. This doesn't work when moving between
+    # buffers because comfy-line-numbers applies to all buffers at the  same time,
+    # so we only care about moving between normal, insert, and command mode
+    autoGroups.numbertoggle_augroup = {clear = true;};
+    autoCmd = [
+      {
+        desc = "Enable comfy line numbers in normal mode";
+        group = "numbertoggle_augroup";
+        pattern = "*";
+        event = ["BufEnter" "InsertLeave" "CmdlineLeave"];
+        callback.__raw = ''
+          function()
+            if vim.o.number and vim.api.nvim_get_mode().mode ~= "i" then
+              require("comfy-line-numbers").enable_line_numbers()
+            end
+           end
+        '';
+      }
+      {
+        desc = "Disable comfy line numbers outside of normal mode";
+        group = "numbertoggle_augroup";
+        pattern = "*";
+        event = ["InsertEnter" "CmdlineEnter"];
+        callback.__raw = ''
+          function()
+            if vim.o.number then
+              require("comfy-line-numbers").disable_line_numbers()
+
+              -- Conditional taken from https://github.com/rockyzhang24/dotfiles/commit/03dd14b5d43f812661b88c4660c03d714132abcf
+              -- Workaround for https://github.com/neovim/neovim/issues/32068
+              if not vim.tbl_contains({"@", "-"}, vim.v.event.cmdtype) then
+                vim.cmd "redraw"
+              end
+            end
+           end
+        '';
+      }
+    ];
   };
 }
