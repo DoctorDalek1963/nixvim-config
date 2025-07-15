@@ -23,6 +23,12 @@ in {
         # TODO: Make sure the LaTeX reference manual is installed as an info node:
         # https://github.com/astoff/digestif/wiki/Common-installation-issues#info-nodes
         lsp.servers.digestif.enable = true;
+
+        efmls-configs = {
+          enable = true;
+          externallyManagedPackages = ["chktex"];
+          setup.tex.linter = "chktex";
+        };
       };
 
       globals = {
