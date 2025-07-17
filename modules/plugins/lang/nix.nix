@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -29,5 +30,17 @@ in {
         };
       };
     };
+
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "vim-nixhash";
+        src = pkgs.fetchFromGitHub {
+          owner = "symphorien";
+          repo = "vim-nixhash";
+          rev = "1ba23accf365f557b713ef625888a8b6b9d2f806";
+          hash = "sha256-MWLc3ezCx7cG/HASghB4y7BwmFQq/r6sdKDIWTlihw4=";
+        };
+      })
+    ];
   };
 }
