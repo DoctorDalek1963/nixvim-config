@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkMerge [
     (lib.mkIf config.setup.pluginGroups.base {
       plugins.mini = {
@@ -66,10 +67,10 @@
         };
 
         # Align/justify blocks of text with ga or gA
-        align = {};
+        align = { };
 
         # Toggle comments with gc, or gcc for current line
-        comment = {};
+        comment = { };
       };
     })
   ];

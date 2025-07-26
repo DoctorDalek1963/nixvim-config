@@ -3,9 +3,10 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
-    extraPlugins = [pkgs.vimPlugins.windows-nvim];
+    extraPlugins = [ pkgs.vimPlugins.windows-nvim ];
 
     extraConfigLua = ''
       require("windows").setup()

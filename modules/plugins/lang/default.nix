@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./nix.nix
 
@@ -74,7 +75,7 @@
 
       # Native LSP completion with cmp
       cmp-nvim-lsp.enable = config.plugins.cmp.enable;
-      cmp.settings.sources = lib.optional config.plugins.cmp.enable {name = "nvim_lsp";};
+      cmp.settings.sources = lib.optional config.plugins.cmp.enable { name = "nvim_lsp"; };
     };
   };
 }

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.setup.pluginGroups.niceToHave {
     plugins.undotree.enable = true;
 

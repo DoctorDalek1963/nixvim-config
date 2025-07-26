@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.setup.lang.webDev {
     plugins.lsp.servers = {
       cssls.enable = true;

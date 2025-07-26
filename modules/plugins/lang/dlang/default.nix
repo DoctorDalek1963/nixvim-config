@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
 
-  buildDcd = configType:
+  buildDcd =
+    configType:
     pkgs.buildDubPackage rec {
       pname = "dcd-${configType}";
       version = "0.15.2";
@@ -20,7 +22,7 @@
 
       dubLock = ./dcd-dub-lock.json;
 
-      dubBuildFlags = ["--config=${configType}"];
+      dubBuildFlags = [ "--config=${configType}" ];
 
       doCheck = true;
 
@@ -33,7 +35,8 @@
 
   dcd-server = buildDcd "server";
   dcd-client = buildDcd "client";
-in {
+in
+{
   config = lib.mkIf (cfg.enable && cfg.dlang) {
     plugins.lsp.servers.serve_d = {
       enable = true;
@@ -41,7 +44,7 @@ in {
       # Once serve-d updates to 0.8, I'll have to redo this patch
       # Just clone serve-d and grep for "outdated"
       package = pkgs.serve-d.overrideAttrs {
-        patches = [./serve-d-allow-locally-compiled-dcd.patch];
+        patches = [ ./serve-d-allow-locally-compiled-dcd.patch ];
       };
 
       settings.d = {

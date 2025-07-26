@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   custom-filename = {
     __unkeyed-1 = "filename";
 
@@ -52,7 +53,8 @@
         end
       '';
   };
-in {
+in
+{
   config = lib.mkIf config.setup.pluginGroups.base {
     plugins.lualine = {
       enable = true;
@@ -79,7 +81,10 @@ in {
             "diff"
             {
               __unkeyed-1 = "diagnostics";
-              sources = ["nvim_lsp" "nvim_diagnostic"];
+              sources = [
+                "nvim_lsp"
+                "nvim_diagnostic"
+              ];
             }
           ];
           lualine_c = [
@@ -139,22 +144,25 @@ in {
                 '';
             }
           ];
-          lualine_z = ["location"];
+          lualine_z = [ "location" ];
         };
 
         inactive_sections = {
-          lualine_a = [];
+          lualine_a = [ ];
           lualine_b = [
             "diff"
             {
               __unkeyed-1 = "diagnostics";
-              sources = ["nvim_lsp" "nvim_diagnostic"];
+              sources = [
+                "nvim_lsp"
+                "nvim_diagnostic"
+              ];
             }
           ];
-          lualine_c = [custom-filename];
-          lualine_x = ["location"];
-          lualine_y = [];
-          lualine_z = [];
+          lualine_c = [ custom-filename ];
+          lualine_x = [ "location" ];
+          lualine_y = [ ];
+          lualine_z = [ ];
         };
       };
     };

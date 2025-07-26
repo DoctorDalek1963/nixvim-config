@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && cfg.lean4) {
     # Use the version of lean from the surrounding environment
     dependencies.lean.enable = false;

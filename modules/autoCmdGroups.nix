@@ -6,13 +6,24 @@ let
         {
           desc = "Expand tabs to spaces";
           event = "FileType";
-          pattern = ["haskell" "nix" "python" "rst" "just" "bib" "tex"];
+          pattern = [
+            "haskell"
+            "nix"
+            "python"
+            "rst"
+            "just"
+            "bib"
+            "tex"
+          ];
           command = "setlocal expandtab";
         }
         {
           desc = "Set a tab to be 2 spaces";
           event = "FileType";
-          pattern = ["haskell" "nix"];
+          pattern = [
+            "haskell"
+            "nix"
+          ];
           command = "setlocal shiftwidth=2 tabstop=2";
         }
         {
@@ -29,7 +40,12 @@ let
         {
           desc = "Enable spell check and word wrapping in plain text files";
           event = "FileType";
-          pattern = ["markdown" "rst" "tex" "text"];
+          pattern = [
+            "markdown"
+            "rst"
+            "tex"
+            "text"
+          ];
           command = "setlocal spell linebreak";
         }
       ];
@@ -57,15 +73,17 @@ let
       ];
     }
   ];
-in {
-  autoCmd =
-    builtins.concatMap
-    (def: builtins.map (command: command // {group = "${def.group}_augroup";}) def.commands)
-    autoCmdGroups;
+in
+{
+  autoCmd = builtins.concatMap (
+    def: builtins.map (command: command // { group = "${def.group}_augroup"; }) def.commands
+  ) autoCmdGroups;
 
-  autoGroups =
-    builtins.foldl'
-    (acc: elem: acc // elem)
-    {}
-    (builtins.map (def: {"${def.group}_augroup" = {clear = true;};}) autoCmdGroups);
+  autoGroups = builtins.foldl' (acc: elem: acc // elem) { } (
+    builtins.map (def: {
+      "${def.group}_augroup" = {
+        clear = true;
+      };
+    }) autoCmdGroups
+  );
 }

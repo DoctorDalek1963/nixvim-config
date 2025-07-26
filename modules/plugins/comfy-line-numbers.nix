@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.pluginGroups;
-in {
+in
+{
   config = lib.mkIf cfg.base {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -19,30 +21,33 @@ in {
       })
     ];
 
-    extraConfigLua = let
-      maxDigit = 4;
-      labelCount = 80;
+    extraConfigLua =
+      let
+        maxDigit = 4;
+        labelCount = 80;
 
-      mod' = n: let
-        m = lib.mod n maxDigit;
+        mod' =
+          n:
+          let
+            m = lib.mod n maxDigit;
+          in
+          if m == 0 then maxDigit else m;
+
+        # It's actually a mixed base system because all non-unit columns can be
+        # zero but the unit column can't. That makes everything weird and freaky,
+        # so we have to define our own toBase function
+        toBase =
+          n:
+          if n < 0 then
+            abort "comfy-line-numbers toBase should never be called with a negative number"
+          else if n == 0 then
+            [ ]
+          else
+            (toBase ((n - 1) / maxDigit)) ++ [ (mod' n) ];
+
+        labelNums = map toBase (lib.range 1 labelCount);
+        labels = map (xs: lib.concatMapStringsSep "" toString xs) labelNums;
       in
-        if m == 0
-        then maxDigit
-        else m;
-
-      # It's actually a mixed base system because all non-unit columns can be
-      # zero but the unit column can't. That makes everything weird and freaky,
-      # so we have to define our own toBase function
-      toBase = n:
-        if n < 0
-        then abort "comfy-line-numbers toBase should never be called with a negative number"
-        else if n == 0
-        then []
-        else (toBase ((n - 1) / maxDigit)) ++ [(mod' n)];
-
-      labelNums = map toBase (lib.range 1 labelCount);
-      labels = map (xs: lib.concatMapStringsSep "" toString xs) labelNums;
-    in
       # lua
       ''
         require('comfy-line-numbers').setup({
@@ -58,13 +63,19 @@ in {
     # and adapted to use comfy-line-numbers. This doesn't work when moving between
     # buffers because comfy-line-numbers applies to all buffers at the  same time,
     # so we only care about moving between normal, insert, and command mode
-    autoGroups.numbertoggle_augroup = {clear = true;};
+    autoGroups.numbertoggle_augroup = {
+      clear = true;
+    };
     autoCmd = [
       {
         desc = "Enable comfy line numbers in normal mode";
         group = "numbertoggle_augroup";
         pattern = "*";
-        event = ["BufEnter" "InsertLeave" "CmdlineLeave"];
+        event = [
+          "BufEnter"
+          "InsertLeave"
+          "CmdlineLeave"
+        ];
         callback.__raw = ''
           function()
             if vim.o.number and vim.api.nvim_get_mode().mode ~= "i" then
@@ -77,7 +88,10 @@ in {
         desc = "Disable comfy line numbers outside of normal mode";
         group = "numbertoggle_augroup";
         pattern = "*";
-        event = ["InsertEnter" "CmdlineEnter"];
+        event = [
+          "InsertEnter"
+          "CmdlineEnter"
+        ];
         callback.__raw = ''
           function()
             if vim.o.number then

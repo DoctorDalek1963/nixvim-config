@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && cfg.jvm) {
     plugins = {
       lsp.servers = {
@@ -19,9 +21,9 @@ in {
         settings.cmd = [
           "${pkgs.jdt-language-server}/bin/jdtls"
           "-configuration"
-          {__raw = ''vim.env.HOME .. "/.cache/jdtls"'';}
+          { __raw = ''vim.env.HOME .. "/.cache/jdtls"''; }
           "-data"
-          {__raw = ''require("jdtls.setup").find_root({".git", "mvnw", "gradlew"}) .. "/.jdtls"'';}
+          { __raw = ''require("jdtls.setup").find_root({".git", "mvnw", "gradlew"}) .. "/.jdtls"''; }
         ];
       };
     };

@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.lang;
   latexEnable = cfg.enable && cfg.latex;
-in {
+in
+{
   config = lib.mkMerge [
     (lib.mkIf latexEnable {
       plugins = {
@@ -26,13 +28,13 @@ in {
 
         efmls-configs = {
           enable = true;
-          externallyManagedPackages = ["chktex"];
+          externallyManagedPackages = [ "chktex" ];
           setup.tex.linter = "chktex";
         };
       };
 
       globals = {
-        vimtex_log_ignore = ["Viewer cannot find Zathura window ID"];
+        vimtex_log_ignore = [ "Viewer cannot find Zathura window ID" ];
         vimtex_syntax_conceal_disable = 1;
       };
 
@@ -51,12 +53,12 @@ in {
       plugins = {
         cmp-latex-symbols.enable = true;
         cmp.settings.sources = [
-          {name = "latex_symbols";}
-          {name = "vimtex";}
+          { name = "latex_symbols"; }
+          { name = "vimtex"; }
         ];
       };
 
-      extraPlugins = [pkgs.vimPlugins.cmp-vimtex];
+      extraPlugins = [ pkgs.vimPlugins.cmp-vimtex ];
     })
   ];
 }

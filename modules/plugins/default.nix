@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.setup.pluginGroups;
-in {
+in
+{
   imports = [
     ./lang
 
