@@ -9,17 +9,7 @@ let
 in
 {
   config = lib.mkIf cfg.base {
-    extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "comfy-line-numbers.nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "mluders";
-          repo = "comfy-line-numbers.nvim";
-          rev = "eb1c966e22fbabe3a3214c78bda9793ccf9d2a5d";
-          hash = "sha256-KaHhmm7RhJEtWedKE7ab+Aioe3jJLP0TUlnokszU5DY=";
-        };
-      })
-    ];
+    extraPlugins = [ pkgs.vimPlugins.comfy-line-numbers-nvim ];
 
     extraConfigLua =
       let
