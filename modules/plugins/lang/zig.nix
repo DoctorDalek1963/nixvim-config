@@ -8,6 +8,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.zig) {
-    plugins.lsp.servers.zls.enable = true;
+    plugins.lsp.servers.zls = {
+      enable = true;
+      packageFallback = true;
+    };
   };
 }
