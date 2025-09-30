@@ -8,6 +8,6 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.shell) {
-    plugins.lsp.servers.bashls.enable = true;
+    lsp.servers.bashls.enable = true;
   };
 }

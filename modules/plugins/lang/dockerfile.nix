@@ -8,6 +8,6 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.dockerfile) {
-    plugins.lsp.servers.dockerls.enable = true;
+    lsp.servers.dockerls.enable = true;
   };
 }

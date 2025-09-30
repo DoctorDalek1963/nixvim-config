@@ -38,7 +38,7 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.dlang) {
-    plugins.lsp.servers.serve_d = {
+    lsp.servers.serve_d = {
       enable = true;
 
       # Once serve-d updates to 0.8, I'll have to redo this patch

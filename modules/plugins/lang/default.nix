@@ -27,7 +27,7 @@
 
   config = lib.mkIf config.setup.lang.enable {
     # Highlight diagnostic locations only on the current line
-    diagnostic.settings.virtual_lines.only_current_line = true;
+    diagnostic.settings.virtual_lines.current_line = true;
 
     opts = {
       # Backups can mess with LSPs
@@ -36,37 +36,6 @@
     };
 
     plugins = {
-      # Autoformatting for all servers that support it
-      lsp-format = {
-        enable = true;
-        lspServersToEnable = "all";
-      };
-
-      # Highlight exact diagnostic locations on the line
-      lsp-lines.enable = true;
-
-      # See https://nix-community.github.io/nixvim/plugins/lsp/index.html for options and supported servers
-      lsp = {
-        enable = true;
-
-        keymaps = {
-          silent = true;
-          lspBuf = {
-            "gd" = "definition";
-            "<leader>f" = "format";
-            "K" = "hover";
-            "gi" = "implementation";
-            "gr" = "references";
-            "<leader>rn" = "rename";
-            "gy" = "type_definition";
-          };
-          diagnostic = {
-            "<leader>j" = "goto_next";
-            "<leader>k" = "goto_prev";
-          };
-        };
-      };
-
       # Allow non-LSP sources to hook into the native LSP system
       none-ls = {
         enable = true;
@@ -77,5 +46,63 @@
       cmp-nvim-lsp.enable = config.plugins.cmp.enable;
       cmp.settings.sources = lib.optional config.plugins.cmp.enable { name = "nvim_lsp"; };
     };
+
+    autoGroups.lsp_format_augroup.clear = true;
+    autoCmd = [
+      {
+        callback = lib.nixvim.mkRaw "function(_t) vim.lsp.buf.format() end";
+        event = [ "BufWritePre" ];
+        pattern = [ "*" ];
+      }
+    ];
+
+    lsp.keymaps = [
+      {
+        key = "gd";
+        lspBufAction = "definition";
+        options.silent = true;
+      }
+      {
+        key = "<leader>f";
+        lspBufAction = "format";
+        options.silent = true;
+      }
+      {
+        key = "K";
+        lspBufAction = "hover";
+        options.silent = true;
+      }
+      {
+        key = "gi";
+        lspBufAction = "implementation";
+        options.silent = true;
+      }
+      {
+        key = "gr";
+        lspBufAction = "references";
+        options.silent = true;
+      }
+      {
+        key = "<leader>rn";
+        lspBufAction = "rename";
+        options.silent = true;
+      }
+      {
+        key = "gy";
+        lspBufAction = "type_definition";
+        options.silent = true;
+      }
+
+      {
+        key = "<leader>j";
+        action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
+        options.silent = true;
+      }
+      {
+        key = "<leader>k";
+        action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
+        options.silent = true;
+      }
+    ];
   };
 }

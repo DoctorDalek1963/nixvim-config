@@ -8,7 +8,7 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.configFiles) {
-    plugins.lsp.servers = {
+    lsp.servers = {
       jsonls.enable = true;
       just.enable = true;
       taplo.enable = true; # TOML

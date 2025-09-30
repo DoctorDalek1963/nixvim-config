@@ -8,7 +8,7 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.python) {
-    plugins.lsp.servers.pylsp = {
+    lsp.servers.pylsp = {
       enable = true;
       settings.plugins = {
         # Linting

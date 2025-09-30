@@ -8,9 +8,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.zig) {
-    plugins.lsp.servers.zls = {
+    lsp.servers.zls = {
       enable = true;
-      package = null;
+      package = null; # Provided by environment
     };
   };
 }

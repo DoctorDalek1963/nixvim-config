@@ -14,7 +14,7 @@ in
 
       dap = {
         adapters.executables.mix_task = {
-          command = "${config.plugins.lsp.servers.elixirls.package}/lib/debug_adapter.sh";
+          command = "${config.lsp.servers.elixirls.package}/lib/debug_adapter.sh";
           args = [ ];
         };
         configurations.elixir = [
