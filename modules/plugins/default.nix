@@ -83,7 +83,19 @@ in
         nvim-autopairs.enable = true;
 
         # Rainbow brackets and tags
-        rainbow-delimiters.enable = true;
+        rainbow-delimiters = {
+          enable = true;
+
+          strategy = {
+            default = "global";
+            markdown = "noop";
+          };
+
+          query = {
+            default = "rainbow-delimiters";
+            lua = "rainbow-blocks";
+          };
+        };
 
         # Debugging
         # Show update messages in the bottom right
