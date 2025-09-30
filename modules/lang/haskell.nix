@@ -8,9 +8,6 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.haskell) {
-    lsp.servers.hls = {
-      enable = true;
-      installGhc = true;
-    };
+    lsp.servers.hls.enable = true;
   };
 }
