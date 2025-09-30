@@ -8,8 +8,6 @@ let
 in
 {
   imports = [
-    ./lang
-
     ./actions-preview.nix
     ./comfy-line-numbers.nix
     ./cmp.nix

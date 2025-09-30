@@ -22,6 +22,7 @@ in
     ./modules/keymaps.nix
     ./modules/options.nix
 
+    ./modules/lang
     ./modules/plugins
   ];
 
