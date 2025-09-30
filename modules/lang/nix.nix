@@ -9,22 +9,20 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.nix) {
-    plugins = {
-      lsp.servers.nixd = {
-        enable = true;
-        settings.formatting.command = null;
-      };
+    lsp.servers.nixd = {
+      enable = true;
+      settings.formatting.command = null;
+    };
 
-      none-ls.sources = {
-        code_actions.statix.enable = true;
-        diagnostics = {
-          deadnix.enable = true;
-          statix.enable = true;
-        };
-        formatting.nixfmt = {
-          enable = true;
-          package = pkgs.nixfmt;
-        };
+    plugins.none-ls.sources = {
+      code_actions.statix.enable = true;
+      diagnostics = {
+        deadnix.enable = true;
+        statix.enable = true;
+      };
+      formatting.nixfmt = {
+        enable = true;
+        package = pkgs.nixfmt;
       };
     };
 

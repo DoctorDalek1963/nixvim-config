@@ -8,8 +8,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.elixir) {
+    lsp.servers.elixirls.enable = true;
+
     plugins = {
-      lsp.servers.elixirls.enable = true;
       none-ls.sources.diagnostics.credo.enable = true;
 
       dap = {

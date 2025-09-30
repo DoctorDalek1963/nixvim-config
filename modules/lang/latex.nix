@@ -11,6 +11,10 @@ in
 {
   config = lib.mkMerge [
     (lib.mkIf latexEnable {
+      # TODO: Make sure the LaTeX reference manual is installed as an info node:
+      # https://github.com/astoff/digestif/wiki/Common-installation-issues#info-nodes
+      lsp.servers.digestif.enable = true;
+
       plugins = {
         vimtex = {
           enable = true;
@@ -21,10 +25,6 @@ in
 
           settings.view_method = "zathura";
         };
-
-        # TODO: Make sure the LaTeX reference manual is installed as an info node:
-        # https://github.com/astoff/digestif/wiki/Common-installation-issues#info-nodes
-        lsp.servers.digestif.enable = true;
 
         efmls-configs = {
           enable = true;
