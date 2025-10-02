@@ -50,7 +50,13 @@
     autoGroups.lsp_format_augroup.clear = true;
     autoCmd = [
       {
-        callback = lib.nixvim.mkRaw "function(_t) vim.lsp.buf.format() end";
+        callback = lib.nixvim.mkRaw ''
+          function(_t)
+            if vim.lsp.get_clients()[1]:supports_method('textDocument/formatting') then
+              vim.lsp.buf.format({ timeout=200 })
+            end
+          end
+        '';
         event = [ "BufWritePre" ];
         pattern = [ "*" ];
       }
