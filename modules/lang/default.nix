@@ -66,48 +66,75 @@
       {
         key = "gd";
         lspBufAction = "definition";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto definition";
+        };
       }
       {
         key = "<leader>f";
         lspBufAction = "format";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Format buffer with LSP";
+        };
       }
       {
         key = "K";
         lspBufAction = "hover";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Hover symbol with LSP";
+        };
       }
       {
         key = "gi";
         lspBufAction = "implementation";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto implementation";
+        };
       }
       {
         key = "gr";
         lspBufAction = "references";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto references";
+        };
       }
       {
         key = "<leader>rn";
         lspBufAction = "rename";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Rename symbol with LSP";
+        };
       }
       {
         key = "gy";
         lspBufAction = "type_definition";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto type definition";
+        };
       }
 
       {
         key = "<leader>j";
         action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto next LSP diagnostic";
+        };
       }
       {
         key = "<leader>k";
         action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
-        options.silent = true;
+        options = {
+          silent = true;
+          desc = "Goto previous LSP diagnostic";
+        };
       }
     ];
   };
