@@ -70,7 +70,7 @@
         };
 
         lang = {
-          c_cpp = lib.mkDefault false;
+          c_cpp = lib.mkDefault true;
           configFiles = lib.mkDefault true;
           dlang = lib.mkDefault false;
           dockerfile = lib.mkDefault false;
