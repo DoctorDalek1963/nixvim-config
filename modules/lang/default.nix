@@ -52,13 +52,17 @@
       {
         callback = lib.nixvim.mkRaw ''
           function(_t)
-            if vim.lsp.get_clients()[1]:supports_method('textDocument/formatting') then
-              vim.lsp.buf.format({ timeout=200 })
-            end
+              for i, client in ipairs(vim.lsp.get_clients()) do
+                  if client.supports_method('textDocument/formatting') then
+                      vim.lsp.buf.format({ timeout=200 })
+                      return
+                  end
+              end
           end
         '';
         event = [ "BufWritePre" ];
         pattern = [ "*" ];
+        group = "lsp_format_augroup";
       }
     ];
 
