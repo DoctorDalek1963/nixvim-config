@@ -16,16 +16,13 @@ in
       # Extra tools for Cargo.toml files
       crates = {
         enable = true;
-        settings = {
-          # Enable code actions with none-ls
-          null_ls = {
-            enabled = true;
-            name = "crates.nvim";
-          };
+        settings.lsp = {
+          enabled = true;
+          actions = true;
+          completion = true;
+          hover = true;
         };
       };
-
-      cmp.settings.sources = lib.optional config.plugins.cmp.enable { name = "crates.nvim"; };
 
       rustaceanvim = {
         enable = true;
