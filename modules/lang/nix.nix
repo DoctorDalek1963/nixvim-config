@@ -11,7 +11,7 @@ in
   config = lib.mkIf (cfg.enable && cfg.nix) {
     lsp.servers.nixd = {
       enable = true;
-      settings.formatting.command = null;
+      config.formatting.command = null;
     };
 
     plugins.none-ls.sources = {

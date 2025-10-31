@@ -10,7 +10,7 @@ in
   config = lib.mkIf (cfg.enable && cfg.python) {
     lsp.servers.pylsp = {
       enable = true;
-      settings.plugins = {
+      config.plugins = {
         # Linting
         pycodestyle = {
           enabled = true;

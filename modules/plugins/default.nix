@@ -86,14 +86,16 @@ in
         rainbow-delimiters = {
           enable = true;
 
-          strategy = {
-            default = "global";
-            markdown = "noop";
-          };
+          settings = {
+            strategy = {
+              "" = "rainbow-delimiters.strategy.global";
+              markdown = "rainbow-delimiters.strategy.noop";
+            };
 
-          query = {
-            default = "rainbow-delimiters";
-            lua = "rainbow-blocks";
+            query = {
+              "" = "rainbow-delimiters";
+              lua = "rainbow-blocks";
+            };
           };
         };
 
