@@ -89,7 +89,7 @@ in
           settings = {
             strategy = {
               "" = "rainbow-delimiters.strategy.global";
-              markdown = "rainbow-delimiters.strategy.noop";
+              markdown = "rainbow-delimiters.strategy.no-op";
             };
 
             query = {
