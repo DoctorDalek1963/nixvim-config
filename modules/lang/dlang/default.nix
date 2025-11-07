@@ -47,7 +47,7 @@ in
         patches = [ ./serve-d-allow-locally-compiled-dcd.patch ];
       };
 
-      settings.d = {
+      config.d = {
         dcdServerPath = "${dcd-server}/bin/dcd-server";
         dcdClientPath = "${dcd-client}/bin/dcd-client";
       };
