@@ -196,6 +196,12 @@
       options.desc = "Copy selected text to system clipboard";
     }
     {
+      key = "<C-c>";
+      action = ''"+y'';
+      mode = "v";
+      options.desc = "Copy selected text to system clipboard";
+    }
+    {
       key = "<leader>a";
       action = "ggVG";
       mode = "n";
