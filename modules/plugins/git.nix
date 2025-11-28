@@ -6,16 +6,26 @@
 {
   config = lib.mkMerge [
     (lib.mkIf config.setup.pluginGroups.niceToHave {
-      # Show diff signs in the left column
-      plugins.gitgutter.enable = true;
+      # Show diff signs in the left column and allow staging hunks with gh
+      plugins.mini = {
+        enable = true;
+        modules.diff = {
+          delay.text_change = 0;
 
-      opts = {
-        # Faster updates make gitgutter work better
-        updatetime = 100;
+          view = {
+            style = "sign";
 
-        # Always draw the sign column
-        signcolumn = "yes";
+            signs = {
+              add = "+";
+              change = "~";
+              delete = "-";
+            };
+          };
+        };
       };
+
+      # Always draw the sign column
+      opts.signcolumn = "yes";
     })
     (lib.mkIf config.setup.pluginGroups.programming {
       plugins = {
