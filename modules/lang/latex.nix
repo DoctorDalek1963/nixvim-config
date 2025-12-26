@@ -29,7 +29,7 @@ in
         efmls-configs = {
           enable = true;
           externallyManagedPackages = [ "chktex" ];
-          setup.tex.linter = "chktex";
+          languages.tex.linter = "chktex";
         };
       };
 
