@@ -19,7 +19,7 @@
 
   package =
     lib.mkIf config.setup.useNightly
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   enableMan = false;
 
