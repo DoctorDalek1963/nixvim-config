@@ -31,6 +31,18 @@
     plugins = true;
   };
 
+  userCommands = {
+    Rmsp = {
+      desc = "Remove all trailing spaces";
+      command = "execute '%s/\\s\\+$//e'";
+    };
+  };
+
+  globals = {
+    mapleader = "\\";
+    maplocalleader = "\\";
+  };
+
   colorschemes.catppuccin = {
     enable = true;
     settings = {
@@ -63,15 +75,19 @@
     };
   };
 
-  userCommands = {
-    Rmsp = {
-      desc = "Remove all trailing spaces";
-      command = "execute '%s/\\s\\+$//e'";
-    };
-  };
+  extraPlugins = [
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "auto-dark-mode";
+      src = pkgs.fetchFromGitHub {
+        owner = "f-person";
+        repo = "auto-dark-mode.nvim";
+        rev = "54058b4fe414bd64bd2904a6f8a63f1f14e3d8df";
+        hash = "sha256-xTgRyct3L6Gcz/vdYSc+h2IUgi/+Lh1Q4mxJwHISeis=";
+      };
+    })
+  ];
 
-  globals = {
-    mapleader = "\\";
-    maplocalleader = "\\";
-  };
+  extraConfigLua = ''
+    require('auto-dark-mode').setup()
+  '';
 }
