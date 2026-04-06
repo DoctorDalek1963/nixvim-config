@@ -7,7 +7,7 @@
   config = lib.mkIf config.setup.pluginGroups.base {
     plugins = {
       # Highlight inline strings with other languages in Nix files
-      hmts.enable = true;
+      hmts.enable = false; # TODO: Why does this cause problems with Nvim 0.12?
 
       treesitter = {
         enable = true;
