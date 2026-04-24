@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -29,7 +28,6 @@
         settings = {
           sources = [
             { name = "buffer"; }
-            { name = "dotenv"; }
             { name = "luasnip"; }
             { name = "nvim_lua"; }
             { name = "path"; }
@@ -95,19 +93,5 @@
         };
       };
     };
-
-    extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "cmp-dotenv";
-        src = pkgs.fetchFromGitHub {
-          owner = "SergioRibera";
-          repo = "cmp-dotenv";
-          rev = "4dd53aab60982f1f75848aec5e6214986263325e";
-          hash = "sha256-EY0yu6wugw2cweTOYkdAXW4FZFh6SdTPsVncqrnrc14=";
-        };
-
-        buildInputs = [ pkgs.vimPlugins.nvim-cmp ];
-      })
-    ];
   };
 }
