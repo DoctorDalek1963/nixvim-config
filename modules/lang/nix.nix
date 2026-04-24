@@ -28,7 +28,9 @@ in
 
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
-        name = "vim-nixhash";
+        pname = "vim-nixhash";
+        version = "0.0.0-1ba23ac";
+
         src = pkgs.fetchFromGitHub {
           owner = "symphorien";
           repo = "vim-nixhash";

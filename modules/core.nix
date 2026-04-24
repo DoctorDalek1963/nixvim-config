@@ -77,7 +77,9 @@
 
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
-      name = "auto-dark-mode";
+      pname = "auto-dark-mode";
+      version = "0.0.0-54058b4";
+
       src = pkgs.fetchFromGitHub {
         owner = "f-person";
         repo = "auto-dark-mode.nvim";
