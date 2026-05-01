@@ -8,6 +8,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.haskell) {
-    lsp.servers.hls.enable = true;
+    lsp.servers.hls = {
+      enable = true;
+      package = null;
+    };
   };
 }

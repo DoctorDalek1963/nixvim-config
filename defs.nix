@@ -75,7 +75,7 @@
           dlang = lib.mkDefault false;
           dockerfile = lib.mkDefault false;
           elixir = lib.mkDefault false;
-          haskell = lib.mkDefault false;
+          haskell = lib.mkDefault true;
           julia = lib.mkDefault false;
           jvm = lib.mkDefault false;
           latex = lib.mkDefault true;
