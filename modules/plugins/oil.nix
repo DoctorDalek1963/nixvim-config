@@ -1,10 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.niceToHave {
+  flake.nixvimModules.oil = {
     plugins = {
       oil = {
         enable = true;

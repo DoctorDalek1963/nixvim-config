@@ -1,10 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.niceToHave {
+  flake.nixvimModules.markdown-preview = {
     # Preview markdown files in the browser
     plugins.markdown-preview.enable = true;
   };
