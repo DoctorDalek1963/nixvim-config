@@ -1,5 +1,11 @@
+{ self, ... }:
 {
   flake.nixvimModules.core = {
+    imports = [
+      self.nixvimModules.keymaps
+      self.nixvimModules.options
+    ];
+
     enableMan = false;
 
     performance.byteCompileLua = {
