@@ -1,10 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.niceToHave {
+  flake.nixvimModules.transparent = {
     plugins.transparent = {
       enable = true;
       settings.extra_groups = [ "NormalFloat" ];
