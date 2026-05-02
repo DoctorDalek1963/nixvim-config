@@ -1,5 +1,11 @@
 { self, ... }:
 {
+  perSystem =
+    { self', ... }:
+    {
+      packages.default = self'.packages.nvim-medium;
+    };
+
   flake.nixvimModules = {
     nvim-tiny.imports = with self.nixvimModules; [
       core
@@ -19,23 +25,6 @@
     nvim-full.imports = with self.nixvimModules; [
       core
       plugin-group-programming
-    ];
-
-    nvim-tiny-nightly.imports = with self.nixvimModules; [
-      nvim-tiny
-      nightly
-    ];
-    nvim-small-nightly.imports = with self.nixvimModules; [
-      nvim-small
-      nightly
-    ];
-    nvim-medium-nightly.imports = with self.nixvimModules; [
-      nvim-medium
-      nightly
-    ];
-    nvim-full-nightly.imports = with self.nixvimModules; [
-      nvim-full
-      nightly
     ];
   };
 }

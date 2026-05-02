@@ -16,12 +16,7 @@
   ];
 
   perSystem =
-    {
-      self',
-      system,
-      lib,
-      ...
-    }:
+    { system, lib, ... }:
     let
       nvim-modules = lib.filterAttrs (
         name: _: (builtins.substring 0 5 name) == "nvim-"
@@ -36,11 +31,7 @@
         }
       ) nvim-modules;
 
-      packages =
-        (lib.mapAttrs (_: conf: conf.config.build.package) self.nixvimConfigurations.${system})
-        // {
-          default = self'.packages.nvim-medium;
-        };
+      packages = lib.mapAttrs (_: conf: conf.config.build.package) self.nixvimConfigurations.${system};
 
       checks = builtins.mapAttrs (
         _: module:
