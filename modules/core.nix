@@ -1,9 +1,11 @@
 { self, ... }:
 {
   flake.nixvimModules.core = {
-    imports = [
-      self.nixvimModules.keymaps
-      self.nixvimModules.options
+    imports = with self.nixvimModules; [
+      autocmd-groups
+      filetypes
+      keymaps
+      options
     ];
 
     enableMan = false;

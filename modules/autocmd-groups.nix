@@ -27,7 +27,7 @@ let
           command = "setlocal shiftwidth=2 tabstop=2";
         }
         {
-          desc = "Set a tab to be 2 spaces";
+          desc = "Set a tab to be 3 spaces";
           event = "FileType";
           pattern = "rst";
           command = "setlocal shiftwidth=3 tabstop=3";
@@ -61,29 +61,20 @@ let
         }
       ];
     }
-    {
-      group = "python";
-      commands = [
-        {
-          desc = "Set colour column at 120 lines";
-          event = "FileType";
-          pattern = "python";
-          command = "setlocal colorcolumn=120";
-        }
-      ];
-    }
   ];
 in
 {
-  autoCmd = builtins.concatMap (
-    def: builtins.map (command: command // { group = "${def.group}_augroup"; }) def.commands
-  ) autoCmdGroups;
+  flake.nixvimModules.autocmd-groups = {
+    autoCmd = builtins.concatMap (
+      def: map (command: command // { group = "${def.group}_augroup"; }) def.commands
+    ) autoCmdGroups;
 
-  autoGroups = builtins.foldl' (acc: elem: acc // elem) { } (
-    builtins.map (def: {
-      "${def.group}_augroup" = {
-        clear = true;
-      };
-    }) autoCmdGroups
-  );
+    autoGroups = builtins.foldl' (acc: elem: acc // elem) { } (
+      map (def: {
+        "${def.group}_augroup" = {
+          clear = true;
+        };
+      }) autoCmdGroups
+    );
+  };
 }
