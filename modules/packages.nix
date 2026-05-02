@@ -22,26 +22,28 @@
         nvim-tiny = nixvim'.makeNixvim {
           imports = with self.nixvimModules; [
             core
+            plugin-group-base
           ];
         };
 
         nvim-small = nixvim'.makeNixvim {
           imports = with self.nixvimModules; [
             core
+            plugin-group-comfortable
           ];
         };
 
         nvim-medium = nixvim'.makeNixvim {
           imports = with self.nixvimModules; [
             core
-            auto-dark-mode
+            plugin-group-programming
           ];
         };
 
         nvim-full = nixvim'.makeNixvim {
           imports = with self.nixvimModules; [
             core
-            auto-dark-mode
+            plugin-group-programming
           ];
         };
 
