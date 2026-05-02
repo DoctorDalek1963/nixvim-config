@@ -11,6 +11,9 @@
         pencil
         quick-scope
         transparent
+        treesitter
+        ufo
+        yanky
       ];
     };
 
@@ -31,7 +34,10 @@
       imports = with self.nixvimModules; [
         plugin-group-comfortable
 
+        cmp
         committia
+        dap
+        # luasnip # I don't currently use snippets
         markdown-preview
         undotree
       ];

@@ -1,14 +1,6 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.base {
+  flake.nixvimModules.treesitter = {
     plugins = {
-      # Highlight inline strings with other languages in Nix files
-      hmts.enable = false; # TODO: Why does this cause problems with Nvim 0.12?
-
       treesitter = {
         enable = true;
         settings = {
@@ -25,6 +17,9 @@
 
       # Use the correct comment syntax for embedded languages
       ts-context-commentstring.enable = true;
+
+      # Auto-detect other languages in strings in Nix files
+      hmts.enable = false; # TODO: Why does this cause problems with Nvim 0.12?
 
       # Integrations with other plugins
       vim-matchup.treesitter.enable = true;
