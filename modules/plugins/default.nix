@@ -34,6 +34,7 @@
       imports = with self.nixvimModules; [
         plugin-group-comfortable
 
+        actions-preview
         cmp
         committia
         dap
