@@ -26,57 +26,24 @@
       inherit (inputs.nixvim.lib) evalNixvim;
       inherit (inputs.nixvim.lib.${system}.check) mkTestDerivationFromNixvimModule;
 
-      nightly = {
-        package = inputs.neovim-nightly-overlay.packages.${system}.default;
-      };
+      evalNixvimModule =
+        module:
+        evalNixvim {
+          inherit system;
+          modules = [ module ];
+        };
     in
     {
       nixvimConfigurations = {
-        nvim-tiny = evalNixvim {
-          modules = [ self.nixvimModules.nvim-tiny ];
-          inherit system;
-        };
-        nvim-small = evalNixvim {
-          modules = [ self.nixvimModules.nvim-small ];
-          inherit system;
-        };
-        nvim-medium = evalNixvim {
-          modules = [ self.nixvimModules.nvim-medium ];
-          inherit system;
-        };
-        nvim-full = evalNixvim {
-          modules = [ self.nixvimModules.nvim-full ];
-          inherit system;
-        };
+        nvim-tiny = evalNixvimModule self.nixvimModules.nvim-tiny;
+        nvim-small = evalNixvimModule self.nixvimModules.nvim-small;
+        nvim-medium = evalNixvimModule self.nixvimModules.nvim-medium;
+        nvim-full = evalNixvimModule self.nixvimModules.nvim-full;
 
-        nvim-tiny-nightly = evalNixvim {
-          modules = [
-            self.nixvimModules.nvim-tiny
-            nightly
-          ];
-          inherit system;
-        };
-        nvim-small-nightly = evalNixvim {
-          modules = [
-            self.nixvimModules.nvim-small
-            nightly
-          ];
-          inherit system;
-        };
-        nvim-medium-nightly = evalNixvim {
-          modules = [
-            self.nixvimModules.nvim-medium
-            nightly
-          ];
-          inherit system;
-        };
-        nvim-full-nightly = evalNixvim {
-          modules = with self.nixvimModules; [
-            nvim-full
-            nightly
-          ];
-          inherit system;
-        };
+        nvim-tiny-nightly = evalNixvimModule self.nixvimModules.nvim-tiny-nightly;
+        nvim-small-nightly = evalNixvimModule self.nixvimModules.nvim-small-nightly;
+        nvim-medium-nightly = evalNixvimModule self.nixvimModules.nvim-medium-nightly;
+        nvim-full-nightly = evalNixvimModule self.nixvimModules.nvim-full-nightly;
       };
 
       packages =
@@ -100,28 +67,16 @@
         };
 
         nvim-tiny-nightly = mkTestDerivationFromNixvimModule {
-          module.imports = [
-            self.nixvimModules.nvim-tiny
-            nightly
-          ];
+          module = self.nixvimModules.nvim-tiny-nightly;
         };
         nvim-small-nightly = mkTestDerivationFromNixvimModule {
-          module.imports = [
-            self.nixvimModules.nvim-small
-            nightly
-          ];
+          module = self.nixvimModules.nvim-small-nightly;
         };
         nvim-medium-nightly = mkTestDerivationFromNixvimModule {
-          module.imports = [
-            self.nixvimModules.nvim-medium
-            nightly
-          ];
+          module = self.nixvimModules.nvim-medium-nightly;
         };
         nvim-full-nightly = mkTestDerivationFromNixvimModule {
-          module.imports = [
-            self.nixvimModules.nvim-full
-            nightly
-          ];
+          module = self.nixvimModules.nvim-full-nightly;
         };
       };
     };
