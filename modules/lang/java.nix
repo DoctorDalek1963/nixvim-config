@@ -11,6 +11,8 @@
           "-data"
           (lib.nixvim.mkRaw ''require("jdtls.setup").find_root({".git", "mvnw", "gradlew"}) .. "/.jdtls"'')
         ];
+
+        lazyLoad.settings.ft = "java";
       };
     };
 }

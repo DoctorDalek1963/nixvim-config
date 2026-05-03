@@ -5,7 +5,10 @@
       lsp.servers.elixirls.enable = true;
 
       plugins = {
-        none-ls.sources.diagnostics.credo.enable = true;
+        none-ls = {
+          sources.diagnostics.credo.enable = true;
+          lazyLoad.settings.ft = [ "elixir" ];
+        };
 
         dap = {
           adapters.executables.mix_task = {

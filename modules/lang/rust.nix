@@ -15,6 +15,8 @@
             completion = true;
             hover = true;
           };
+
+          lazyLoad.settings.ft = "toml";
         };
 
         rustaceanvim = {
@@ -40,6 +42,8 @@
                 end
               '';
           };
+
+          lazyLoad.settings.ft = "rust";
         };
       };
     };

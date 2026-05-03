@@ -24,16 +24,21 @@
         config.formatting.command = null;
       };
 
-      plugins.none-ls.sources = {
-        code_actions.statix.enable = true;
-        diagnostics = {
-          deadnix.enable = true;
-          statix.enable = true;
+      plugins.none-ls = {
+        sources = {
+          code_actions.statix.enable = true;
+          diagnostics = {
+            deadnix.enable = true;
+            statix.enable = true;
+          };
+          formatting.nixfmt = {
+            enable = true;
+            package = pkgs.nixfmt;
+          };
+
         };
-        formatting.nixfmt = {
-          enable = true;
-          package = pkgs.nixfmt;
-        };
+
+        lazyLoad.settings.ft = [ "nix" ];
       };
 
       extraPlugins = [ self.packages.${pkgs.stdenv.hostPlatform.system}.vim-nixhash ];

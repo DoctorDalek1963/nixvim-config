@@ -13,6 +13,8 @@
         zathuraPackage = null;
 
         settings.view_method = "zathura";
+
+        lazyLoad.settings.ft = "tex";
       };
 
       efmls-configs = {
@@ -20,6 +22,8 @@
 
         externallyManagedPackages = [ "chktex" ];
         languages.tex.linter = "chktex";
+
+        # lazyLoad.settings.ft = [ "tex" ]; # TODO: Causes error: module 'efmls-configs.linters.chktex' not found
       };
     };
 

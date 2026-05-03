@@ -6,6 +6,8 @@
     plugins.lean = {
       enable = true;
       settings.abbreviations.enable = true;
+
+      lazyLoad.settings.ft = "lean";
     };
   };
 }
