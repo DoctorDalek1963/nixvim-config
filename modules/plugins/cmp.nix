@@ -1,19 +1,15 @@
 {
   flake.nixvimModules.cmp = {
     plugins = {
-      cmp-buffer.enable = true; # Words in the current buffer
-      cmp-path.enable = true; # Filepaths
-      cmp-spell.enable = true; # English words
-
       cmp = {
         enable = true;
-        autoEnableSources = false;
+        autoEnableSources = true;
 
         settings = {
           sources = [
-            { name = "buffer"; }
-            { name = "path"; }
-            { name = "spell"; }
+            { name = "buffer"; } # Words in the current buffer
+            { name = "path"; } # Filepaths
+            { name = "spell"; } # English words
           ];
 
           completion.completeopt = "menu,menuone,popup,noselect";

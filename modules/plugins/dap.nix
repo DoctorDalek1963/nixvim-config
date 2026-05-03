@@ -6,7 +6,6 @@
       dap-ui.enable = true;
       dap-virtual-text.enable = true;
 
-      cmp-dap.enable = true;
       cmp.settings.sources = [ { name = "dap"; } ];
     };
 

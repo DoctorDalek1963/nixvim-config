@@ -20,7 +20,6 @@
     ];
 
     nvim-full.imports = with self.nixvimModules; [
-      core
       plugin-group-programming
     ];
   };
