@@ -5,6 +5,7 @@
       autocmd-groups
       filetypes
       keymaps
+      lazy-loading
       options
     ];
 

@@ -1,6 +1,10 @@
 {
   flake.nixvimModules.markdown-preview = {
     # Preview markdown files in the browser
-    plugins.markdown-preview.enable = true;
+    plugins.markdown-preview = {
+      enable = true;
+
+      lazyLoad.settings.ft = "markdown";
+    };
   };
 }
