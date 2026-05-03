@@ -9,6 +9,7 @@
         lualine
         mini-ai # Text objects, not LLM
         mini-comment
+        nvim-autopairs
         pencil
         quick-scope
         spider
@@ -27,11 +28,13 @@
         plugin-group-base
 
         auto-dark-mode
+        fidget
         lastplace
         mini-clue
         mini-diff
         numb
         oil
+        rainbow-delimiters
         windows
       ];
     };
