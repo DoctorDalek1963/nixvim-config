@@ -37,7 +37,7 @@
       c_cpp
       clojure
       css
-      d
+      # d
       docker
       elixir
       haskell
