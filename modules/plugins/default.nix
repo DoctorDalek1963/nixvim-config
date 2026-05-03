@@ -5,14 +5,19 @@
       imports = with self.nixvimModules; [
         core
 
+        indent-blankline
         lualine
         mini-ai # Text objects, not LLM
         mini-comment
         pencil
         quick-scope
+        spider
         transparent
         treesitter
         ufo
+        vim-matchup
+        vim-surround
+        web-devicons
         yanky
       ];
     };
@@ -22,10 +27,11 @@
         plugin-group-base
 
         auto-dark-mode
-        oil
+        lastplace
         mini-clue
         mini-diff
         numb
+        oil
         windows
       ];
     };
