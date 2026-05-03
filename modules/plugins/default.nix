@@ -8,6 +8,7 @@
         comfy-line-numbers
         indent-blankline
         lualine
+        marks
         mini-ai # Text objects, not LLM
         mini-comment
         nvim-autopairs
