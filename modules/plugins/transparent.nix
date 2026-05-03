@@ -2,18 +2,12 @@
   flake.nixvimModules.transparent = {
     plugins.transparent = {
       enable = true;
-      settings.extra_groups = [ "NormalFloat" ];
+      settings = {
+        extra_groups = [ "NormalFloat" ];
+        exclude_groups = [ "CursorLine" ];
+      };
     };
 
     globals.transparent_enabled = true;
-
-    keymaps = [
-      {
-        key = "<leader>tt";
-        action = "<cmd>TransparentToggle<cr>";
-        mode = "n";
-        options.desc = "Toggle transparency";
-      }
-    ];
   };
 }
