@@ -11,15 +11,15 @@
         marks
         mini-ai # Text objects, not LLM
         mini-comment
-        nvim-autopairs
+        autopairs
         pencil
         quick-scope
         spider
         transparent
         treesitter
         ufo
-        vim-matchup
-        vim-surround
+        matchup
+        surround
         web-devicons
         yanky
       ];
