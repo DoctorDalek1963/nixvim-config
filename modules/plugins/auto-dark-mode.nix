@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   perSystem =
     { pkgs, ... }:
@@ -16,9 +17,9 @@
     };
 
   flake.nixvimModules.auto-dark-mode =
-    { self', pkgs, ... }:
+    { pkgs, ... }:
     {
-      extraPlugins = [ self'.packages.auto-dark-mode ];
+      extraPlugins = [ self.packages.${pkgs.stdenv.hostPlatform.system}.auto-dark-mode ];
 
       extraConfigLua = ''
         require('auto-dark-mode').setup()
