@@ -1,26 +1,21 @@
 {
-  flake.nixvimModules.luasnip = {
-    plugins = {
-      # Lots of good snippets for various languages
-      friendly-snippets.enable = true;
+  flake.nixvimModules.luasnip =
+    { lib, ... }:
+    {
+      plugins = {
+        # Lots of good snippets for various languages
+        friendly-snippets.enable = true;
 
-      luasnip = {
-        enable = true;
-        # Load snippets from friendly-snippets
-        fromVscode = [ { } ];
-      };
+        luasnip = {
+          enable = true;
+          # Load snippets from friendly-snippets
+          fromVscode = [ { } ];
+        };
 
-      cmp.settings = {
-        sources = [ { name = "luasnip"; } ];
-
-        snippet.expand =
-          # lua
-          ''
-            function(args)
-              require('luasnip').lsp_expand(args.body)
-            end
-          '';
+        blink-cmp.settings = {
+          sources = lib.mkBefore [ "snippets" ];
+          snippets.preset = "luasnip";
+        };
       };
     };
-  };
 }

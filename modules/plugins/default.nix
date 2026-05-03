@@ -44,12 +44,14 @@
         plugin-group-comfortable
 
         actions-preview
-        cmp
+        blink
         committia
         dap
         # luasnip # I don't currently use snippets
         markdown-preview
         undotree
+
+        lsp
       ];
     };
   };
