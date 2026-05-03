@@ -24,6 +24,7 @@
       just
       latex
       nix
+      python
       rust
       toml
       yaml
