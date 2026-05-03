@@ -5,6 +5,7 @@
       imports = with self.nixvimModules; [
         core
 
+        comfy-line-numbers
         indent-blankline
         lualine
         mini-ai # Text objects, not LLM
