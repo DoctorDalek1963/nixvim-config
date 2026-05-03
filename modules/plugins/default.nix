@@ -1,117 +1,58 @@
+{ self, ... }:
 {
-  lib,
-  config,
-  ...
-}:
-let
-  cfg = config.setup.pluginGroups;
-in
-{
-  imports = [
-    ./actions-preview.nix
-    ./comfy-line-numbers.nix
-    ./cmp.nix
-    ./dap.nix
-    ./git.nix
-    ./lualine.nix
-    ./markdown.nix
-    ./mini.nix
-    ./numb.nix
-    ./oil.nix
-    ./pencil.nix
-    ./telescope.nix
-    ./transparent.nix
-    ./treesitter.nix
-    ./quick-scope.nix
-    ./ufo.nix
-    ./undotree.nix
-    ./windows.nix
-    ./yanky.nix
-  ];
+  flake.nixvimModules = {
+    plugin-group-base = {
+      imports = with self.nixvimModules; [
+        core
 
-  config = lib.mkMerge [
-    (lib.mkIf cfg.base {
-      plugins = {
-        # Nice icons for programming stuff
-        web-devicons.enable = true;
+        indent-blankline
+        lualine
+        mini-ai # Text objects, not LLM
+        mini-comment
+        nvim-autopairs
+        pencil
+        quick-scope
+        spider
+        transparent
+        treesitter
+        ufo
+        vim-matchup
+        vim-surround
+        web-devicons
+        yanky
+      ];
+    };
 
-        # Keep shell environment consistent with direnv
-        direnv.enable = true;
+    plugin-group-comfortable = {
+      imports = with self.nixvimModules; [
+        plugin-group-base
 
-        # Show indentation levels
-        indent-blankline = {
-          enable = true;
-          settings.scope.enabled = false;
-        };
+        auto-dark-mode
+        fidget
+        lastplace
+        mini-clue
+        mini-diff
+        numb
+        oil
+        rainbow-delimiters
+        windows
+      ];
+    };
 
-        # Resume editing from the last place
-        lastplace.enable = true;
+    plugin-group-programming = {
+      imports = with self.nixvimModules; [
+        plugin-group-comfortable
 
-        # Improve w e b motions, basically camelCaseMotions
-        spider = {
-          enable = true;
-          keymaps = {
-            motions = {
-              b = "b";
-              e = "e";
-              ge = "ge";
-              w = "w";
-            };
-            silent = true;
-          };
-        };
+        actions-preview
+        blink
+        committia
+        dap
+        # luasnip # I don't currently use snippets
+        markdown-preview
+        undotree
 
-        # Handle delimiters like () [] {} "" '' better
-        vim-surround.enable = true;
-
-        # Make matching tags like () [] {} "" '' work better
-        vim-matchup = {
-          enable = true;
-          settings.matchparen_offscreen = {
-            method = "popup";
-            scrolloff = 1;
-          };
-        };
-      };
-    })
-    (lib.mkIf cfg.niceToHave {
-      plugins = {
-        # Make marks easier and nicer to use
-        marks.enable = true;
-
-        # Automatically pair brackets and quotes and things
-        nvim-autopairs.enable = true;
-
-        # Rainbow brackets and tags
-        rainbow-delimiters = {
-          enable = true;
-
-          settings = {
-            strategy = {
-              "" = "rainbow-delimiters.strategy.global";
-              markdown = "rainbow-delimiters.strategy.no-op";
-            };
-
-            query = {
-              "" = "rainbow-delimiters";
-              lua = "rainbow-blocks";
-            };
-          };
-        };
-
-        # Debugging
-        # Show update messages in the bottom right
-        fidget = {
-          enable = true;
-          settings.notification = {
-            filter = "info";
-            override_vim_notify = true;
-
-            # Transparency
-            window.winblend = 0;
-          };
-        };
-      };
-    })
-  ];
+        lsp
+      ];
+    };
+  };
 }

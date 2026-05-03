@@ -1,10 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.niceToHave {
+  flake.nixvimModules.undotree = {
     plugins.undotree.enable = true;
 
     keymaps = [

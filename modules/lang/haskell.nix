@@ -1,16 +1,8 @@
 {
-  lib,
-  config,
-  ...
-}:
-let
-  cfg = config.setup.lang;
-in
-{
-  config = lib.mkIf (cfg.enable && cfg.haskell) {
+  flake.nixvimModules.haskell = {
     lsp.servers.hls = {
       enable = true;
-      package = null;
+      package = null; # Provided by environment
     };
   };
 }

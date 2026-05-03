@@ -1,52 +1,33 @@
 {
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.programming {
-    assertions = [
-      {
-        assertion = config.plugins.telescope.enable;
-        message = "actions-preview requires telescope";
-      }
-    ];
+  flake.nixvimModules.actions-preview =
+    { pkgs, lib, ... }:
+    {
+      plugins = {
+        actions-preview = {
+          enable = true;
 
-    extraPlugins = [ pkgs.vimPlugins.actions-preview-nvim ];
+          settings = {
+            highlight_command = [
+              (lib.nixvim.mkRaw "require('actions-preview.highlight').delta '${lib.getExe pkgs.delta} --no-gitconfig --side-by-side'")
+            ];
 
-    keymaps = [
-      {
-        key = "<M-return>";
-        action.__raw = "require('actions-preview').code_actions";
-        mode = "n";
-        options = {
-          silent = true;
-          desc = "Open code actions with preview";
+            backend = [ "nui" ];
+          };
         };
-      }
-    ];
 
-    extraConfigLua =
-      # lua
-      ''
-        require("actions-preview").setup {
-          highlight_command = {
-            require("actions-preview.highlight").delta("${pkgs.delta}/bin/delta --no-gitconfig --side-by-side")
-          },
-          telescope = vim.tbl_extend(
-            "force",
-            require("telescope.themes").get_dropdown(),
-            {
-              layout_config = {
-                center = {
-                  height = 0.2,
-                  width = 0.8
-                }
-              }
-            }
-          ),
+        nui.enable = true;
+      };
+
+      keymaps = [
+        {
+          key = "<M-return>";
+          action.__raw = "require('actions-preview').code_actions";
+          mode = "n";
+          options = {
+            silent = true;
+            desc = "Open code actions with preview";
+          };
         }
-      '';
-  };
+      ];
+    };
 }

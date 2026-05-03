@@ -1,14 +1,6 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.base {
-    plugins.yanky = {
-      enable = true;
-      enableTelescope = config.plugins.telescope.enable;
-    };
+  flake.nixvimModules.yanky = {
+    plugins.yanky.enable = true;
 
     keymaps = [
       {
@@ -59,12 +51,6 @@
         mode = "n";
         options.desc = "Yanky next ring entry";
       }
-    ]
-    ++ (lib.optional config.plugins.telescope.enable {
-      key = "<leader>ty";
-      action = "<cmd>Telescope yank_history<cr>";
-      mode = "n";
-      options.desc = "Open Yanky ring with Telescope";
-    });
+    ];
   };
 }

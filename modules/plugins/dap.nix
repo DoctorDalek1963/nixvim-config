@@ -1,17 +1,12 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  config = lib.mkIf config.setup.pluginGroups.programming {
+  flake.nixvimModules.dap = {
+    # Debug Adapter Protocol
     plugins = {
-      cmp-dap.enable = true;
-      cmp.settings.sources = [ { name = "dap"; } ];
-
       dap.enable = true;
       dap-ui.enable = true;
       dap-virtual-text.enable = true;
+
+      cmp.settings.sources = [ { name = "dap"; } ];
     };
 
     keymaps = [

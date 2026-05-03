@@ -19,8 +19,6 @@ in
 
     ./modules/autoCmdGroups.nix
     ./modules/filetypes.nix
-    ./modules/keymaps.nix
-    ./modules/options.nix
 
     ./modules/lang
     ./modules/plugins
