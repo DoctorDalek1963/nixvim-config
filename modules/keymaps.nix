@@ -199,6 +199,12 @@
         mode = "n";
         options.desc = "Select everything in the buffer";
       }
+      {
+        key = "<C-d>";
+        action = "yyp";
+        mode = "n";
+        options.desc = "Duplicate current line";
+      }
 
       # Virtual text
       {
