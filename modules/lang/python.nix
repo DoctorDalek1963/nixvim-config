@@ -1,13 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-let
-  cfg = config.setup.lang;
-in
-{
-  config = lib.mkIf (cfg.enable && cfg.python) {
+  flake.nixvimModules.python = {
     lsp.servers.pylsp = {
       enable = true;
       config.plugins = {
