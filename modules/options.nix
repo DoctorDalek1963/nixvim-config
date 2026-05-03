@@ -41,6 +41,7 @@
       autoread = true;
 
       # Use British English for spell checking
+      spell = true;
       spelllang = "en_gb";
 
       # Never hide things
