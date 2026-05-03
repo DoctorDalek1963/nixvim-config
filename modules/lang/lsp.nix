@@ -52,6 +52,9 @@
         };
 
         colorful-menu.enable = true;
+
+        # Allow non-LSP sources to hook into the native LSP system
+        none-ls.enable = true;
       };
 
       autoGroups.lsp_format_augroup.clear = true;

@@ -17,6 +17,7 @@
 
     nvim-medium.imports = with self.nixvimModules; [
       plugin-group-programming
+      nix
     ];
 
     nvim-full.imports = with self.nixvimModules; [
