@@ -29,7 +29,7 @@
               columns = [
                 [ "kind_icon" ]
                 {
-                  __unkeyed-1 = "label";
+                  __unkeyed = "label";
                   gap = 1;
                 }
               ];
