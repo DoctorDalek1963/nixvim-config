@@ -13,21 +13,24 @@
 
             backend = [ "nui" ];
           };
+
+          lazyLoad.settings.keys = [ "<M-return>" ];
         };
 
         nui.enable = true;
-      };
 
-      keymaps = [
-        {
-          key = "<M-return>";
-          action.__raw = "require('actions-preview').code_actions";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "Open code actions with preview";
-          };
-        }
-      ];
+        lz-n.keymaps = [
+          {
+            plugin = "actions-preview";
+            key = "<M-return>";
+            action.__raw = "function() require('actions-preview').code_actions() end";
+            mode = "n";
+            options = {
+              silent = true;
+              desc = "Open code actions with preview";
+            };
+          }
+        ];
+      };
     };
 }
