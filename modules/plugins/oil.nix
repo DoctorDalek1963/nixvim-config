@@ -22,30 +22,23 @@
 
           keymaps = {
             ";" = "actions.select";
+            "<C-l>" = false;
+            "<C-h>" = false;
+            "<C-r>" = "actions.refresh";
           };
         };
-
-        lazyLoad.settings.keys = [ "<leader>o" ];
-
-        luaConfig.post = ''
-          require('lz.n').trigger_load('oil-git-status')
-        '';
       };
 
-      oil-git-status = {
-        enable = true;
-        lazyLoad.settings.lazy = true;
-      };
+      oil-git-status.enable = true;
 
-      lz-n.keymaps = [
-        {
-          plugin = "oil";
-          key = "<leader>o";
-          action.__raw = "function() require('oil').open() end";
-          mode = "n";
-          options.desc = "Open oil";
-        }
-      ];
     };
+    keymaps = [
+      {
+        key = "<leader>o";
+        action.__raw = "require('oil').open";
+        mode = "n";
+        options.desc = "Open oil";
+      }
+    ];
   };
 }
