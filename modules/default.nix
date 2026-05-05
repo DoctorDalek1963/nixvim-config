@@ -13,6 +13,9 @@
 
     nvim-small.imports = with self.nixvimModules; [
       plugin-group-comfortable
+
+      lsp
+      nix
     ];
 
     nvim-medium.imports = with self.nixvimModules; [
