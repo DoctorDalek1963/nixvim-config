@@ -29,9 +29,42 @@
         };
       };
 
-      oil-git-status.enable = true;
+      oil-git-status = {
+        enable = true;
 
+        settings = {
+          # Use the same symbols that I use in my Starship prompt
+          symbols = {
+            index = {
+              "!" = "I"; # Ignored
+              "?" = "%"; # Untracked
+              "A" = "+"; # Added
+              "C" = "+"; # Copied
+              "D" = "-"; # Deleted
+              "M" = "+"; # Modified
+              "R" = "~"; # Renamed
+              "T" = "T"; # Type changed
+              "U" = "!"; # Unmerged
+              " " = " ";
+            };
+
+            working_tree = {
+              "!" = "I"; # Ignored
+              "?" = "%"; # Untracked
+              "A" = "*"; # Added
+              "C" = "*"; # Copied
+              "D" = "-"; # Deleted
+              "M" = "*"; # Modified
+              "R" = "~"; # Renamed
+              "T" = "T"; # Type changed
+              "U" = "!"; # Unmerged
+              " " = " ";
+            };
+          };
+        };
+      };
     };
+
     keymaps = [
       {
         key = "<leader>o";
